@@ -982,20 +982,14 @@
 <nav id="navbar">
     <div class="nav-content">
         <a href="#home" class="logo">
-            <!-- Kallon GPS logo: car inside location pin with signal arcs -->
             <svg width="42" height="42" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Signal arcs -->
                 <path d="M58 14 Q72 28 72 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
                 <path d="M52 19 Q63 30 63 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.8"/>
                 <path d="M46 24 Q54 32 54 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-                <!-- Pin body -->
                 <path d="M38 8 C24 8 14 18 14 32 C14 48 38 72 38 72 C38 72 62 48 62 32 C62 18 52 8 38 8Z" fill="#0A84FF"/>
-                <!-- Pin circle highlight -->
                 <circle cx="38" cy="32" r="13" fill="#0D1B2A"/>
-                <!-- Car body -->
                 <rect x="28" y="30" width="20" height="9" rx="2" fill="#0A84FF"/>
                 <path d="M31 30 L34 25 L42 25 L45 30Z" fill="#0A84FF"/>
-                <!-- Car wheels -->
                 <circle cx="31" cy="39" r="2.5" fill="#0D1B2A" stroke="#0A84FF" stroke-width="1"/>
                 <circle cx="45" cy="39" r="2.5" fill="#0D1B2A" stroke="#0A84FF" stroke-width="1"/>
             </svg>
@@ -1076,18 +1070,15 @@
         <!-- PHONE MOCKUP -->
         <div class="hero-visual">
             <div style="position:relative;">
-                <!-- Float card top-left -->
                 <div class="float-card" style="top:-20px;left:-110px;min-width:130px;">
                     <div class="float-card-title" data-en="Live Speed" data-fr="Vitesse en direct">Live Speed</div>
                     <div class="float-card-val" id="gps-speed">60 km/h</div>
                     <div class="float-card-sub">Toyota Land Cruiser</div>
                 </div>
-                <!-- Float alert bottom-left -->
                 <div class="float-card-alert" style="bottom:60px;left:-120px;min-width:140px;">
                     <div class="float-alert-title">🚨 <span data-en="ALERT" data-fr="ALERTE">ALERT</span></div>
                     <div class="float-alert-body" data-en="Engine started — Kipé" data-fr="Moteur démarré — Kipé">Engine started — Kipé</div>
                 </div>
-                <!-- Float card right -->
                 <div class="float-card" style="top:80px;right:-110px;min-width:110px;">
                     <div class="float-card-title" data-en="Distance" data-fr="Distance">Distance</div>
                     <div class="float-card-val">12.5 km</div>
@@ -1097,12 +1088,10 @@
                 <div class="phone-wrap">
                     <div class="phone-frame">
                         <div class="phone-screen">
-                            <!-- Phone top bar -->
                             <div class="phone-topbar">
                                 <span class="phone-app-name">KALLON GPS</span>
                                 <span class="phone-live"><span class="live-dot"></span> LIVE</span>
                             </div>
-                            <!-- Map -->
                             <div class="phone-map">
                                 <div class="map-grid-lines"></div>
                                 <div class="map-road-h" style="top:28%;"></div>
@@ -1114,7 +1103,6 @@
                                     <div class="pin-dot"></div>
                                 </div>
                             </div>
-                            <!-- Vehicle info panel -->
                             <div class="phone-info">
                                 <div class="phone-info-row">
                                     <span class="phone-vehicle-name">Toyota Land Cruiser</span>
@@ -1136,7 +1124,6 @@
                                 </div>
                                 <div class="phone-coord" id="gps-coords">9.6418° N, 13.5789° W</div>
                             </div>
-                            <!-- Bottom nav -->
                             <div class="phone-nav">
                                 <div class="phone-nav-item active">
                                     <span class="phone-nav-icon">🗺️</span>
@@ -1288,6 +1275,7 @@
         </div>
 
         <div class="pricing-grid">
+            <!-- CHANGE 1: "5+ vehicles" → "10+ vehicles" -->
             <div class="price-card popular">
                 <div class="price-badge" data-en="⭐ MOST POPULAR" data-fr="⭐ LE PLUS POPULAIRE">⭐ MOST POPULAR</div>
                 <div class="price-label" data-en="Monthly Protection" data-fr="Protection Mensuelle">Monthly Protection</div>
@@ -1295,7 +1283,7 @@
                 <div class="price-per" data-en="per vehicle / month" data-fr="par véhicule / mois">per vehicle / month</div>
                 <div class="price-persuade">💡 <span data-en="Recover the cost of your GPS with just ONE prevented theft." data-fr="Récupérez le coût de votre GPS avec UNE SEULE tentative de vol évitée.">Recover the cost of your GPS with just ONE prevented theft.</span></div>
                 <div class="fleet-banner" onclick="window.open('https://wa.me/224629255946','_blank')">
-                    🚛 <span data-en="Managing a fleet? Ask us about special rates for 5+ vehicles." data-fr="Vous gérez une flotte ? Renseignez-vous sur nos tarifs spéciaux pour 5+ véhicules.">Managing a fleet? Ask us about special rates for 5+ vehicles.</span>
+                    🚛 <span data-en="Managing a fleet? Ask us about special rates for 10+ vehicles." data-fr="Vous gérez une flotte ? Renseignez-vous sur nos tarifs spéciaux pour 10+ véhicules.">Managing a fleet? Ask us about special rates for 10+ vehicles.</span>
                 </div>
                 <ul class="price-features">
                     <li>✅ <span data-en="See your car live on your phone" data-fr="Voyez votre voiture en direct sur votre téléphone">See your car live on your phone</span></li>
@@ -1306,6 +1294,7 @@
                 <button onclick="openModal()" class="price-btn price-btn-blue" data-en="🚗 Protect My Vehicle" data-fr="🚗 Protéger Mon Véhicule">🚗 Protect My Vehicle</button>
             </div>
 
+            <!-- CHANGE 2: Remove "1st month of service included free" -->
             <div class="price-card">
                 <div class="price-badge" style="background:rgba(10,132,255,0.15);color:var(--blue);" data-en="ONE-TIME" data-fr="UNIQUE">ONE-TIME</div>
                 <div class="price-label" data-en="Device + Installation" data-fr="Appareil + Installation">Device + Installation</div>
@@ -1318,7 +1307,6 @@
                     <li>✅ <span data-en="Professional GPS device included" data-fr="Appareil GPS professionnel inclus">Professional GPS device included</span></li>
                     <li>✅ <span data-en="Expert installation at your location" data-fr="Installation par un expert à votre emplacement">Expert installation at your location</span></li>
                     <li>✅ <span data-en="1-year hardware warranty" data-fr="Garantie matérielle 1 an">1-year hardware warranty</span></li>
-                    <li>✅ <span data-en="1st month of service included free" data-fr="1er mois de service offert">1st month of service included free</span></li>
                 </ul>
                 <button onclick="window.open('https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20installation%20for%20my%20vehicle.','_blank')" class="price-btn price-btn-outline" data-en="Get Started" data-fr="Démarrer">Get Started</button>
             </div>
@@ -1331,6 +1319,7 @@
 </section>
 
 <!-- ── WHY US ───────────────────────────────────────────── -->
+<!-- CHANGE 3: Remove "Designed for Guinea & Sierra Leone roads" item -->
 <section id="why-us">
     <div class="container">
         <div class="why-grid">
@@ -1338,13 +1327,6 @@
                 <div class="section-chip" style="margin-bottom:16px;" data-en="Why Choose Us" data-fr="Pourquoi Nous Choisir">Why Choose Us</div>
                 <h2 class="section-title" data-en="Built for Guinea. Trusted by real people." data-fr="Conçu pour la Guinée. Approuvé par de vraies personnes.">Built for Guinea. Trusted by real people.</h2>
                 <ul class="why-list" style="margin-top:28px;">
-                    <li class="why-item">
-                        <div class="why-icon">🌍</div>
-                        <div class="why-text">
-                            <h4 data-en="Designed for Guinea & Sierra Leone roads" data-fr="Conçu pour les routes de Guinée & Sierra Leone">Designed for Guinea & Sierra Leone roads</h4>
-                            <p data-en="Our system works across all major networks — Orange, MTN, Cellcom — with no roaming fees across both countries." data-fr="Notre système fonctionne sur tous les grands réseaux — Orange, MTN, Cellcom — sans frais d'itinérance entre les deux pays.">Our system works across all major networks — Orange, MTN, Cellcom — with no roaming fees across both countries.</p>
-                        </div>
-                    </li>
                     <li class="why-item">
                         <div class="why-icon">🔐</div>
                         <div class="why-text">
@@ -1410,7 +1392,7 @@
         <div class="testimonials-grid">
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."' data-fr='"Je peux maintenant vérifier mon taxi de n'\''importe où. Si le chauffeur prend une mauvaise route, je le sais immédiatement. Tranquillité d'\''esprit totale — je recommande Kallon GPS à tout propriétaire de véhicule."'>"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."</p>
+                <p class="testimonial-text">"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">MD</div>
                     <div>
@@ -1421,7 +1403,7 @@
             </div>
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."' data-fr='"Nous avons installé Kallon GPS sur toute la flotte de notre entreprise. Les routes sont plus efficaces, les coûts ont baissé, et nous savons toujours où se trouve chaque véhicule. Un service vraiment impressionnant."'>"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."</p>
+                <p class="testimonial-text">"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">AS</div>
                     <div>
@@ -1432,7 +1414,7 @@
             </div>
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"My car was stolen. I opened the app and saw exactly where it was. Called the police and it was recovered within hours. This service saved me everything. Highly recommended."' data-fr='"Ma voiture a été volée. J'\''ai ouvert l'\''application et j'\''ai vu exactement où elle était. J'\''ai appelé la police et elle a été récupérée en quelques heures. Ce service m'\''a tout sauvé. Hautement recommandé."'>"My car was stolen. I opened the app and saw exactly where it was. Called the police and it was recovered within hours. This service saved me everything. Highly recommended."</p>
+                <p class="testimonial-text">"My car was stolen. I opened the app and saw exactly where it was. Called the police and it was recovered within hours. This service saved me everything. Highly recommended."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">FK</div>
                     <div>
@@ -1457,9 +1439,10 @@
                 <h4>⚡ <span data-en="How long does installation take?" data-fr="Combien de temps dure l'installation ?">How long does installation take?</span> <span class="faq-arrow">▾</span></h4>
                 <p data-en="About 45 to 60 minutes. Our team can come to your home or office in Conakry. No mechanical changes to your vehicle." data-fr="Environ 45 à 60 minutes. Notre équipe peut se déplacer chez vous ou à votre bureau à Conakry. Aucune modification mécanique sur votre véhicule.">About 45 to 60 minutes. Our team can come to your home or office in Conakry. No mechanical changes to your vehicle.</p>
             </div>
+            <!-- CHANGE 4: "Guinea and Sierra Leone" → "the country" -->
             <div class="faq-card">
                 <h4>📶 <span data-en="Does it work outside Conakry?" data-fr="Fonctionne-t-il en dehors de Conakry ?">Does it work outside Conakry?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="Yes. Coverage spans all major regions in Guinea and Sierra Leone, with no extra roaming fees." data-fr="Oui. La couverture s'étend à toutes les grandes régions de Guinée et de Sierra Leone, sans frais d'itinérance supplémentaires.">Yes. Coverage spans all major regions in Guinea and Sierra Leone, with no extra roaming fees.</p>
+                <p data-en="Yes. Coverage spans all major regions in the country, with no extra roaming fees." data-fr="Oui. La couverture s'étend à toutes les grandes régions du pays, sans frais d'itinérance supplémentaires.">Yes. Coverage spans all major regions in the country, with no extra roaming fees.</p>
             </div>
             <div class="faq-card">
                 <h4>📱 <span data-en="Do I need a smartphone?" data-fr="Faut-il un smartphone ?">Do I need a smartphone?</span> <span class="faq-arrow">▾</span></h4>
@@ -1586,7 +1569,6 @@
 </div>
 
 <script>
-    // ── STATE ────────────────────────────────────────────────────────────────
     let currentLang = 'en';
     let currentCurrency = 'USD';
 
@@ -1597,10 +1579,8 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ── MOBILE MENU ───────────────────────────────────────────────────────────
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
 
-    // ── LANGUAGE ──────────────────────────────────────────────────────────────
     function toggleLanguage() {
         currentLang = currentLang === 'en' ? 'fr' : 'en';
         document.getElementById('lang-btn').textContent = currentLang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN';
@@ -1619,7 +1599,6 @@
         if (pi) pi.placeholder = '+224 629 255 946';
     }
 
-    // ── CURRENCY ──────────────────────────────────────────────────────────────
     function changeCurrency(cur) { currentCurrency = cur; updatePriceDisplay(); }
     function updatePriceDisplay() {
         const m = document.getElementById('price-monthly');
@@ -1628,7 +1607,6 @@
         if (i) i.textContent = PRICES.install[currentCurrency];
     }
 
-    // ── MODAL ─────────────────────────────────────────────────────────────────
     function openModal() { document.getElementById('contact-modal').classList.add('active'); }
     function closeModal() { document.getElementById('contact-modal').classList.remove('active'); }
     function submitProtectForm(event) {
@@ -1641,7 +1619,6 @@
         closeModal();
     }
 
-    // ── NAVBAR HIDE ON SCROLL ─────────────────────────────────────────────────
     let lastScrollY = 0;
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
@@ -1650,7 +1627,6 @@
         lastScrollY = cur;
     });
 
-    // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
@@ -1668,7 +1644,6 @@
         revealObserver.observe(sec);
     });
 
-    // ── FAQ ACCORDION ─────────────────────────────────────────────────────────
     document.querySelectorAll('.faq-card').forEach(card => {
         card.addEventListener('click', () => {
             const isOpen = card.classList.contains('open');
@@ -1679,7 +1654,6 @@
     const firstFaq = document.querySelector('.faq-card');
     if (firstFaq) firstFaq.classList.add('open');
 
-    // ── GPS COORDINATE SIMULATION ─────────────────────────────────────────────
     const coordEl = document.getElementById('gps-coords');
     if (coordEl) {
         let lat = 9.5370, lng = 13.6600;
@@ -1690,7 +1664,6 @@
         }, 2000);
     }
 
-    // ── TOAST TRIGGERS ────────────────────────────────────────────────────────
     const toastMap = { 'features': 'toast-tracking', 'pricing': 'toast-pricing' };
     const toastObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -1712,7 +1685,6 @@
         if (el) toastObserver.observe(el);
     });
 
-    // ── INIT ──────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         updatePriceDisplay();
         applyLanguage();
