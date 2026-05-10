@@ -2009,48 +2009,18 @@
 <!-- ── FLOATING WA ─────────────────────────────────────── -->
 <a href="https://wa.me/224629255946" class="float-wa" target="_blank" title="Chat on WhatsApp">💬</a>
 
-<!-- ── LIVE CHAT WIDGET ──────────────────────────────────── -->
-<div class="chat-widget" id="chat-widget">
-    <div class="chat-panel" id="chat-panel">
-        <div class="chat-panel-header">
-            <div class="chat-avatar">🛰️</div>
-            <div>
-                <div class="chat-agent-name">Kallon GPS Support</div>
-                <div class="chat-agent-status">
-                    <span class="chat-online-dot"></span>
-                    <span data-en="Online now · Replies in &lt;2 min" data-fr="En ligne · Réponse en &lt;2 min">Online now · Replies in &lt;2 min</span>
-                </div>
-            </div>
-            <button class="chat-close-btn" onclick="toggleChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="chat-msg agent">
-                <div class="chat-msg-avatar">🛰️</div>
-                <div>
-                    <div class="chat-msg-bubble" data-en="👋 Hello! Welcome to Kallon GPS. How can we help protect your vehicle today?" data-fr="👋 Bonjour ! Bienvenue chez Kallon GPS. Comment pouvons-nous protéger votre véhicule aujourd'hui ?">👋 Hello! Welcome to Kallon GPS. How can we help protect your vehicle today?</div>
-                    <div class="chat-msg-time">Just now</div>
-                </div>
-            </div>
-        </div>
-        <div class="chat-quick-replies" id="chat-quick-replies">
-            <button class="quick-reply" onclick="sendQuickReply(this)" data-en="💰 Get a price" data-fr="💰 Obtenir un prix">💰 Get a price</button>
-            <button class="quick-reply" onclick="sendQuickReply(this)" data-en="🔧 Book install" data-fr="🔧 Réserver install">🔧 Book install</button>
-            <button class="quick-reply" onclick="sendQuickReply(this)" data-en="❓ How it works" data-fr="❓ Comment ça marche">❓ How it works</button>
-            <button class="quick-reply" onclick="sendQuickReply(this)" data-en="🚗 Fleet pricing" data-fr="🚗 Prix flotte">🚗 Fleet pricing</button>
-        </div>
-        <div class="chat-input-row">
-            <input type="text" class="chat-text-input" id="chat-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChatMessage()">
-            <button class="chat-send-btn" onclick="sendChatMessage()">
-                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            </button>
-        </div>
-    </div>
-    <div class="chat-bubble" id="chat-bubble" onclick="toggleChat()">
-        <svg viewBox="0 0 24 24" id="chat-icon"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-        <div class="chat-badge"></div>
-    </div>
-    <div class="chat-label" data-en="Chat with us!" data-fr="Chattez avec nous !">Chat with us!</div>
-</div>
+<!-- ── TAWK.TO LIVE CHAT ──────────────────────────── -->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/69ffedf0fee15b1c36e09395/1jo7rj01u';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
 
 <!-- ── TOAST ALERTS ─────────────────────────────────────── -->
 <div class="toast-alert" id="toast-tracking">
@@ -2265,114 +2235,6 @@
         setTimeout(() => document.getElementById('cf-success').classList.remove('show'), 6000);
     }
 
-    // ── LIVE CHAT WIDGET ─────────────────────────────────────────────────────
-    let chatOpen = false;
-    const chatReplies = {
-        'Get a price': `Our GPS tracking starts from just $9/month with a one-time installation of $34–$46. Want a personalized quote? 👉 <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">Chat on WhatsApp</a>`,
-        'Obtenir un prix': `Notre suivi GPS commence à partir de $9/mois avec une installation de $34–$46. Vous voulez un devis ? 👉 <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">WhatsApp</a>`,
-        'Book install': `Great choice! Installation takes 45–60 min and our team comes to you. <a href="https://wa.me/224629255946?text=I%20want%20to%20book%20an%20installation" target="_blank" style="color:var(--blue);">Book via WhatsApp →</a>`,
-        'Réserver install': `Excellent choix ! L'installation prend 45–60 min et notre équipe se déplace. <a href="https://wa.me/224629255946?text=Je%20veux%20réserver%20une%20installation" target="_blank" style="color:var(--blue);">Réserver sur WhatsApp →</a>`,
-        'How it works': `It's simple: 1️⃣ We install a small GPS device in your car. 2️⃣ You track it live from your phone. 3️⃣ Get instant alerts for any movement or speeding. Any questions? <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">Ask us on WhatsApp</a>`,
-        'Comment ça marche': `C'est simple : 1️⃣ Nous installons un petit GPS dans votre voiture. 2️⃣ Vous le suivez en direct sur votre téléphone. 3️⃣ Alertes instantanées. <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">Questions ? WhatsApp</a>`,
-        'Fleet pricing': `For fleets of 3+ vehicles we offer discounted rates starting from $7/month per vehicle. <a href="https://wa.me/224629255946?text=I%20need%20fleet%20GPS%20pricing" target="_blank" style="color:var(--blue);">Get fleet quote →</a>`,
-        'Prix flotte': `Pour les flottes de 3+ véhicules, tarifs réduits à partir de $7/mois par véhicule. <a href="https://wa.me/224629255946?text=Je%20veux%20un%20devis%20flotte" target="_blank" style="color:var(--blue);">Devis flotte →</a>`,
-    };
-
-    function toggleChat() {
-        chatOpen = !chatOpen;
-        const widget = document.getElementById('chat-widget');
-        const panel = document.getElementById('chat-panel');
-        const bubble = document.getElementById('chat-bubble');
-        panel.classList.toggle('open', chatOpen);
-        bubble.classList.toggle('open', chatOpen);
-        widget.classList.toggle('chat-open', chatOpen);
-        if (chatOpen) {
-            setTimeout(() => document.getElementById('chat-input').focus(), 400);
-        }
-    }
-
-    function addChatMessage(text, role) {
-        const msgs = document.getElementById('chat-messages');
-        const div = document.createElement('div');
-        div.className = `chat-msg ${role}`;
-        const now = new Date();
-        const time = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-        div.innerHTML = `
-            <div class="chat-msg-avatar">${role === 'agent' ? '🛰️' : '👤'}</div>
-            <div>
-                <div class="chat-msg-bubble">${text}</div>
-                <div class="chat-msg-time">${time}</div>
-            </div>`;
-        msgs.appendChild(div);
-        msgs.scrollTop = msgs.scrollHeight;
-    }
-
-    function showTyping() {
-        const msgs = document.getElementById('chat-messages');
-        const div = document.createElement('div');
-        div.className = 'chat-msg agent';
-        div.id = 'typing-indicator';
-        div.innerHTML = `<div class="chat-msg-avatar">🛰️</div><div class="chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
-        msgs.appendChild(div);
-        msgs.scrollTop = msgs.scrollHeight;
-    }
-
-    function removeTyping() {
-        const t = document.getElementById('typing-indicator');
-        if (t) t.remove();
-    }
-
-    function agentReply(replyText) {
-        showTyping();
-        setTimeout(() => {
-            removeTyping();
-            addChatMessage(replyText, 'agent');
-        }, 1200);
-    }
-
-    function sendQuickReply(btn) {
-        const text = btn.textContent.trim();
-        addChatMessage(text, 'user');
-        document.getElementById('chat-quick-replies').style.display = 'none';
-
-        // Save to Supabase so admin can see it
-        saveLeadToSupabase({
-            name: 'Chat Visitor',
-            phone: 'via Live Chat',
-            email: '',
-            interest: 'Live Chat',
-            message: text,
-            status: 'new'
-        });
-
-        const key = Object.keys(chatReplies).find(k => text.includes(k.replace(/💰|🔧|❓|🚗/g,'').trim()) || text === k);
-        const replyText = chatReplies[text] || chatReplies[Object.keys(chatReplies).find(k => text.includes(k.split(' ').slice(1).join(' ')))] || `Thanks! For that, our team can best help you directly. <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">Chat on WhatsApp →</a>`;
-        agentReply(replyText);
-    }
-
-    function sendChatMessage() {
-        const input = document.getElementById('chat-input');
-        const text = input.value.trim();
-        if (!text) return;
-        addChatMessage(text, 'user');
-        input.value = '';
-        document.getElementById('chat-quick-replies').style.display = 'none';
-
-        // Save to Supabase so admin can see it
-        saveLeadToSupabase({
-            name: 'Chat Visitor',
-            phone: 'via Live Chat',
-            email: '',
-            interest: 'Live Chat',
-            message: text,
-            status: 'new'
-        });
-
-        const fallback = currentLang === 'fr'
-            ? `Merci pour votre message ! Notre équipe vous répondra très bientôt. Pour une réponse immédiate: <a href="https://wa.me/224629255946?text=${encodeURIComponent(text)}" target="_blank" style="color:var(--blue);">WhatsApp →</a>`
-            : `Thanks for your message! Our team will get back to you shortly. For an instant reply: <a href="https://wa.me/224629255946?text=${encodeURIComponent(text)}" target="_blank" style="color:var(--blue);">WhatsApp →</a>`;
-        agentReply(fallback);
-    }
 
     // ── INIT ──────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
