@@ -2334,6 +2334,17 @@
         const text = btn.textContent.trim();
         addChatMessage(text, 'user');
         document.getElementById('chat-quick-replies').style.display = 'none';
+
+        // Save to Supabase so admin can see it
+        saveLeadToSupabase({
+            name: 'Chat Visitor',
+            phone: 'via Live Chat',
+            email: '',
+            interest: 'Live Chat',
+            message: text,
+            status: 'new'
+        });
+
         const key = Object.keys(chatReplies).find(k => text.includes(k.replace(/💰|🔧|❓|🚗/g,'').trim()) || text === k);
         const replyText = chatReplies[text] || chatReplies[Object.keys(chatReplies).find(k => text.includes(k.split(' ').slice(1).join(' ')))] || `Thanks! For that, our team can best help you directly. <a href="https://wa.me/224629255946" target="_blank" style="color:var(--blue);">Chat on WhatsApp →</a>`;
         agentReply(replyText);
@@ -2346,6 +2357,17 @@
         addChatMessage(text, 'user');
         input.value = '';
         document.getElementById('chat-quick-replies').style.display = 'none';
+
+        // Save to Supabase so admin can see it
+        saveLeadToSupabase({
+            name: 'Chat Visitor',
+            phone: 'via Live Chat',
+            email: '',
+            interest: 'Live Chat',
+            message: text,
+            status: 'new'
+        });
+
         const fallback = currentLang === 'fr'
             ? `Merci pour votre message ! Notre équipe vous répondra très bientôt. Pour une réponse immédiate: <a href="https://wa.me/224629255946?text=${encodeURIComponent(text)}" target="_blank" style="color:var(--blue);">WhatsApp →</a>`
             : `Thanks for your message! Our team will get back to you shortly. For an instant reply: <a href="https://wa.me/224629255946?text=${encodeURIComponent(text)}" target="_blank" style="color:var(--blue);">WhatsApp →</a>`;
