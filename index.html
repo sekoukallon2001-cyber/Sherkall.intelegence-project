@@ -1679,7 +1679,7 @@
                 </div>
                 <div class="form-group">
                     <label data-en="I'm interested in..." data-fr="Je suis intéressé par...">I'm interested in...</label>
-                    <select class="form-select form-input" id="cf-interest">
+                    <select class="form-select form-input" id="cf-interest" onchange="updateDefaultMessage(this.value)">
                         <option value="tracking" data-en="Vehicle Tracking" data-fr="Suivi de véhicule">Vehicle Tracking</option>
                         <option value="fleet" data-en="Fleet Management" data-fr="Gestion de flotte">Fleet Management</option>
                         <option value="quote" data-en="Get a Price Quote" data-fr="Obtenir un devis">Get a Price Quote</option>
@@ -2024,6 +2024,25 @@
                 body: JSON.stringify(lead)
             });
         } catch(e) { /* fail silently — WhatsApp still opens */ }
+    }
+
+    // ── INTEREST → DEFAULT MESSAGE ────────────────────────────────────────
+    const DEFAULT_MESSAGES = {
+        tracking: "Hi, I want to install GPS tracking on my vehicle. Can you guide me?",
+        fleet:    "Hi, I manage a fleet of vehicles and I'm interested in your Fleet Management solution. Can you tell me more about pricing and features?",
+        quote:    "Hi, I'd like to get a price quote for GPS tracking. Can you send me the details?",
+        install:  "Hi, I'm ready to book a GPS installation. When are you available and where do you cover?",
+        other:    "Hi, I have a question about your GPS services. Can you help me?"
+    };
+
+    function updateDefaultMessage(value) {
+        const textarea = document.getElementById('cf-message');
+        // Only auto-update if the user hasn't manually edited the message
+        const currentMsg = textarea.value.trim();
+        const isDefault = Object.values(DEFAULT_MESSAGES).some(m => m === currentMsg) || currentMsg === '';
+        if (isDefault) {
+            textarea.value = DEFAULT_MESSAGES[value] || DEFAULT_MESSAGES.other;
+        }
     }
 
     async function submitContactForm() {
