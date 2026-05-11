@@ -1425,6 +1425,215 @@
 
         /* ── COUNT-UP STAT NUMBER ── */
         .stat-number { will-change:contents; }
+
+        /* ══════════════════════════════════════════
+           DASHBOARD DEMO — SPEEDOMETER + COMPASS
+        ══════════════════════════════════════════ */
+        .dashboard-demo-grid {
+            display:grid; grid-template-columns:repeat(3,1fr);
+            gap:24px;
+        }
+        @media (max-width:900px) { .dashboard-demo-grid { grid-template-columns:1fr; } }
+
+        .dash-card {
+            background:var(--navy-card);
+            border:1px solid rgba(10,132,255,0.15);
+            border-radius:20px; padding:28px 24px;
+            display:flex; flex-direction:column; align-items:center;
+            gap:16px; position:relative; overflow:hidden;
+            transition:border-color 0.3s, box-shadow 0.3s;
+        }
+        .dash-card:hover {
+            border-color:rgba(10,132,255,0.4);
+            box-shadow:0 0 40px rgba(10,132,255,0.08);
+        }
+        .dash-card-label {
+            font-family:'Montserrat',sans-serif;
+            font-weight:800; font-size:12px;
+            letter-spacing:2px; text-transform:uppercase;
+            color:var(--blue); align-self:flex-start;
+        }
+        .speedo-wrap { position:relative; width:280px; }
+        .speedo-readout {
+            position:absolute; bottom:10px; left:50%;
+            transform:translateX(-50%);
+            text-align:center;
+        }
+        #speedo-val {
+            font-family:'Montserrat',sans-serif;
+            font-size:42px; font-weight:900; color:#fff;
+            line-height:1;
+        }
+        .speedo-unit { font-size:13px; color:var(--grey); display:block; }
+
+        .compass-wrap { display:flex; align-items:center; justify-content:center; }
+        .compass-ring { position:relative; width:200px; height:200px; }
+        .compass-center {
+            position:absolute; top:50%; left:50%;
+            transform:translate(-50%,-50%);
+            text-align:center; pointer-events:none;
+        }
+        #compass-dir {
+            font-family:'Montserrat',sans-serif;
+            font-size:28px; font-weight:900; color:#fff; line-height:1;
+        }
+
+        .dash-controls { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+        .dash-btn {
+            background:rgba(10,132,255,0.1);
+            border:1px solid rgba(10,132,255,0.25);
+            color:rgba(242,244,247,0.7);
+            padding:7px 14px; border-radius:50px;
+            font-size:12px; font-weight:700;
+            cursor:pointer; transition:all 0.2s;
+            font-family:'Montserrat',sans-serif;
+        }
+        .dash-btn:hover, .dash-btn.active {
+            background:var(--blue); border-color:var(--blue);
+            color:#fff; box-shadow:0 0 16px rgba(10,132,255,0.4);
+        }
+
+        .signal-panel { width:100%; display:flex; flex-direction:column; gap:12px; }
+        .signal-row {
+            display:flex; align-items:center; gap:10px;
+            font-size:12px; padding:6px 0;
+            border-bottom:1px solid rgba(255,255,255,0.04);
+        }
+        .signal-row:last-child { border-bottom:none; }
+        .signal-label { color:var(--grey); font-size:11px; min-width:80px; }
+        .signal-val { color:#fff; font-weight:700; margin-left:auto; font-size:12px; }
+        .mono-val { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); }
+        .signal-bars { display:flex; gap:3px; align-items:flex-end; margin-left:auto; }
+        .sbar {
+            width:5px; border-radius:2px;
+            background:rgba(255,255,255,0.12);
+        }
+        .sbar:nth-child(1){height:6px;} .sbar:nth-child(2){height:9px;}
+        .sbar:nth-child(3){height:12px;} .sbar:nth-child(4){height:15px;}
+        .sbar:nth-child(5){height:18px;}
+        .sbar.active { background:var(--green); }
+        .signal-badge {
+            margin-left:auto; background:rgba(34,197,94,0.15);
+            border:1px solid rgba(34,197,94,0.4);
+            color:var(--green); padding:3px 10px;
+            border-radius:20px; font-size:10px; font-weight:800;
+            letter-spacing:0.5px;
+            animation:statusGlow 2s ease-in-out infinite;
+        }
+        .signal-badge.alert {
+            background:rgba(239,68,68,0.15);
+            border-color:rgba(239,68,68,0.4);
+            color:var(--red);
+        }
+        .battery-bar {
+            flex:1; height:8px; border-radius:4px;
+            background:rgba(255,255,255,0.08);
+            overflow:hidden; max-width:80px;
+        }
+        .battery-fill {
+            height:100%; border-radius:4px;
+            background:linear-gradient(90deg, var(--green), #16a34a);
+            transition:width 0.5s ease;
+        }
+        .engine-dot {
+            width:10px; height:10px; border-radius:50%;
+            background:rgba(255,255,255,0.15);
+            transition:all 0.3s;
+        }
+        .engine-dot.active {
+            background:var(--green);
+            box-shadow:0 0 8px rgba(34,197,94,0.6);
+            animation:livePulse 1.5s ease-in-out infinite;
+        }
+
+        /* ══════════════════════════════════════════
+           GEOFENCE BUILDER
+        ══════════════════════════════════════════ */
+        .geo-builder-wrap { display:flex; flex-direction:column; gap:16px; }
+        .geo-toolbar {
+            display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+            background:var(--navy-card);
+            border:1px solid rgba(10,132,255,0.15);
+            border-radius:14px; padding:14px 18px;
+        }
+        .geo-tool-btn {
+            background:rgba(10,132,255,0.1);
+            border:1px solid rgba(10,132,255,0.25);
+            color:rgba(242,244,247,0.8);
+            padding:8px 16px; border-radius:50px;
+            font-size:13px; font-weight:700;
+            cursor:pointer; transition:all 0.2s;
+            font-family:'Montserrat',sans-serif;
+        }
+        .geo-tool-btn:hover, .geo-tool-btn.active {
+            background:var(--blue); border-color:var(--blue);
+            color:#fff; box-shadow:0 0 16px rgba(10,132,255,0.35);
+        }
+        .geo-status {
+            margin-left:auto; font-size:12px;
+            color:var(--grey); font-family:'JetBrains Mono',monospace;
+        }
+        .geo-canvas-wrap {
+            position:relative; border-radius:18px; overflow:hidden;
+            border:1.5px solid rgba(10,132,255,0.2);
+            background:#050e1a; cursor:crosshair;
+        }
+        #geoCanvas { display:block; width:100%; touch-action:none; }
+        .geo-legend {
+            position:absolute; top:14px; right:14px;
+            background:rgba(6,15,26,0.88);
+            border:1px solid rgba(10,132,255,0.2);
+            border-radius:10px; padding:10px 14px;
+            display:flex; flex-direction:column; gap:6px;
+        }
+        .geo-legend-item { display:flex; align-items:center; gap:8px; font-size:11px; color:rgba(242,244,247,0.7); }
+        .geo-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+        .geo-dot.blue  { background:var(--blue); box-shadow:0 0 6px var(--blue); }
+        .geo-dot.green { background:var(--green); box-shadow:0 0 6px var(--green); }
+        .geo-dot.red   { background:var(--red); box-shadow:0 0 6px var(--red); }
+        .geo-alert-banner {
+            background:rgba(239,68,68,0.12);
+            border:1.5px solid rgba(239,68,68,0.4);
+            border-radius:12px; padding:14px 20px;
+            color:var(--red); font-weight:700; font-size:14px;
+            text-align:center; display:none;
+            animation:alertBlink 1.5s ease-in-out infinite;
+        }
+        .geo-alert-banner.show { display:block; }
+
+        /* ══════════════════════════════════════════
+           3D GLOBE
+        ══════════════════════════════════════════ */
+        .globe-wrap {
+            position:relative; display:flex;
+            align-items:center; justify-content:center;
+            border-radius:20px; overflow:hidden;
+            background:radial-gradient(ellipse at center, #0a1a2e 0%, #060f1a 70%);
+            border:1.5px solid rgba(10,132,255,0.2);
+            min-height:520px;
+        }
+        #globeCanvas { display:block; cursor:grab; }
+        #globeCanvas:active { cursor:grabbing; }
+        .globe-overlay-info {
+            position:absolute; top:20px; left:20px;
+            display:flex; flex-direction:column; gap:8px;
+        }
+        .globe-stat-pill {
+            background:rgba(6,15,26,0.85);
+            border:1px solid rgba(10,132,255,0.3);
+            border-radius:50px; padding:7px 14px;
+            font-size:12px; font-weight:700;
+            color:#fff; backdrop-filter:blur(8px);
+            font-family:'Montserrat',sans-serif;
+        }
+        .globe-stat-pill span { color:var(--blue); }
+        .globe-hint {
+            position:absolute; bottom:16px; left:50%;
+            transform:translateX(-50%);
+            font-size:11px; color:rgba(242,244,247,0.35);
+            letter-spacing:1px; text-transform:uppercase;
+            pointer-events:none;
+        }
     </style>
 </head>
 <body>
@@ -1460,9 +1669,9 @@
             <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
             <li><a href="#how" data-en="How It Works" data-fr="Comment ça marche">How It Works</a></li>
             <li><a href="#features" data-en="Features" data-fr="Fonctionnalités">Features</a></li>
+            <li><a href="#live-demo" data-en="Live Demo" data-fr="Démo Live">Live Demo</a></li>
+            <li><a href="#globe-section" data-en="Satellites" data-fr="Satellites">Satellites</a></li>
             <li><a href="#pricing" data-en="Pricing" data-fr="Tarifs">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact-form-section" data-en="Contact Form" data-fr="Formulaire">Contact Form</a></li>
             <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
@@ -1794,719 +2003,6 @@
                     <li>✅ <span data-en="Professional GPS device included" data-fr="Appareil GPS professionnel inclus">Professional GPS device included</span></li>
                     <li>✅ <span data-en="Expert installation at your location" data-fr="Installation par un expert à votre emplacement">Expert installation at your location</span></li>
                     <li>✅ <span data-en="1-year hardware warranty" data-fr="Garantie matérielle 1 an">1-year hardware warranty</span></li>
-                    <li>✅ <span data-en="1st month of service included free" data-fr="1er mois de service offert">1st month of service included free</span></li>
+                    <li>✅ <span data-en="Clean, hidden install — no visible wires" data-fr="Installation propre et cachée — aucun fil visible">Clean, hidden install — no visible wires</span></li>
                 </ul>
-                <button onclick="window.open('https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20installation%20for%20my%20vehicle.','_blank')" class="price-btn price-btn-outline" data-en="Get Started" data-fr="Démarrer">Get Started</button>
-            </div>
-        </div>
-
-        <div style="text-align:center;margin-top:44px;">
-            <a href="https://wa.me/224629255946" target="_blank" class="btn-primary">💬 <span data-en="Contact on WhatsApp" data-fr="Contacter sur WhatsApp">Contact on WhatsApp</span></a>
-        </div>
-    </div>
-</section>
-
-<!-- ── WHY US ───────────────────────────────────────────── -->
-<section id="why-us">
-    <div class="container">
-        <div class="why-grid">
-            <div>
-                <div class="section-chip" style="margin-bottom:16px;" data-en="Why Choose Us" data-fr="Pourquoi Nous Choisir">Why Choose Us</div>
-                <h2 class="section-title" data-en="Built for Guinea. Trusted by real people." data-fr="Conçu pour la Guinée. Approuvé par de vraies personnes.">Built for Guinea. Trusted by real people.</h2>
-                <ul class="why-list" style="margin-top:28px;">
-                    <li class="why-item">
-                        <div class="why-icon">🌍</div>
-                        <div class="why-text">
-                            <h4 data-en="Designed for Guinea's roads" data-fr="Conçu pour les routes de Guinée">Designed for Guinea's roads</h4>
-                            <p data-en="Our system works across all major networks — Orange and MTN — with full coverage across the country." data-fr="Notre système fonctionne sur tous les grands réseaux — Orange et MTN — avec une couverture complète dans tout le pays.">Our system works across all major networks — Orange and MTN — with full coverage across the country.</p>
-                        </div>
-                    </li>
-                    <li class="why-item">
-                        <div class="why-icon">🔐</div>
-                        <div class="why-text">
-                            <h4 data-en="Your data stays private" data-fr="Vos données restent privées">Your data stays private</h4>
-                            <p data-en="Your vehicle data is encrypted and only you can access it. We never share your information with anyone." data-fr="Les données de votre véhicule sont cryptées et seul vous pouvez y accéder. Nous ne partageons jamais vos informations.">Your vehicle data is encrypted and only you can access it. We never share your information with anyone.</p>
-                        </div>
-                    </li>
-                    <li class="why-item">
-                        <div class="why-icon">💬</div>
-                        <div class="why-text">
-                            <h4 data-en="Real human support via WhatsApp" data-fr="Support humain réel via WhatsApp">Real human support via WhatsApp</h4>
-                            <p data-en="No call centers or bots. Message us and a real person responds — usually within minutes." data-fr="Pas de centres d'appel ni de bots. Écrivez-nous et une vraie personne répond — généralement en quelques minutes.">No call centers or bots. Message us and a real person responds — usually within minutes.</p>
-                        </div>
-                    </li>
-                    <li class="why-item">
-                        <div class="why-icon">🚘</div>
-                        <div class="why-text">
-                            <h4 data-en="Works on any vehicle" data-fr="Fonctionne sur tout véhicule">Works on any vehicle</h4>
-                            <p data-en="Cars, trucks, taxis, buses, motorcycles — if it moves, we can track it. Fleet packages available." data-fr="Voitures, camions, taxis, bus, motos — si ça roule, on peut le suivre. Formules flotte disponibles.">Cars, trucks, taxis, buses, motorcycles — if it moves, we can track it. Fleet packages available.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="shield-visual">
-                <div style="text-align:center;">
-                    <div class="shield-bg">
-                        <div class="shield-inner">
-                            <span class="shield-emoji">🛡️</span>
-                            <div class="shield-word" data-en="TRUSTED" data-fr="APPROUVÉ">TRUSTED</div>
-                        </div>
-                    </div>
-                    <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px;">
-                        <div style="display:flex;align-items:center;gap:10px;background:var(--navy-mid);border:1px solid rgba(10,132,255,0.2);border-radius:12px;padding:12px 18px;">
-                            <span style="font-size:20px;">📍</span>
-                            <span style="font-size:13px;" data-en="Suivi en temps réel" data-fr="Suivi en temps réel">Suivi en temps réel</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;background:var(--navy-mid);border:1px solid rgba(10,132,255,0.2);border-radius:12px;padding:12px 18px;">
-                            <span style="font-size:20px;">🛡️</span>
-                            <span style="font-size:13px;" data-en="Sécurité renforcée" data-fr="Sécurité renforcée">Sécurité renforcée</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;background:var(--navy-mid);border:1px solid rgba(10,132,255,0.2);border-radius:12px;padding:12px 18px;">
-                            <span style="font-size:20px;">🔔</span>
-                            <span style="font-size:13px;" data-en="Alertes intelligentes" data-fr="Alertes intelligentes">Alertes intelligentes</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;background:var(--navy-mid);border:1px solid rgba(10,132,255,0.2);border-radius:12px;padding:12px 18px;">
-                            <span style="font-size:20px;">👥</span>
-                            <span style="font-size:13px;" data-en="Support rapide" data-fr="Support rapide">Support rapide</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── TESTIMONIALS ────────────────────────────────────── -->
-<section id="testimonials">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-chip" data-en="Real People, Real Stories" data-fr="Vraies Personnes, Vraies Histoires">Real People, Real Stories</div>
-            <h2 class="section-title" data-en="What Our Clients Say" data-fr="Ce Que Disent Nos Clients">What Our Clients Say</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."' data-fr='"Je peux maintenant vérifier mon taxi de n'\''importe où. Si le chauffeur prend une mauvaise route, je le sais immédiatement. Tranquillité d'\''esprit totale — je recommande Kallon GPS à tout propriétaire de véhicule."'>"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MD</div>
-                    <div>
-                        <div class="author-name">Mamadou Diallo</div>
-                        <div class="author-loc">Conakry, Guinée</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card reveal reveal-delay-1">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."' data-fr='"Nous avons installé Kallon GPS sur toute la flotte de notre entreprise. Les routes sont plus efficaces, les coûts ont baissé, et nous savons toujours où se trouve chaque véhicule. Un service vraiment impressionnant."'>"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">AS</div>
-                    <div>
-                        <div class="author-name">Aboubacar Sylla</div>
-                        <div class="author-loc">Conakry, Guinée</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card reveal reveal-delay-2">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"My car was stolen. I opened the app and saw exactly where it was. Called the police and it was recovered within hours. This service saved me everything. Highly recommended."' data-fr='"Ma voiture a été volée. J'\''ai ouvert l'\''application et j'\''ai vu exactement où elle était. J'\''ai appelé la police et elle a été récupérée en quelques heures. Ce service m'\''a tout sauvé. Hautement recommandé."'>"My car was stolen. I opened the app and saw exactly where it was. Called the police and it was recovered within hours. This service saved me everything. Highly recommended."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">FK</div>
-                    <div>
-                        <div class="author-name">Fatimata Kourouma</div>
-                        <div class="author-loc">Conakry, Guinea</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── FAQ ─────────────────────────────────────────────── -->
-<section id="faq">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-chip" data-en="Questions & Answers" data-fr="Questions & Réponses">Questions & Answers</div>
-            <h2 class="section-title" data-en="Frequently Asked Questions" data-fr="Questions Fréquentes">Frequently Asked Questions</h2>
-        </div>
-        <div class="faq-grid">
-            <div class="faq-card reveal">
-                <h4>⚡ <span data-en="How long does installation take?" data-fr="Combien de temps dure l'installation ?">How long does installation take?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="About 45 to 60 minutes. Our team can come to your home or office in Conakry. No mechanical changes to your vehicle." data-fr="Environ 45 à 60 minutes. Notre équipe peut se déplacer chez vous ou à votre bureau à Conakry. Aucune modification mécanique sur votre véhicule.">About 45 to 60 minutes. Our team can come to your home or office in Conakry. No mechanical changes to your vehicle.</p>
-            </div>
-            <div class="faq-card reveal reveal-delay-1">
-                <h4>📶 <span data-en="Does it work outside Conakry?" data-fr="Fonctionne-t-il en dehors de Conakry ?">Does it work outside Conakry?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="Yes. Coverage spans all major regions across Guinea, with no extra charges nationwide." data-fr="Oui. La couverture s'étend à toutes les grandes régions de Guinée, sans frais supplémentaires dans tout le pays.">Yes. Coverage spans all major regions across Guinea, with no extra charges nationwide.</p>
-            </div>
-            <div class="faq-card reveal reveal-delay-2">
-                <h4>📱 <span data-en="Do I need a smartphone?" data-fr="Faut-il un smartphone ?">Do I need a smartphone?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="Yes. The platform works on Android, iPhone, or any web browser. As long as you have internet, you can see your vehicle." data-fr="Oui. La plateforme fonctionne sur Android, iPhone ou tout navigateur Web. Tant que vous avez Internet, vous pouvez voir votre véhicule.">Yes. The platform works on Android, iPhone, or any web browser. As long as you have internet, you can see your vehicle.</p>
-            </div>
-            <div class="faq-card reveal reveal-delay-1">
-                <h4>🔒 <span data-en="Is my data private?" data-fr="Mes données sont-elles privées ?">Is my data private?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="Absolutely. Your vehicle data is encrypted and only you can access it. We never share your information with anyone." data-fr="Absolument. Les données de votre véhicule sont cryptées et seul vous pouvez y accéder. Nous ne partageons jamais vos informations.">Absolutely. Your vehicle data is encrypted and only you can access it. We never share your information with anyone.</p>
-            </div>
-            <div class="faq-card reveal reveal-delay-2">
-                <h4>💳 <span data-en="How do I pay?" data-fr="Comment payer ?">How do I pay?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="You can pay via Orange Money, MTN Mobile Money, bank transfer, or cash. Contact us on WhatsApp to arrange payment." data-fr="Vous pouvez payer via Orange Money, MTN Mobile Money, virement bancaire ou espèces. Contactez-nous sur WhatsApp pour organiser le paiement.">You can pay via Orange Money, MTN Mobile Money, bank transfer, or cash. Contact us on WhatsApp to arrange payment.</p>
-            </div>
-            <div class="faq-card">
-                <h4>🚗 <span data-en="What vehicles can be tracked?" data-fr="Quels véhicules peut-on suivre ?">What vehicles can be tracked?</span> <span class="faq-arrow">▾</span></h4>
-                <p data-en="Any vehicle with a 12V battery: cars, SUVs, trucks, minibuses, taxis, motorcycles. We have solutions for every type." data-fr="Tout véhicule avec une batterie 12V: voitures, SUV, camions, minibus, taxis, motos. Nous avons des solutions pour chaque type.">Any vehicle with a 12V battery: cars, SUVs, trucks, minibuses, taxis, motorcycles. We have solutions for every type.</p>
-            </div>
-        </div>
-        <div style="text-align:center;margin-top:44px;">
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20have%20a%20question." target="_blank" class="btn-primary">💬 <span data-en="Ask Us Anything" data-fr="Posez-nous n'importe quelle question">Ask Us Anything</span></a>
-        </div>
-    </div>
-</section>
-
-<!-- ── CTA BAND ─────────────────────────────────────────── -->
-<div class="cta-band-section">
-    <div class="container">
-        <div class="cta-band">
-            <h3 data-en="Your vehicle is unprotected right now." data-fr="Votre véhicule n'est pas protégé en ce moment.">Your vehicle is unprotected right now.</h3>
-            <p data-en="Every day without a tracker is a day your car could disappear — and you'd have no way to find it. One installation changes that." data-fr="Chaque jour sans traceur est un jour où votre voiture pourrait disparaître — et vous n'auriez aucun moyen de la retrouver. Une installation change tout ça.">Every day without a tracker is a day your car could disappear — and you'd have no way to find it. One installation changes that.</p>
-            <div class="cta-btn-row">
-                <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" class="btn-primary">🚗 <span data-en="Protect My Vehicle Now" data-fr="Protéger Mon Véhicule">Protect My Vehicle Now</span></a>
-                <a href="tel:+224629255946" class="btn-outline">📞 <span data-en="Call Us" data-fr="Nous Appeler">Call Us</span></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ── CONTACT FORM SECTION ──────────────────────────────── -->
-<section id="contact-form-section">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-chip" data-en="Get In Touch" data-fr="Nous Contacter">Get In Touch</div>
-            <h2 class="section-title" data-en="Send Us a Message" data-fr="Envoyez-Nous un Message">Send Us a Message</h2>
-            <p class="section-sub" data-en="Fill out the form and our team will get back to you on WhatsApp within minutes." data-fr="Remplissez le formulaire et notre équipe vous répondra sur WhatsApp en quelques minutes.">Fill out the form and our team will get back to you on WhatsApp within minutes.</p>
-            <p style="margin-top:12px;font-size:15px;font-weight:600;color:var(--blue);letter-spacing:-0.01em;">⚡ Get your vehicle protected today — we'll reply on WhatsApp within 2 minutes.</p>
-        </div>
-        <div class="contact-form-grid">
-            <!-- Left: info -->
-            <div class="contact-form-info">
-                <h2 data-en="We're ready to protect your vehicle." data-fr="Nous sommes prêts à protéger votre véhicule.">We're ready to protect your vehicle.</h2>
-                <p data-en="Whether you want a quote, have a question, or are ready to install — just reach out. Our team operates 7 days a week and responds fast." data-fr="Que vous vouliez un devis, poser une question, ou êtes prêt à installer — contactez-nous. Notre équipe opère 7 jours sur 7 et répond vite.">Whether you want a quote, have a question, or are ready to install — just reach out. Our team operates 7 days a week and responds fast.</p>
-                <div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">📞</div>
-                        <div>
-                            <div class="contact-info-label">Phone / WhatsApp</div>
-                            <div class="contact-info-val">+224 629 255 946</div>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">✉️</div>
-                        <div>
-                            <div class="contact-info-label">Email</div>
-                            <div class="contact-info-val">sekoukallon2001@gmail.com</div>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">📍</div>
-                        <div>
-                            <div class="contact-info-label" data-en="Locations" data-fr="Emplacements">Locations</div>
-                            <div class="contact-info-val" data-en="Conakry, Guinea — Nationwide" data-fr="Conakry, Guinée — Partout en Guinée">Conakry, Guinea — Nationwide</div>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">⏰</div>
-                        <div>
-                            <div class="contact-info-label" data-en="Response Time" data-fr="Temps de réponse">Response Time</div>
-                            <div class="contact-info-val" data-en="Under 2 minutes, 7 days a week" data-fr="Moins de 2 minutes, 7 jours sur 7">Under 2 minutes, 7 days a week</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Right: form -->
-            <div class="contact-form-box">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label data-en="First Name" data-fr="Prénom">First Name</label>
-                        <input type="text" class="form-input" id="cf-firstname" placeholder="Amadou" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-en="Last Name" data-fr="Nom">Last Name</label>
-                        <input type="text" class="form-input" id="cf-lastname" placeholder="Diallo" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label data-en="Phone / WhatsApp" data-fr="Téléphone / WhatsApp">Phone / WhatsApp</label>
-                    <input type="tel" class="form-input" id="cf-phone" placeholder="+224 6XX XXX XXX" required>
-                </div>
-                <div class="form-group">
-                    <label data-en="Email (optional)" data-fr="Email (facultatif)">Email (optional)</label>
-                    <input type="email" class="form-input" id="cf-email" placeholder="votre@email.com">
-                </div>
-                <div class="form-group">
-                    <label data-en="I'm interested in..." data-fr="Je suis intéressé par...">I'm interested in...</label>
-                    <select class="form-select form-input" id="cf-interest" onchange="updateDefaultMessage(this.value)">
-                        <option value="tracking" data-en="Vehicle Tracking" data-fr="Suivi de véhicule">Vehicle Tracking</option>
-                        <option value="fleet" data-en="Fleet Management" data-fr="Gestion de flotte">Fleet Management</option>
-                        <option value="quote" data-en="Get a Price Quote" data-fr="Obtenir un devis">Get a Price Quote</option>
-                        <option value="install" data-en="Book an Installation" data-fr="Réserver une installation">Book an Installation</option>
-                        <option value="other" data-en="Other / General Inquiry" data-fr="Autre / Question générale">Other / General Inquiry</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label data-en="Message" data-fr="Message">Message</label>
-                    <textarea class="form-textarea" id="cf-message">Hi, I want to install GPS tracking on my vehicle. Can you guide me?</textarea>
-                </div>
-                <button class="form-submit-btn" onclick="submitContactForm()">
-                    <span>💬</span>
-                    <span data-en="Send via WhatsApp" data-fr="Envoyer via WhatsApp">Send via WhatsApp</span>
-                </button>
-                <p style="margin-top:10px;font-size:12px;color:rgba(242,244,247,0.45);text-align:center;">🔒 Your information stays private. We only use it to contact you.</p>
-                <div class="form-success" id="cf-success">
-                    <div class="form-success-icon">✅</div>
-                    <div class="form-success-title" data-en="Message Sent!" data-fr="Message envoyé !">Message Sent!</div>
-                    <div class="form-success-body" data-en="WhatsApp is opening — we'll reply within 2 minutes." data-fr="WhatsApp s'ouvre — nous répondrons dans 2 minutes.">WhatsApp is opening — we'll reply within 2 minutes.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── LOCATION / GOOGLE MAPS ────────────────────────────── -->
-<section id="location-section">
-    <div class="container">
-        <div class="section-head">
-            <div class="section-chip" data-en="Find Us" data-fr="Nous Trouver">Find Us</div>
-            <h2 class="section-title" data-en="Our Service Areas" data-fr="Nos Zones de Service">Our Service Areas</h2>
-            <p class="section-sub" data-en="We cover all of Guinea. Our team comes to you for installation — anywhere in Conakry and beyond." data-fr="Nous couvrons toute la Guinée. Notre équipe se déplace pour l'installation — partout à Conakry et au-delà.">We cover all of Guinea. Our team comes to you for installation — anywhere in Conakry and beyond.</p>
-        </div>
-        <div class="map-wrapper">
-            <!-- Static map visual (works without internet/CSP restrictions) -->
-            <div id="static-map" style="width:100%;height:420px;background:#0a1520;position:relative;overflow:hidden;cursor:pointer;" onclick="window.open('https://maps.google.com/?q=Conakry,Guinea','_blank')" title="Open in Google Maps">
-                <!-- Grid lines -->
-                <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,132,255,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(10,132,255,0.07) 1px,transparent 1px);background-size:48px 48px;"></div>
-
-                <!-- Roads horizontal -->
-                <div style="position:absolute;top:28%;left:0;right:0;height:4px;background:rgba(20,50,80,0.9);"></div>
-                <div style="position:absolute;top:55%;left:0;right:0;height:6px;background:rgba(20,55,90,0.95);"></div>
-                <div style="position:absolute;top:72%;left:0;right:0;height:3px;background:rgba(15,45,75,0.8);"></div>
-                <!-- Roads vertical -->
-                <div style="position:absolute;left:22%;top:0;bottom:0;width:4px;background:rgba(20,50,80,0.9);"></div>
-                <div style="position:absolute;left:50%;top:0;bottom:0;width:6px;background:rgba(20,55,90,0.95);"></div>
-                <div style="position:absolute;left:74%;top:0;bottom:0;width:3px;background:rgba(15,45,75,0.8);"></div>
-
-                <!-- Water / coast (Guinea is coastal) -->
-                <div style="position:absolute;right:0;top:0;bottom:0;width:18%;background:linear-gradient(90deg,transparent,rgba(10,40,80,0.7));"></div>
-                <div style="position:absolute;right:0;top:0;bottom:0;width:10%;background:rgba(8,30,65,0.85);"></div>
-
-                <!-- City blocks -->
-                <div style="position:absolute;top:32%;left:25%;width:10%;height:18%;background:rgba(10,132,255,0.07);border:1px solid rgba(10,132,255,0.12);border-radius:3px;"></div>
-                <div style="position:absolute;top:32%;left:37%;width:11%;height:20%;background:rgba(10,132,255,0.05);border:1px solid rgba(10,132,255,0.1);border-radius:3px;"></div>
-                <div style="position:absolute;top:10%;left:53%;width:18%;height:13%;background:rgba(10,132,255,0.06);border:1px solid rgba(10,132,255,0.1);border-radius:3px;"></div>
-                <div style="position:absolute;top:58%;left:27%;width:20%;height:11%;background:rgba(10,132,255,0.05);border:1px solid rgba(10,132,255,0.09);border-radius:3px;"></div>
-
-                <!-- Main GPS pin — Conakry -->
-                <div style="position:absolute;top:44%;left:48%;transform:translate(-50%,-50%);z-index:10;text-align:center;">
-                    <div style="width:22px;height:22px;background:#0A84FF;border-radius:50%;border:3px solid #fff;margin:0 auto;box-shadow:0 0 0 8px rgba(10,132,255,0.25),0 0 30px rgba(10,132,255,0.5);animation:pinPulse 2s infinite;"></div>
-                    <div style="background:rgba(6,15,26,0.92);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;margin-top:6px;white-space:nowrap;border:1px solid rgba(10,132,255,0.4);font-family:'Montserrat',sans-serif;">📍 Conakry, Guinea</div>
-                </div>
-
-                <!-- Coverage radius ring -->
-                <div style="position:absolute;top:44%;left:48%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;border:1.5px dashed rgba(10,132,255,0.25);animation:geoPulse 3s ease-in-out infinite;"></div>
-                <div style="position:absolute;top:44%;left:48%;transform:translate(-50%,-50%);width:320px;height:320px;border-radius:50%;border:1px dashed rgba(10,132,255,0.12);"></div>
-
-                <!-- Open Maps button overlay -->
-                <div style="position:absolute;top:14px;right:14px;background:rgba(6,15,26,0.9);border:1.5px solid rgba(10,132,255,0.35);border-radius:50px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--blue);font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);">
-                    🗺️ Open in Google Maps ↗
-                </div>
-
-                <!-- Scale label -->
-                <div style="position:absolute;bottom:14px;left:14px;background:rgba(6,15,26,0.85);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:6px 12px;font-size:11px;color:rgba(242,244,247,0.5);font-family:'Montserrat',sans-serif;">
-                    Guinea — Nationwide Coverage
-                </div>
-            </div>
-        </div>
-        <div class="map-overlay-cards">
-            <div class="map-card">
-                <div class="map-card-icon">🏙️</div>
-                <div>
-                    <div class="map-card-title" data-en="Conakry, Guinea" data-fr="Conakry, Guinée">Conakry, Guinea</div>
-                    <div class="map-card-body" data-en="Full installation & support. Same-day service available in all districts." data-fr="Installation complète & support. Service le jour même disponible dans tous les quartiers.">Full installation & support. Same-day service available in all districts.</div>
-                </div>
-            </div>
-            <div class="map-card">
-                <div class="map-card-icon">🌍</div>
-                <div>
-                    <div class="map-card-title" data-en="Across the Country" data-fr="Partout en Guinée">Across the Country</div>
-                    <div class="map-card-body" data-en="Kindia, Labé, Kankan & more — full nationwide coverage on all major networks." data-fr="Kindia, Labé, Kankan et plus — couverture nationale complète sur tous les grands réseaux.">Kindia, Labé, Kankan & more — full nationwide coverage on all major networks.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── CONTACT ─────────────────────────────────────────── -->
-<section id="contact" class="contact-section">
-    <h2 class="contact-title" data-en="Ready to Protect Your Vehicle?" data-fr="Prêt à Protéger Votre Véhicule ?">Ready to Protect Your Vehicle?</h2>
-    <p class="contact-sub" data-en="Send us a message on WhatsApp right now — we respond fast." data-fr="Envoyez-nous un message sur WhatsApp maintenant — nous répondons vite.">Send us a message on WhatsApp right now — we respond fast.</p>
-    <div class="contact-phone">📞 +224 629 255 946</div>
-    <div class="contact-btns">
-        <a href="tel:+224629255946" class="contact-btn-dark" data-en="📞 Call Now" data-fr="📞 Appeler Maintenant">📞 Call Now</a>
-        <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" class="contact-btn-white">💬 WhatsApp</a>
-    </div>
-    <div style="margin-top:20px;position:relative;">
-        <p class="contact-sub" data-en="Prefer email?" data-fr="Vous préférez un e-mail ?">Prefer email?</p>
-        <a href="mailto:sekoukallon2001@gmail.com" style="color:#fff;font-weight:700;font-size:16px;text-decoration:underline;position:relative;">sekoukallon2001@gmail.com</a>
-    </div>
-    <p class="contact-closing" data-en="Stay Connected. Stay Protected." data-fr="Restez Connecté. Restez Protégé.">Stay Connected. Stay Protected.</p>
-</section>
-
-<!-- ── FOOTER ─────────────────────────────────────────── -->
-<footer>
-    <div class="footer-grid">
-        <div>
-            <div class="footer-logo-main">KALLON <span>GPS</span></div>
-            <div class="footer-tagline">Voyez · Suivez · Protégez</div>
-            <p class="footer-desc" data-en="Real-time vehicle tracking solutions for Guinea. Professional installation, live monitoring, instant alerts." data-fr="Solutions de suivi de véhicules en temps réel pour la Guinée. Installation professionnelle, surveillance en direct, alertes instantanées.">Real-time vehicle tracking solutions for Guinea. Professional installation, live monitoring, instant alerts.</p>
-            <div class="footer-serving" data-en="📍 Serving All of Guinea" data-fr="📍 Au service de toute la Guinée">📍 Serving All of Guinea</div>
-        </div>
-        <div>
-            <div class="footer-heading" data-en="Quick Links" data-fr="Liens Rapides">Quick Links</div>
-            <a href="#home" class="footer-link" data-en="Home" data-fr="Accueil">Home</a>
-            <a href="#how" class="footer-link" data-en="How It Works" data-fr="Comment ça marche">How It Works</a>
-            <a href="#features" class="footer-link" data-en="Features" data-fr="Fonctionnalités">Features</a>
-            <a href="#pricing" class="footer-link" data-en="Pricing" data-fr="Tarifs">Pricing</a>
-            <a href="#faq" class="footer-link">FAQ</a>
-        </div>
-        <div>
-            <div class="footer-heading" data-en="Contact" data-fr="Contact">Contact</div>
-            <a href="https://wa.me/224629255946" class="footer-phone" target="_blank">📞 +224 629 255 946</a>
-            <a href="mailto:sekoukallon2001@gmail.com" class="footer-link">sekoukallon2001@gmail.com</a>
-            <div style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px;" data-en="Conakry, Guinea — Nationwide" data-fr="Conakry, Guinée — Partout en Guinée">Conakry, Guinea — Nationwide</div>
-        </div>
-        <div>
-            <div class="footer-heading" data-en="Get in Touch" data-fr="Nous Contacter">Get in Touch</div>
-            <p style="color:var(--grey);font-size:13px;margin-bottom:16px;line-height:1.7;" data-en="Message us directly on WhatsApp for the fastest response." data-fr="Envoyez-nous un message directement sur WhatsApp pour une réponse rapide.">Message us directly on WhatsApp for the fastest response.</p>
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!" target="_blank" class="btn-primary" style="font-size:13px;padding:12px 20px;justify-content:center;">💬 <span data-en="Open WhatsApp" data-fr="Ouvrir WhatsApp">Open WhatsApp</span></a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; <span id="year"></span> Kallon GPS Solutions &amp; Services.
-        <span data-en="All rights reserved." data-fr="Tous droits réservés.">All rights reserved.</span>
-        &nbsp;·&nbsp; TRACKING | SECURITY | PEACE OF MIND
-    </div>
-</footer>
-
-<!-- ── FLOATING SCROLL TO FORM ──────────────────────────── -->
-<a href="#contact-form-section" class="float-scroll-btn">
-    <div class="float-icon">✉️</div>
-    <div class="float-label">
-        <span>Get Protected</span>
-        <span>Send a Message ↓</span>
-    </div>
-</a>
-<!-- ── TOAST ALERTS ─────────────────────────────────────── -->
-<div class="toast-alert" id="toast-tracking">
-    <button class="toast-close" onclick="this.parentElement.classList.remove('show')">×</button>
-    <div class="toast-icon">📍</div>
-    <div>
-        <div class="toast-title" data-en="LIVE TRACKING ACTIVE" data-fr="SUIVI EN DIRECT ACTIF">LIVE TRACKING ACTIVE</div>
-        <div class="toast-body" data-en="Toyota Corolla — Moving at 52 km/h" data-fr="Toyota Corolla — En mouvement à 52 km/h">Toyota Corolla — Moving at 52 km/h</div>
-    </div>
-</div>
-<div class="toast-alert" id="toast-pricing">
-    <button class="toast-close" onclick="this.parentElement.classList.remove('show')">×</button>
-    <div class="toast-icon">💰</div>
-    <div>
-        <div class="toast-title" data-en="BEST VALUE" data-fr="MEILLEUR RAPPORT QUALITÉ">BEST VALUE</div>
-        <div class="toast-body" data-en="One prevented theft pays for years of protection." data-fr="Un vol évité paie des années de protection.">One prevented theft pays for years of protection.</div>
-    </div>
-</div>
-
-<!-- ── MODAL ───────────────────────────────────────────── -->
-<div id="contact-modal" class="modal">
-    <div class="modal-box">
-        <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-        <h3 class="modal-title" data-en="Protect Your Vehicle" data-fr="Protéger Votre Véhicule">Protect Your Vehicle</h3>
-        <p class="modal-sub" data-en="Leave your details and we'll reach you on WhatsApp within minutes." data-fr="Laissez vos coordonnées et nous vous contacterons sur WhatsApp en quelques minutes.">Leave your details and we'll reach you on WhatsApp within minutes.</p>
-        <form onsubmit="submitProtectForm(event);">
-            <input type="text" id="name-input" class="modal-input" placeholder="Your Name" required>
-            <input type="tel" id="phone-input" class="modal-input" placeholder="+224 629 255 946" required>
-            <button type="submit" class="modal-submit" data-en="💬 Send on WhatsApp" data-fr="💬 Envoyer sur WhatsApp">💬 Send on WhatsApp</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    // ── STATE ────────────────────────────────────────────────────────────────
-    let currentLang = 'en';
-    let currentCurrency = 'USD';
-
-    const PRICES = {
-        monthly: { USD:'$9 – $11', GNF:'80,000 – 100,000 GNF', SLL:'230,000 – 290,000 SLL' },
-        install: { USD:'$34 – $46', GNF:'300,000 – 400,000 GNF', SLL:'870,000 – 1,150,000 SLL' }
-    };
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ── MOBILE MENU ───────────────────────────────────────────────────────────
-    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
-
-    // ── LANGUAGE ──────────────────────────────────────────────────────────────
-    function toggleLanguage() {
-        currentLang = currentLang === 'en' ? 'fr' : 'en';
-        document.getElementById('lang-btn').textContent = currentLang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN';
-        applyLanguage();
-    }
-
-    function applyLanguage() {
-        document.querySelectorAll('[data-en]').forEach(el => {
-            if (el.children.length > 0) return;
-            const val = currentLang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-            if (val) el.textContent = val;
-        });
-        const ni = document.getElementById('name-input');
-        const pi = document.getElementById('phone-input');
-        if (ni) ni.placeholder = currentLang === 'en' ? 'Your Name' : 'Votre Nom';
-        if (pi) pi.placeholder = '+224 629 255 946';
-    }
-
-    // ── CURRENCY ──────────────────────────────────────────────────────────────
-    function changeCurrency(cur) { currentCurrency = cur; updatePriceDisplay(); }
-    function updatePriceDisplay() {
-        const m = document.getElementById('price-monthly');
-        const i = document.getElementById('price-install');
-        if (m) m.textContent = PRICES.monthly[currentCurrency];
-        if (i) i.textContent = PRICES.install[currentCurrency];
-    }
-
-    // ── MODAL ─────────────────────────────────────────────────────────────────
-    function openModal() { document.getElementById('contact-modal').classList.add('active'); }
-    function closeModal() { document.getElementById('contact-modal').classList.remove('active'); }
-    function submitProtectForm(event) {
-        event.preventDefault();
-        const name  = document.getElementById('name-input').value.trim() || 'Client';
-        const phone = document.getElementById('phone-input').value.trim();
-        let msg = 'Hello Kallon GPS! My name is ' + name + ', number: ' + phone + '. I want to protect my vehicle.';
-        if (currentLang === 'fr') msg = 'Bonjour Kallon GPS! Mon nom est ' + name + ', numéro: ' + phone + '. Je veux protéger mon véhicule.';
-        window.open('https://wa.me/224629255946?text=' + encodeURIComponent(msg), '_blank');
-        closeModal();
-    }
-
-    // ── NAVBAR HIDE ON SCROLL ─────────────────────────────────────────────────
-    let lastScrollY = 0;
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        const cur = window.scrollY;
-        nav.style.transform = (cur > lastScrollY && cur > 100) ? 'translateY(-100%)' : 'translateY(0)';
-        lastScrollY = cur;
-    });
-
-    // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // Also animate sections (non-reveal ones) on scroll
-    const sectionObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.style.opacity = '1';
-                e.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.07 });
-
-    document.querySelectorAll('section, .stats-strip, .cta-band-section').forEach(sec => {
-        if (sec.id === 'home') return;
-        sec.style.opacity = '0';
-        sec.style.transform = 'translateY(24px)';
-        sec.style.transition = 'opacity 0.65s ease, transform 0.65s ease';
-        sectionObserver.observe(sec);
-    });
-
-    // ── COUNT-UP ANIMATION ────────────────────────────────────────────────────
-    const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                const el = e.target;
-                if (el.dataset.counted) return;
-                el.dataset.counted = 'true';
-                const target = parseInt(el.dataset.value);
-                const suffix = el.dataset.suffix || '';
-                if (!target) return;
-                const duration = 2000;
-                const start = performance.now();
-                function tick(now) {
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = Math.round(eased * target) + suffix;
-                    if (progress < 1) requestAnimationFrame(tick);
-                }
-                requestAnimationFrame(tick);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-number[data-value]').forEach(el => counterObserver.observe(el));
-
-    // ── REAL-TIME PHONE STATS ─────────────────────────────────────────────────
-    const speedEl = document.querySelector('.phone-stat-val');
-    const distEl = document.querySelectorAll('.phone-stat-val')[1];
-    const durEl  = document.querySelectorAll('.phone-stat-val')[2];
-
-    if (speedEl) {
-        setInterval(() => {
-            speedEl.textContent = Math.floor(Math.random() * 40 + 40);
-        }, 3000);
-    }
-
-    let distVal = 12.5, durSec = 18 * 60;
-    if (distEl && durEl) {
-        setInterval(() => {
-            distVal = Math.round((distVal + 0.1) * 10) / 10;
-            distEl.textContent = distVal.toFixed(1);
-            durSec += 2;
-            const mm = String(Math.floor(durSec / 60)).padStart(2, '0');
-            const ss = String(durSec % 60).padStart(2, '0');
-            durEl.textContent = mm + ':' + ss;
-        }, 2000);
-    }
-
-    // Also update float card speed/distance
-    const floatSpeed = document.getElementById('gps-speed');
-    if (floatSpeed) {
-        setInterval(() => {
-            floatSpeed.textContent = Math.floor(Math.random() * 40 + 40) + ' km/h';
-        }, 3000);
-    }
-
-    // ── FAQ ACCORDION ─────────────────────────────────────────────────────────
-    document.querySelectorAll('.faq-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const isOpen = card.classList.contains('open');
-            document.querySelectorAll('.faq-card').forEach(c => c.classList.remove('open'));
-            if (!isOpen) card.classList.add('open');
-        });
-    });
-    const firstFaq = document.querySelector('.faq-card');
-    if (firstFaq) firstFaq.classList.add('open');
-
-    // ── GPS COORDINATE SIMULATION ─────────────────────────────────────────────
-    const coordEl = document.getElementById('gps-coords');
-    if (coordEl) {
-        let lat = 9.5370, lng = 13.6600;
-        setInterval(() => {
-            lat += (Math.random() * 0.0006 - 0.0003);
-            lng += (Math.random() * 0.0006 - 0.0003);
-            coordEl.textContent = lat.toFixed(4) + '° N, ' + lng.toFixed(4) + '° W';
-        }, 2000);
-    }
-
-    // ── TOAST TRIGGERS ────────────────────────────────────────────────────────
-    const toastMap = { 'features': 'toast-tracking', 'pricing': 'toast-pricing' };
-    const toastObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                const toastId = toastMap[e.target.id];
-                if (!toastId) return;
-                const toast = document.getElementById(toastId);
-                if (toast) {
-                    setTimeout(() => {
-                        toast.classList.add('show');
-                        setTimeout(() => toast.classList.remove('show'), 5000);
-                    }, 700);
-                }
-            }
-        });
-    }, { threshold: 0.3 });
-    Object.keys(toastMap).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) toastObserver.observe(el);
-    });
-
-    // ── CONTACT FORM ─────────────────────────────────────────────────────────
-    // ⬇ Paste your Supabase project URL and anon key here after setup
-    const SUPABASE_URL = 'https://diubotswoxoxbhtlznnm.supabase.co';   // e.g. 'https://xxxx.supabase.co'
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpdWJvdHN3b3hveGJodGx6bm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjY0NzgsImV4cCI6MjA5Mzk0MjQ3OH0.NVkoIcO1cy-TqoIIi3gK3nGOIrPJMilRVqThyeCKu9U';   // e.g. 'eyJh...'
-
-    async function saveLeadToSupabase(lead) {
-        if (!SUPABASE_URL || !SUPABASE_KEY) return; // skip if not configured
-        try {
-            await fetch(SUPABASE_URL + '/rest/v1/leads', {
-                method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_KEY,
-                    'Authorization': 'Bearer ' + SUPABASE_KEY,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify(lead)
-            });
-        } catch(e) { /* fail silently — WhatsApp still opens */ }
-    }
-
-    // ── INTEREST → DEFAULT MESSAGE ────────────────────────────────────────
-    const DEFAULT_MESSAGES = {
-        tracking: "Hi, I want to install GPS tracking on my vehicle. Can you guide me?",
-        fleet:    "Hi, I manage a fleet of vehicles and I'm interested in your Fleet Management solution. Can you tell me more about pricing and features?",
-        quote:    "Hi, I'd like to get a price quote for GPS tracking. Can you send me the details?",
-        install:  "Hi, I'm ready to book a GPS installation. When are you available and where do you cover?",
-        other:    "Hi, I have a question about your GPS services. Can you help me?"
-    };
-
-    function updateDefaultMessage(value) {
-        const textarea = document.getElementById('cf-message');
-        // Only auto-update if the user hasn't manually edited the message
-        const currentMsg = textarea.value.trim();
-        const isDefault = Object.values(DEFAULT_MESSAGES).some(m => m === currentMsg) || currentMsg === '';
-        if (isDefault) {
-            textarea.value = DEFAULT_MESSAGES[value] || DEFAULT_MESSAGES.other;
-        }
-    }
-
-    async function submitContactForm() {
-        const first = document.getElementById('cf-firstname').value.trim();
-        const last = document.getElementById('cf-lastname').value.trim();
-        const phone = document.getElementById('cf-phone').value.trim();
-        const email = document.getElementById('cf-email').value.trim();
-        const interest = document.getElementById('cf-interest');
-        const interestText = interest.options[interest.selectedIndex].text;
-        const message = document.getElementById('cf-message').value.trim();
-
-        if (!first || !phone) {
-            document.getElementById('cf-firstname').focus();
-            return;
-        }
-
-        // 1. Save to Supabase (admin dashboard)
-        await saveLeadToSupabase({
-            name: first + ' ' + last,
-            phone, email, interest: interestText, message, status: 'new', source: 'Website Landing Page'
-        });
-
-        // 2. Open WhatsApp (always works)
-        let msg = `Hello Kallon GPS! My name is ${first} ${last}.`;
-        msg += `\n📞 Phone: ${phone}`;
-        if (email) msg += `\n✉️ Email: ${email}`;
-        msg += `\n🔖 Interest: ${interestText}`;
-        if (message) msg += `\n💬 Message: ${message}`;
-
-        window.open('https://wa.me/224629255946?text=' + encodeURIComponent(msg), '_blank');
-
-        document.getElementById('cf-success').classList.add('show');
-        setTimeout(() => document.getElementById('cf-success').classList.remove('show'), 6000);
-    }
-
-
-    // ── INIT ──────────────────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-        updatePriceDisplay();
-        applyLanguage();
-    });
-</script>
-</body>
-</html>
+                <butto
