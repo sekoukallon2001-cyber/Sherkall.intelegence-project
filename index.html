@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kallon GPS Solutions & Services — Suivi en temps réel pour protéger ce qui compte le plus. Conakry, Guinée.">
-    <title>Kallon GPS | Voyez. Suivez. Protégez.</title>
-    <meta property="og:title" content="Kallon GPS | Voyez. Suivez. Protégez.">
-    <meta property="og:description" content="Suivez votre véhicule en temps réel. Alertes instantanées. Récupération en cas de vol. Guinée.">
+    <meta name="description" content="Sherkall Intelligence — Enterprise Fleet Intelligence & Fuel Monitoring Platform. Real-time tracking, anti-theft protection, driver behavior analytics. Serving Guinea.">
+    <title>Sherkall Intelligence | GPS Fleet Intelligence & Fuel Monitoring</title>
+    <meta property="og:title" content="Sherkall Intelligence | GPS Fleet Intelligence & Fuel Monitoring">
+    <meta property="og:description" content="Monitor fleet movement, fuel consumption, and operational activity from a centralized intelligence platform. Track · Protect · Command — GPS Intelligence for Guinea's leading businesses.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gps-tracking-service.vercel.app/">
     <meta name="twitter:card" content="summary_large_image">
@@ -17,40 +17,57 @@
     <!-- Non-blocking font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap"></noscript>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Kallon GPS Solutions & Services",
-      "description": "Real-time vehicle tracking solutions for Guinea. Professional installation, live monitoring, instant theft alerts.",
+      "name": "Sherkall Intelligence",
+      "alternateName": "Sherkall GPS Intelligence Service",
+      "description": "Enterprise GPS fleet intelligence and fuel monitoring platform for Guinea. Real-time tracking, anti-theft protection, driver behavior analytics, and fuel theft detection. Track · Protect · Command.",
       "url": "https://gps-tracking-service.vercel.app/",
       "telephone": "+224629255946",
       "email": "sekoukallon2001@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Conakry",
+        "addressRegion": "Conakry",
         "addressCountry": "GN"
       },
       "areaServed": "Guinea",
-      "priceRange": "$9–$46",
+      "priceRange": "$9–$46+",
+      "slogan": "Intelligence Behind Every Movement",
       "offers": [
         {
           "@type": "Offer",
-          "name": "Monthly GPS Tracking Plan",
+          "name": "Starter Tracking Plan",
           "price": "9",
           "priceCurrency": "USD",
-          "description": "Live tracking, instant alerts, trip history & WhatsApp support"
+          "description": "Live GPS tracking, theft & movement alerts, 7-day route history, mobile app access, WhatsApp support"
         },
         {
           "@type": "Offer",
-          "name": "GPS Device + Installation",
+          "name": "Fleet Management Plan",
+          "price": "11",
+          "priceCurrency": "USD",
+          "description": "Full fleet dashboard, 30-day history, driver behavior scoring, geofence alerts, priority support"
+        },
+        {
+          "@type": "Offer",
+          "name": "Fuel Monitoring Pro",
+          "price": "25",
+          "priceCurrency": "USD",
+          "description": "Real-time fuel level sensor, siphoning detection, consumption analytics, 90-day archive, dedicated account manager"
+        },
+        {
+          "@type": "Offer",
+          "name": "GPS Device + Professional Installation",
           "price": "34",
           "priceCurrency": "USD",
-          "description": "Professional GPS device with expert installation at your location"
+          "description": "Professional-grade GPS hardware with covert installation at your location. 1-year warranty included."
         }
       ]
     }
@@ -1953,15 +1970,651 @@
         .check-no  { color:rgba(255,255,255,0.2); }
         body.light-mode .pc { background:#fff; }
         body.light-mode .pc-btn-outline { color:#1a2332; }
+
+        /* ══════════════════════════════════════════
+           ENTERPRISE UPGRADE — v8 ADDITIONS
+        ══════════════════════════════════════════ */
+
+        /* ── NAV ENTERPRISE UPGRADE ── */
+        .nav-content { padding:16px 32px; }
+        .logo-tagline { font-size:8px; letter-spacing:3px; }
+        nav { border-bottom:1px solid rgba(10,132,255,0.2); }
+
+        /* Add "Enterprise" badge to nav */
+        .nav-enterprise-badge {
+            display:inline-flex; align-items:center; gap:5px;
+            background:rgba(10,132,255,0.08);
+            border:1px solid rgba(10,132,255,0.2);
+            color:var(--blue); padding:3px 10px;
+            border-radius:4px; font-size:9px; font-weight:800;
+            letter-spacing:2px; text-transform:uppercase;
+            font-family:'Montserrat',sans-serif;
+        }
+
+        /* ── HERO ENTERPRISE UPGRADE ── */
+        .hero-chip {
+            background:rgba(10,132,255,0.08);
+            border:1px solid rgba(10,132,255,0.3);
+            padding:8px 20px; letter-spacing:2px;
+            font-size:10px;
+        }
+
+        /* Animated data lines */
+        .hero-data-line {
+            position:absolute; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(10,132,255,0.4), transparent);
+            animation:dataLineMove 4s linear infinite;
+            z-index:1;
+        }
+        @keyframes dataLineMove {
+            0% { transform:translateX(-100%); opacity:0; }
+            20% { opacity:1; }
+            80% { opacity:1; }
+            100% { transform:translateX(100vw); opacity:0; }
+        }
+
+        /* ── TRUST / WHY BUSINESSES TRUST US — NEW SECTION ── */
+        #trust-section {
+            background:var(--navy-card);
+            padding:100px 0;
+            position:relative; overflow:hidden;
+        }
+        #trust-section::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(10,132,255,0.4), transparent);
+        }
+        .trust-grid {
+            display:grid; grid-template-columns:repeat(4,1fr);
+            gap:20px; margin-top:56px;
+        }
+        .trust-card {
+            background:var(--navy-deep);
+            border:1px solid rgba(10,132,255,0.12);
+            border-radius:20px; padding:32px 24px;
+            position:relative; overflow:hidden;
+            transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+            cursor:default;
+        }
+        .trust-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg, var(--blue), rgba(10,132,255,0.3));
+            transform:scaleX(0); transition:transform 0.4s ease;
+            transform-origin:left;
+        }
+        .trust-card:hover {
+            transform:translateY(-6px);
+            border-color:rgba(10,132,255,0.35);
+            box-shadow:0 20px 60px rgba(10,132,255,0.1);
+        }
+        .trust-card:hover::before { transform:scaleX(1); }
+        .trust-icon {
+            width:52px; height:52px;
+            background:linear-gradient(135deg, rgba(10,132,255,0.15), rgba(10,132,255,0.05));
+            border:1px solid rgba(10,132,255,0.25);
+            border-radius:14px; display:flex;
+            align-items:center; justify-content:center;
+            font-size:22px; margin-bottom:18px;
+            transition:transform 0.3s;
+        }
+        .trust-card:hover .trust-icon { transform:scale(1.1) rotate(-5deg); }
+        .trust-card h4 {
+            font-size:14px; font-weight:800;
+            letter-spacing:-0.01em; margin-bottom:8px;
+            color:#fff; font-family:'Montserrat',sans-serif;
+        }
+        .trust-card p {
+            font-size:12.5px; color:var(--grey);
+            line-height:1.7;
+        }
+        .trust-card-badge {
+            display:inline-flex; align-items:center;
+            background:rgba(34,197,94,0.1);
+            border:1px solid rgba(34,197,94,0.25);
+            color:var(--green); padding:3px 10px;
+            border-radius:50px; font-size:10px; font-weight:700;
+            margin-top:12px; letter-spacing:1px;
+            text-transform:uppercase;
+        }
+
+        /* ── INDUSTRIES SECTION — NEW ── */
+        #industries {
+            background:var(--navy-deep);
+            padding:100px 0;
+            position:relative; overflow:hidden;
+        }
+        .industries-grid {
+            display:grid; grid-template-columns:repeat(4,1fr);
+            gap:20px; margin-top:56px;
+        }
+        .industry-card {
+            background:var(--navy-card);
+            border:1.5px solid rgba(255,255,255,0.06);
+            border-radius:20px; padding:28px 22px;
+            transition:all 0.35s; position:relative;
+            overflow:hidden; cursor:default;
+            display:flex; flex-direction:column; gap:14px;
+        }
+        .industry-card::after {
+            content:''; position:absolute; bottom:0; left:0; right:0;
+            height:2px;
+            background:linear-gradient(90deg, var(--blue), rgba(10,132,255,0.3));
+            transform:scaleX(0); transition:transform 0.4s ease;
+            transform-origin:left;
+        }
+        .industry-card:hover {
+            transform:translateY(-5px);
+            border-color:rgba(10,132,255,0.3);
+            box-shadow:0 16px 48px rgba(10,132,255,0.08);
+        }
+        .industry-card:hover::after { transform:scaleX(1); }
+        .industry-icon {
+            font-size:32px; display:block;
+        }
+        .industry-card h4 {
+            font-family:'Montserrat',sans-serif;
+            font-weight:800; font-size:15px;
+            color:#fff; letter-spacing:-0.01em;
+        }
+        .industry-card p {
+            font-size:12.5px; color:var(--grey);
+            line-height:1.65; flex:1;
+        }
+        .industry-tag {
+            display:inline-flex; align-items:center; gap:5px;
+            background:rgba(10,132,255,0.08);
+            border:1px solid rgba(10,132,255,0.2);
+            color:var(--blue); padding:4px 10px;
+            border-radius:50px; font-size:10px; font-weight:700;
+            letter-spacing:0.5px;
+        }
+
+        /* ── PLATFORM SHOWCASE SECTION — NEW ── */
+        #platform {
+            background:var(--navy-mid);
+            padding:100px 0;
+            position:relative; overflow:hidden;
+        }
+        #platform::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(10,132,255,0.35), transparent);
+        }
+        .platform-tabs {
+            display:flex; gap:8px; justify-content:center;
+            margin:40px 0 32px; flex-wrap:wrap;
+        }
+        .ptab {
+            background:rgba(255,255,255,0.04);
+            border:1.5px solid rgba(255,255,255,0.08);
+            color:rgba(242,244,247,0.55);
+            padding:10px 20px; border-radius:50px;
+            font-size:12px; font-weight:700;
+            cursor:pointer; transition:all 0.25s;
+            font-family:'Montserrat',sans-serif;
+            letter-spacing:0.5px;
+        }
+        .ptab.active, .ptab:hover {
+            background:rgba(10,132,255,0.12);
+            border-color:rgba(10,132,255,0.4);
+            color:var(--blue);
+        }
+        .platform-showcase {
+            background:var(--navy-card);
+            border:1.5px solid rgba(10,132,255,0.15);
+            border-radius:24px; overflow:hidden;
+            box-shadow:0 32px 80px rgba(0,0,0,0.4);
+            position:relative;
+        }
+        .platform-topbar {
+            background:rgba(6,15,26,0.95);
+            padding:12px 24px;
+            display:flex; align-items:center; justify-content:space-between;
+            border-bottom:1px solid rgba(10,132,255,0.1);
+        }
+        .platform-dots { display:flex; gap:7px; }
+        .platform-dot {
+            width:11px; height:11px; border-radius:50%;
+        }
+        .dot-red { background:#EF4444; }
+        .dot-yellow { background:#F59E0B; }
+        .dot-green { background:#22C55E; }
+        .platform-title-bar {
+            font-family:'JetBrains Mono',monospace;
+            font-size:11px; color:var(--grey);
+            letter-spacing:1px;
+        }
+        .platform-actions { display:flex; gap:8px; }
+        .platform-action-btn {
+            background:rgba(10,132,255,0.1);
+            border:1px solid rgba(10,132,255,0.2);
+            color:var(--blue); padding:4px 12px;
+            border-radius:6px; font-size:10px; font-weight:700;
+            font-family:'Montserrat',sans-serif; cursor:pointer;
+        }
+        /* Dashboard layout */
+        .dashboard-layout {
+            display:grid; grid-template-columns:220px 1fr;
+            min-height:480px;
+        }
+        .dash-sidebar {
+            background:rgba(6,15,26,0.6);
+            border-right:1px solid rgba(10,132,255,0.1);
+            padding:20px 0;
+        }
+        .dash-sidebar-logo {
+            padding:0 20px 20px;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+            margin-bottom:8px;
+            font-family:'Montserrat',sans-serif;
+            font-weight:900; font-size:13px;
+            color:var(--blue); letter-spacing:1px;
+        }
+        .dash-nav-item {
+            display:flex; align-items:center; gap:10px;
+            padding:11px 20px; font-size:12.5px;
+            color:rgba(242,244,247,0.5); cursor:pointer;
+            transition:all 0.2s; border-left:2px solid transparent;
+            font-weight:600;
+        }
+        .dash-nav-item.active, .dash-nav-item:hover {
+            background:rgba(10,132,255,0.08);
+            color:var(--blue);
+            border-left-color:var(--blue);
+        }
+        .dash-main { padding:24px; display:flex; flex-direction:column; gap:20px; }
+        .dash-kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+        .dash-kpi {
+            background:rgba(255,255,255,0.03);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:12px; padding:16px;
+        }
+        .dash-kpi-label {
+            font-size:10px; color:var(--grey);
+            text-transform:uppercase; letter-spacing:1.5px;
+            font-weight:700; margin-bottom:8px;
+        }
+        .dash-kpi-val {
+            font-family:'Montserrat',sans-serif;
+            font-size:24px; font-weight:900; color:#fff;
+            line-height:1;
+        }
+        .dash-kpi-trend {
+            font-size:10px; font-weight:700;
+            margin-top:6px;
+        }
+        .trend-up { color:var(--green); }
+        .trend-dn { color:var(--red); }
+        .dash-bottom { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .dash-chart-box {
+            background:rgba(255,255,255,0.02);
+            border:1px solid rgba(255,255,255,0.05);
+            border-radius:12px; padding:16px;
+        }
+        .dash-chart-title {
+            font-size:11px; font-weight:700;
+            color:rgba(242,244,247,0.6); margin-bottom:12px;
+            text-transform:uppercase; letter-spacing:1px;
+        }
+        /* SVG Fuel chart */
+        .fuel-bar-wrap { display:flex; align-items:flex-end; gap:8px; height:80px; }
+        .fuel-bar {
+            flex:1; border-radius:4px 4px 0 0;
+            background:linear-gradient(180deg, rgba(10,132,255,0.8), rgba(10,132,255,0.3));
+            position:relative; transition:height 0.3s;
+        }
+        .fuel-bar.warn { background:linear-gradient(180deg, rgba(239,68,68,0.8), rgba(239,68,68,0.3)); }
+        /* Fleet vehicles list */
+        .vehicle-row {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04);
+            font-size:11px;
+        }
+        .vehicle-row:last-child { border-bottom:none; }
+        .vehicle-status {
+            display:flex; align-items:center; gap:5px;
+            font-size:10px; font-weight:700;
+        }
+        .vs-dot {
+            width:6px; height:6px; border-radius:50%;
+        }
+        .vs-moving { background:var(--green); }
+        .vs-idle { background:#F59E0B; }
+        .vs-stopped { background:rgba(255,255,255,0.3); }
+
+        /* ── ENTERPRISE PLANS — UPGRADED SECTION ── */
+        #enterprise-plans {
+            background:var(--navy-card);
+            padding:100px 0;
+            position:relative; overflow:hidden;
+        }
+        .enterprise-plans-grid {
+            display:grid; grid-template-columns:repeat(4,1fr);
+            gap:20px; margin-top:56px;
+        }
+        .ep-card {
+            background:var(--navy-deep);
+            border:1.5px solid rgba(255,255,255,0.07);
+            border-radius:24px; padding:36px 28px;
+            display:flex; flex-direction:column;
+            position:relative; overflow:hidden;
+            transition:all 0.35s;
+        }
+        .ep-card:hover {
+            transform:translateY(-8px);
+            border-color:rgba(10,132,255,0.4);
+            box-shadow:0 24px 60px rgba(10,132,255,0.12);
+        }
+        .ep-card.ep-featured {
+            border-color:var(--blue);
+            box-shadow:0 0 60px rgba(10,132,255,0.15);
+            background:linear-gradient(180deg, rgba(10,132,255,0.06) 0%, var(--navy-deep) 40%);
+        }
+        .ep-badge {
+            position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+            background:linear-gradient(90deg, var(--blue), #2693ff);
+            color:#fff; padding:5px 20px;
+            border-radius:0 0 14px 14px;
+            font-size:10px; font-weight:800;
+            letter-spacing:1.5px; text-transform:uppercase;
+            font-family:'Montserrat',sans-serif;
+            white-space:nowrap;
+        }
+        .ep-tier {
+            font-size:10px; font-weight:800;
+            color:var(--grey); letter-spacing:3px;
+            text-transform:uppercase; margin-bottom:10px;
+            font-family:'Montserrat',sans-serif;
+        }
+        .ep-name {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900; font-size:20px; color:#fff;
+            letter-spacing:-0.02em; margin-bottom:6px;
+        }
+        .ep-desc {
+            font-size:12.5px; color:var(--grey);
+            line-height:1.65; margin-bottom:24px;
+        }
+        .ep-price-wrap { margin-bottom:24px; }
+        .ep-price {
+            font-family:'Montserrat',sans-serif;
+            font-size:36px; font-weight:900;
+            color:var(--blue); line-height:1;
+        }
+        .ep-per { font-size:12px; color:var(--grey); margin-top:4px; }
+        .ep-divider { height:1px; background:rgba(255,255,255,0.06); margin:0 0 20px; }
+        .ep-features { list-style:none; flex:1; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+        .ep-features li {
+            display:flex; align-items:center; gap:9px;
+            font-size:12.5px; color:rgba(242,244,247,0.8);
+        }
+        .ep-features li .ef-icon { font-size:14px; flex-shrink:0; }
+        .ep-btn {
+            display:block; width:100%; text-align:center;
+            padding:14px; border-radius:12px;
+            font-weight:800; font-size:13px;
+            font-family:'Montserrat',sans-serif;
+            cursor:pointer; transition:all 0.25s;
+            text-decoration:none;
+        }
+        .ep-btn-primary { background:var(--blue); color:#fff; border:none; box-shadow:0 4px 20px rgba(10,132,255,0.3); }
+        .ep-btn-primary:hover { background:#2693ff; transform:translateY(-2px); }
+        .ep-btn-outline { background:transparent; border:1.5px solid rgba(255,255,255,0.15); color:rgba(242,244,247,0.7); }
+        .ep-btn-outline:hover { border-color:var(--blue); color:var(--blue); }
+
+        /* ── STATS UPGRADE — ENTERPRISE METRICS ── */
+        .stats-strip { position:relative; overflow:hidden; }
+        .stats-strip::before {
+            content:''; position:absolute;
+            top:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(10,132,255,0.4), transparent);
+        }
+        .stats-strip::after {
+            content:''; position:absolute;
+            bottom:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(10,132,255,0.4), transparent);
+        }
+
+        /* ── HERO ENTERPRISE COPY UPGRADE ── */
+        .hero-enterprise-label {
+            display:inline-flex; align-items:center; gap:6px;
+            background:rgba(34,197,94,0.08);
+            border:1px solid rgba(34,197,94,0.25);
+            color:var(--green); padding:5px 14px;
+            border-radius:50px; font-size:10px; font-weight:800;
+            letter-spacing:1.5px; text-transform:uppercase;
+            margin-bottom:16px;
+            font-family:'Montserrat',sans-serif;
+        }
+        .hero-enterprise-label .pulse { animation:livePulse 1.5s ease-in-out infinite; }
+
+        /* ── SOCIAL PROOF / TESTIMONIALS UPGRADE ── */
+        .client-logos-strip {
+            background:rgba(255,255,255,0.02);
+            border-top:1px solid rgba(255,255,255,0.04);
+            border-bottom:1px solid rgba(255,255,255,0.04);
+            padding:28px 0; overflow:hidden;
+            margin-bottom:0;
+        }
+        .client-logos-track {
+            display:flex; gap:48px; align-items:center;
+            animation:logoScroll 25s linear infinite;
+            white-space:nowrap;
+        }
+        @keyframes logoScroll {
+            0% { transform:translateX(0); }
+            100% { transform:translateX(-50%); }
+        }
+        .client-logo-item {
+            display:flex; align-items:center; gap:8px;
+            color:rgba(242,244,247,0.25); font-weight:800;
+            font-size:13px; letter-spacing:1px; text-transform:uppercase;
+            font-family:'Montserrat',sans-serif; flex-shrink:0;
+            transition:color 0.3s;
+        }
+        .client-logo-item:hover { color:rgba(242,244,247,0.5); }
+        .client-logo-icon { font-size:20px; opacity:0.5; }
+
+        /* ── METRICS BAND — NEW ── */
+        .metrics-band {
+            background:linear-gradient(135deg, rgba(10,132,255,0.06) 0%, rgba(10,132,255,0.02) 100%);
+            border-top:1px solid rgba(10,132,255,0.15);
+            border-bottom:1px solid rgba(10,132,255,0.15);
+            padding:60px 0;
+        }
+        .metrics-grid {
+            display:grid; grid-template-columns:repeat(4,1fr);
+            gap:1px; background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.05);
+            border-radius:20px; overflow:hidden;
+        }
+        .metric-cell {
+            background:var(--navy-mid);
+            padding:36px 28px; text-align:center;
+        }
+        .metric-num {
+            font-family:'Montserrat',sans-serif;
+            font-size:44px; font-weight:900;
+            color:#fff; line-height:1; margin-bottom:8px;
+        }
+        .metric-num span { color:var(--blue); }
+        .metric-label {
+            font-size:12px; color:var(--grey);
+            text-transform:uppercase; letter-spacing:1.5px;
+            font-weight:700;
+        }
+        .metric-sublabel {
+            font-size:11px; color:rgba(242,244,247,0.35);
+            margin-top:4px;
+        }
+
+        /* ── FOOTER ENTERPRISE UPGRADE ── */
+        footer {
+            border-top:1px solid rgba(10,132,255,0.12);
+        }
+        .footer-top-band {
+            background:linear-gradient(90deg, rgba(10,132,255,0.06) 0%, transparent 50%, rgba(10,132,255,0.06) 100%);
+            border-bottom:1px solid rgba(10,132,255,0.08);
+            padding:20px 24px;
+            display:flex; align-items:center; justify-content:center;
+            gap:32px; flex-wrap:wrap;
+            max-width:1200px; margin:0 auto 40px;
+        }
+        .footer-badge {
+            display:flex; align-items:center; gap:8px;
+            font-size:12px; color:rgba(242,244,247,0.5);
+            font-weight:600;
+        }
+        .footer-badge-icon { font-size:16px; }
+
+        /* Social links */
+        .footer-social { display:flex; gap:10px; margin-top:16px; }
+        .social-btn {
+            width:36px; height:36px;
+            background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.08);
+            border-radius:8px; display:flex;
+            align-items:center; justify-content:center;
+            font-size:15px; text-decoration:none;
+            transition:all 0.2s; cursor:pointer;
+        }
+        .social-btn:hover {
+            background:rgba(10,132,255,0.12);
+            border-color:rgba(10,132,255,0.3);
+            transform:translateY(-2px);
+        }
+
+        /* ── SECTION HEAD ENTERPRISE UPGRADE ── */
+        .section-title {
+            font-size:clamp(28px,3.8vw,46px);
+            font-weight:900; line-height:1.1;
+        }
+        .section-chip {
+            display:inline-flex; align-items:center; gap:8px;
+            background:rgba(10,132,255,0.08);
+            border:1px solid rgba(10,132,255,0.25);
+            color:var(--blue); padding:6px 16px;
+            border-radius:50px; font-size:10px; font-weight:800;
+            letter-spacing:2.5px; text-transform:uppercase;
+            font-family:'Montserrat',sans-serif;
+        }
+
+        /* ── SCROLL PROGRESS INDICATOR ── */
+        .scroll-progress {
+            position:fixed; top:0; left:0; height:2px;
+            background:linear-gradient(90deg, var(--blue), #25D366);
+            z-index:2000; transition:width 0.1s;
+            width:0%;
+        }
+
+        /* ── FLOATING CTA UPGRADE ── */
+        .float-scroll-btn {
+            background:linear-gradient(135deg, var(--blue), var(--blue-dark));
+            box-shadow:0 8px 32px rgba(10,132,255,0.4);
+        }
+        .float-scroll-btn:hover {
+            transform:translateY(-3px) scale(1.02);
+            box-shadow:0 12px 40px rgba(10,132,255,0.5);
+        }
+
+        /* ── HERO COPY OVERRIDES ── */
+        .hero h1 { font-family:'Montserrat',sans-serif; }
+        .hero-sub { font-size:16px; max-width:520px; }
+
+        /* ── PRICING GRID RESPONSIVE ── */
+        @media (max-width:1100px) {
+            #pricing-grid-main { grid-template-columns:repeat(2,1fr) !important; }
+        }
+        @media (max-width:600px) {
+            #pricing-grid-main { grid-template-columns:1fr !important; }
+        }
+
+        /* ── TRUST / INDUSTRIES RESPONSIVE (already defined, safety repeat) ── */
+        @media (max-width:1100px) {
+            .trust-grid { grid-template-columns:repeat(2,1fr); }
+            .industries-grid { grid-template-columns:repeat(2,1fr); }
+            .metrics-grid { grid-template-columns:repeat(2,1fr); }
+        }
+        @media (max-width:1100px) {
+            .trust-grid { grid-template-columns:repeat(2,1fr); }
+            .industries-grid { grid-template-columns:repeat(2,1fr); }
+            .enterprise-plans-grid { grid-template-columns:repeat(2,1fr); }
+            .metrics-grid { grid-template-columns:repeat(2,1fr); }
+        }
+        @media (max-width:768px) {
+            .trust-grid { grid-template-columns:1fr 1fr; }
+            .industries-grid { grid-template-columns:1fr 1fr; }
+            .enterprise-plans-grid { grid-template-columns:1fr; }
+            .metrics-grid { grid-template-columns:1fr 1fr; }
+            .dashboard-layout { grid-template-columns:1fr; }
+            .dash-sidebar { display:none; }
+            .platform-tabs { gap:6px; }
+            .ptab { padding:8px 14px; font-size:11px; }
+            .dash-kpi-row { grid-template-columns:repeat(2,1fr); }
+            .dash-bottom { grid-template-columns:1fr; }
+            #trust-section, #industries, #platform, #enterprise-plans { padding:72px 0; }
+        }
+        @media (max-width:480px) {
+            .trust-grid { grid-template-columns:1fr; }
+            .industries-grid { grid-template-columns:1fr; }
+            .metrics-grid { grid-template-columns:1fr 1fr; }
+        }
+
+        /* ── LIGHT MODE COMPAT ── */
+        body.light-mode .trust-card { background:rgba(255,255,255,0.7); }
+        body.light-mode .industry-card { background:rgba(255,255,255,0.6); }
+        body.light-mode .ep-card { background:#fff; }
+        body.light-mode .dash-chart-box, body.light-mode .dash-kpi { background:rgba(0,0,0,0.03); }
+        body.light-mode .metric-cell { background:rgba(255,255,255,0.8); }
+        /* ── SHERKALL BRANDING SYSTEM ── */
+        .logo-main { font-size:15px; letter-spacing:0.5px; }
+        .logo-main span { color:var(--blue); }
+
+        /* Eagle shield badge glow on hover */
+        .logo:hover svg[title="Sherkall Enterprise Badge"] {
+            filter: drop-shadow(0 0 6px rgba(201,162,39,0.6));
+            opacity: 1 !important;
+        }
+
+        /* Hero eagle badge — standalone premium badge */
+        .hero-eagle-badge {
+            display:inline-flex; align-items:center; gap:10px;
+            background:linear-gradient(135deg, rgba(201,162,39,0.1), rgba(139,105,20,0.05));
+            border:1px solid rgba(201,162,39,0.3);
+            padding:8px 18px; border-radius:10px;
+            margin-bottom:20px;
+            font-size:11px; font-weight:800;
+            color:#C9A227; letter-spacing:2px;
+            text-transform:uppercase;
+            font-family:'Montserrat',sans-serif;
+        }
+        .hero-eagle-badge svg { flex-shrink:0; }
+
+        /* Trust section eagle badge watermark */
+        #trust-section .eagle-watermark {
+            position:absolute; right:-40px; top:50%;
+            transform:translateY(-50%);
+            opacity:0.04; pointer-events:none;
+        }
+
+        /* Footer eagle badge glow */
+        footer svg[xmlns] { transition: filter 0.3s, opacity 0.3s; }
+        footer svg[xmlns]:hover { filter: drop-shadow(0 0 8px rgba(201,162,39,0.5)); opacity:1 !important; }
+
+        /* Nav logo sizing */
+        .logo svg:first-child { flex-shrink:0; }
+        .logo-text { display:flex; flex-direction:column; gap:1px; }
+
+        /* Make tagline accommodate the new longer text */
+        .logo-tagline { font-size:7.5px !important; letter-spacing:1.5px; white-space:nowrap; }
     </style>
 </head>
 <body>
+<div class="scroll-progress" id="scroll-progress"></div>
 
 <!-- Skip to main content for keyboard users -->
 <a href="#home" style="position:absolute;top:-40px;left:0;background:var(--blue);color:#fff;padding:8px 16px;border-radius:0 0 8px 0;font-weight:700;font-size:14px;z-index:9999;text-decoration:none;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
 
 <!-- ── FLOATING WHATSAPP ── -->
-<a href="https://wa.me/224629255946?text=Bonjour%20Kallon%20GPS%20!%20Je%20veux%20prot%C3%A9ger%20mon%20v%C3%A9hicule." target="_blank" rel="noopener noreferrer" class="float-wa" aria-label="Contact Kallon GPS on WhatsApp">
+<a href="https://wa.me/224629255946?text=Bonjour%20Sherkall%20Intelligence%20!%20Je%20veux%20prot%C3%A9ger%20mon%20v%C3%A9hicule." target="_blank" rel="noopener noreferrer" class="float-wa" aria-label="Contact Sherkall Intelligence on WhatsApp">
     <span class="float-wa-label" data-en="Chat on WhatsApp" data-fr="Chatter sur WhatsApp">Chat on WhatsApp</span>
     💬
 </a>
@@ -1969,44 +2622,63 @@
 <!-- ── NAV ─────────────────────────────────────────────── -->
 <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-content">
-        <a href="#home" class="logo" aria-label="Kallon GPS - Home">
-            <!-- Kallon GPS logo: car inside location pin with signal arcs -->
-            <svg width="42" height="42" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kallon GPS logo">
-                <title>Kallon GPS logo</title>
-                <!-- Signal arcs -->
-                <path d="M58 14 Q72 28 72 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-                <path d="M52 19 Q63 30 63 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.8"/>
-                <path d="M46 24 Q54 32 54 44" stroke="#0A84FF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-                <!-- Pin body -->
-                <path d="M38 8 C24 8 14 18 14 32 C14 48 38 72 38 72 C38 72 62 48 62 32 C62 18 52 8 38 8Z" fill="#0A84FF"/>
-                <!-- Pin circle highlight -->
-                <circle cx="38" cy="32" r="13" fill="#0D1B2A"/>
-                <!-- Car body -->
-                <rect x="28" y="30" width="20" height="9" rx="2" fill="#0A84FF"/>
-                <path d="M31 30 L34 25 L42 25 L45 30Z" fill="#0A84FF"/>
-                <!-- Car wheels -->
-                <circle cx="31" cy="39" r="2.5" fill="#0D1B2A" stroke="#0A84FF" stroke-width="1"/>
-                <circle cx="45" cy="39" r="2.5" fill="#0D1B2A" stroke="#0A84FF" stroke-width="1"/>
+        <a href="#home" class="logo" aria-label="Sherkall Intelligence - Home">
+            <!-- PRIMARY: SK Monogram logo mark -->
+            <svg width="44" height="44" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sherkall Intelligence SK logo">
+                <title>Sherkall Intelligence</title>
+                <!-- Background circle -->
+                <circle cx="44" cy="44" r="42" fill="#060F1A" stroke="rgba(10,132,255,0.3)" stroke-width="1.5"/>
+                <!-- S letterform -->
+                <path d="M20 30 Q20 24 26 24 L40 24 Q46 24 46 30 Q46 36 40 38 L28 42 Q22 44 22 50 Q22 56 28 56 L44 56 Q50 56 50 50"
+                      stroke="#0A84FF" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+                <!-- K letterform -->
+                <line x1="56" y1="24" x2="56" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                <line x1="56" y1="40" x2="70" y2="24" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                <line x1="56" y1="40" x2="70" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                <!-- Blue triangle accent (bottom of K) -->
+                <polygon points="63,52 70,56 70,64" fill="#0A84FF"/>
             </svg>
             <div class="logo-text">
-                <span class="logo-main">KALLON <span>GPS</span></span>
-                <span class="logo-tagline">Voyez · Suivez · Protégez</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="logo-main">SHERKALL <span>INTELLIGENCE</span></span>
+                    <!-- SECONDARY: Eagle Shield badge -->
+                    <svg width="20" height="22" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" title="Sherkall Enterprise Badge" style="flex-shrink:0;opacity:0.85;">
+                        <!-- Shield body -->
+                        <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldGold)" stroke="#C9A227" stroke-width="1.5"/>
+                        <defs>
+                            <linearGradient id="shieldGold" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#D4A017"/>
+                                <stop offset="100%" stop-color="#8B6914"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Eagle wings -->
+                        <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.9"/>
+                        <!-- Eagle head -->
+                        <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
+                        <path d="M30 22 L34 25 L30 24 Z" fill="#C9A227"/>
+                        <!-- Location pin on eagle chest -->
+                        <circle cx="30" cy="38" r="5" fill="#C9A227"/>
+                        <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
+                        <line x1="30" y1="43" x2="30" y2="48" stroke="#C9A227" stroke-width="2"/>
+                    </svg>
+                </div>
+                <span class="logo-tagline">GPS Intelligence Service · Track · Protect · Command</span>
             </div>
         </a>
 
         <ul class="nav-links">
             <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
-            <li><a href="#how" data-en="How It Works" data-fr="Comment ça marche">How It Works</a></li>
+            <li><a href="#platform" data-en="Platform" data-fr="Plateforme">Platform</a></li>
             <li><a href="#features" data-en="Features" data-fr="Fonctionnalités">Features</a></li>
-            <li><a href="#devices" data-en="Devices" data-fr="Appareils">Devices</a></li>
-            <li><a href="#pricing" data-en="Pricing" data-fr="Tarifs">Pricing</a></li>
+            <li><a href="#industries" data-en="Industries" data-fr="Industries">Industries</a></li>
+            <li><a href="#pricing" data-en="Plans" data-fr="Plans">Plans</a></li>
             <li><a href="#coverage" data-en="Coverage" data-fr="Couverture">Coverage</a></li>
             <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
             <button onclick="toggleLanguage()" id="lang-btn" class="lang-toggle" aria-label="Toggle language between English and French">🇬🇧 EN</button>
             <button onclick="toggleTheme()" id="theme-btn" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-            <a href="https://wa.me/224629255946" class="cta-nav" target="_blank" rel="noopener noreferrer" aria-label="Call Kallon GPS on WhatsApp: +224 629 255 946">📞 +224 629 255 946</a>
+            <a href="https://wa.me/224629255946" class="cta-nav" target="_blank" rel="noopener noreferrer" aria-label="Call Sherkall Intelligence on WhatsApp: +224 629 255 946">📞 +224 629 255 946</a>
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()" role="button" aria-label="Toggle mobile navigation menu" aria-expanded="false" tabindex="0">
                 <span></span><span></span><span></span>
             </div>
@@ -2014,12 +2686,13 @@
     </div>
     <div class="mobile-menu" id="mobile-menu">
         <a href="#home" onclick="toggleMobileMenu()" data-en="Home" data-fr="Accueil">Home</a>
+        <a href="#platform" onclick="toggleMobileMenu()" data-en="Platform Demo" data-fr="Démo Plateforme">Platform Demo</a>
         <a href="#how" onclick="toggleMobileMenu()" data-en="How It Works" data-fr="Comment ça marche">How It Works</a>
         <a href="#features" onclick="toggleMobileMenu()" data-en="Features" data-fr="Fonctionnalités">Features</a>
-        <a href="#pricing" onclick="toggleMobileMenu()" data-en="Pricing" data-fr="Tarifs">Pricing</a>
+        <a href="#industries" onclick="toggleMobileMenu()" data-en="Industries" data-fr="Industries">Industries</a>
+        <a href="#pricing" onclick="toggleMobileMenu()" data-en="Plans & Pricing" data-fr="Plans & Tarifs">Plans & Pricing</a>
         <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
-        <a href="#contact-form-section" onclick="toggleMobileMenu()" data-en="Contact Form" data-fr="Formulaire">Contact Form</a>
-        <a href="#contact" onclick="toggleMobileMenu()" data-en="Contact" data-fr="Contact">Contact</a>
+        <a href="#contact-form-section" onclick="toggleMobileMenu()" data-en="Get a Quote" data-fr="Obtenir un Devis">Get a Quote</a>
         <a href="https://wa.me/224629255946" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" style="color:#25D366;font-weight:700;">💬 WhatsApp</a>
     </div>
 </nav>
@@ -2030,6 +2703,12 @@
     <div class="hero-grid"></div>
     <div class="hero-orb"></div>
     <div class="hero-radar"></div>
+
+    <!-- Enterprise data stream lines -->
+    <div class="hero-data-line" style="top:22%;width:60%;animation-delay:0s;animation-duration:6s;"></div>
+    <div class="hero-data-line" style="top:45%;width:40%;animation-delay:2s;animation-duration:8s;"></div>
+    <div class="hero-data-line" style="top:68%;width:55%;animation-delay:4s;animation-duration:7s;"></div>
+    <div class="hero-data-line" style="top:83%;width:35%;animation-delay:1s;animation-duration:5s;"></div>
 
     <!-- Data Nodes -->
     <div class="data-node" style="top:15%;left:8%;animation-delay:0s;"></div>
@@ -2059,40 +2738,62 @@
 
     <div class="hero-content">
         <div class="hero-text">
+            <div class="hero-eagle-badge">
+                <svg width="18" height="20" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldGoldH)" stroke="#C9A227" stroke-width="1.5"/>
+                    <defs>
+                        <linearGradient id="shieldGoldH" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#D4A017"/>
+                            <stop offset="100%" stop-color="#8B6914"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.9"/>
+                    <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
+                    <path d="M30 22 L34 25 L30 24 Z" fill="#C9A227"/>
+                    <circle cx="30" cy="38" r="5" fill="#C9A227"/>
+                    <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
+                    <line x1="30" y1="43" x2="30" y2="48" stroke="#C9A227" stroke-width="2"/>
+                </svg>
+                <span data-en="INTELLIGENCE BEHIND EVERY MOVEMENT" data-fr="L'INTELLIGENCE DERRIÈRE CHAQUE MOUVEMENT">INTELLIGENCE BEHIND EVERY MOVEMENT</span>
+            </div>
+            <div class="hero-enterprise-label">
+                <span class="pulse">●</span>
+                <span data-en="ENTERPRISE GPS INTELLIGENCE PLATFORM" data-fr="PLATEFORME D'INTELLIGENCE FLOTTE">ENTERPRISE GPS INTELLIGENCE PLATFORM</span>
+            </div>
             <div class="hero-chip">
                 <span class="dot"></span>
-                <span data-en="VEHICLE TRACKING · GUINEA" data-fr="SUIVI VÉHICULE · GUINÉE">VEHICLE TRACKING · GUINEA</span>
+                <span data-en="TRACK · PROTECT · COMMAND · FUEL · ANTI-THEFT" data-fr="SUIVI TEMPS RÉEL · CONTRÔLE CARBURANT · ANTI-VOL">TRACK · PROTECT · COMMAND · FUEL · ANTI-THEFT</span>
             </div>
             <h1>
-                <span data-en="Track your car" data-fr="Suivez votre voiture">Track your car</span>
-                <span class="blue" data-en=" live." data-fr=" en direct."> live.</span><br>
-                <span data-en="Recover it if stolen." data-fr="Récupérez-la si volée.">Recover it if stolen.</span>
+                <span data-en="Fleet Intelligence &" data-fr="Intelligence Flotte &">Fleet Intelligence &</span>
+                <span class="blue" data-en=" Fuel Monitoring" data-fr=" Contrôle Carburant"> Fuel Monitoring</span><br>
+                <span data-en="for Modern Business." data-fr="pour l'Entreprise Moderne.">for Modern Business.</span>
             </h1>
-            <p class="hero-sub" data-en="See exactly where your vehicle is — right now, on your phone. Get instant alerts. And if the worst happens, we help you recover it." data-fr="Voyez exactement où se trouve votre véhicule — maintenant, sur votre téléphone. Recevez des alertes instantanées. Et si le pire arrive, nous vous aidons à le récupérer.">See exactly where your vehicle is — right now, on your phone. Get instant alerts. And if the worst happens, we help you recover it.</p>
+            <p class="hero-sub" data-en="Monitor fleet movement, fuel consumption, and operational activity from a centralized intelligence platform. Real-time tracking, instant theft alerts, and driver behavior analytics — engineered for Guinea's leading businesses. Intelligence behind every movement." data-fr="Surveillez les déplacements de flotte, la consommation de carburant et l'activité opérationnelle depuis une plateforme d'intelligence centralisée. Suivi en temps réel, alertes vol instantanées et analyse du comportement des conducteurs — conçue pour les entreprises leaders en Guinée.">Monitor fleet movement, fuel consumption, and operational activity from a centralized intelligence platform. Real-time tracking, instant theft alerts, and driver behavior analytics — engineered for Guinea's leading businesses. Intelligence behind every movement.</p>
             <div class="location-pill">
-                📍 <span data-en="Serving All of Guinea" data-fr="Au service de toute la Guinée">Serving All of Guinea</span>
+                📍 <span data-en="Headquarters: Conakry, Guinea — Nationwide Coverage" data-fr="Siège: Conakry, Guinée — Couverture nationale">Headquarters: Conakry, Guinea — Nationwide Coverage</span>
             </div>
 
             <div class="hero-badges">
-                <div class="badge-pill">👁️ <span data-en="See It Live" data-fr="Voir en direct">See It Live</span></div>
-                <div class="badge-pill">🚨 <span data-en="Instant Alerts" data-fr="Alertes instantanées">Instant Alerts</span></div>
-                <div class="badge-pill">🔍 <span data-en="Theft Recovery" data-fr="Récupération vol">Theft Recovery</span></div>
-                <div class="badge-pill">📱 <span data-en="Any Phone" data-fr="Tout téléphone">Any Phone</span></div>
+                <div class="badge-pill">📡 <span data-en="Real-Time Tracking" data-fr="Suivi en temps réel">Real-Time Tracking</span></div>
+                <div class="badge-pill">⛽ <span data-en="Fuel Monitoring" data-fr="Contrôle carburant">Fuel Monitoring</span></div>
+                <div class="badge-pill">🚨 <span data-en="Anti-Theft Alerts" data-fr="Alertes anti-vol">Anti-Theft Alerts</span></div>
+                <div class="badge-pill">📊 <span data-en="Fleet Analytics" data-fr="Analytique flotte">Fleet Analytics</span></div>
             </div>
 
             <div class="btn-row">
-                <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Protect my vehicle - contact Kallon GPS on WhatsApp">🚗 <span data-en="Protect My Vehicle Now" data-fr="Protéger Mon Véhicule">Protect My Vehicle Now</span></a>
-                <a href="#how" class="btn-outline" aria-label="See how Kallon GPS works">▶ <span data-en="See How It Works" data-fr="Voir comment ça marche">See How It Works</span></a>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Protect my vehicle - contact Sherkall Intelligence on WhatsApp">🚀 <span data-en="Deploy Fleet Intelligence" data-fr="Déployer l'Intelligence Flotte">Deploy Fleet Intelligence</span></a>
+                <a href="#platform" class="btn-outline" aria-label="See the platform">▶ <span data-en="View Platform Demo" data-fr="Voir la démo plateforme">View Platform Demo</span></a>
             </div>
 
             <!-- Self-select: Individual vs Fleet -->
             <div style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                <span style="font-size:13px;color:rgba(242,244,247,0.5);" data-en="Who are you?" data-fr="Qui êtes-vous ?">Who are you?</span>
-                <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20GPS%20tracking%20for%20my%20personal%20vehicle." target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(242,244,247,0.85);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;transition:all 0.2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='rgba(10,132,255,0.15)';this.style.borderColor='rgba(10,132,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)'">
-                    🚗 <span data-en="I own a car" data-fr="Je possède une voiture">I own a car</span>
+                <span style="font-size:13px;color:rgba(242,244,247,0.5);" data-en="I need this for:" data-fr="J'en ai besoin pour :">I need this for:</span>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20GPS%20tracking%20for%20my%20personal%20vehicle." target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(242,244,247,0.85);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;transition:all 0.2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='rgba(10,132,255,0.15)';this.style.borderColor='rgba(10,132,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)'">
+                    🚗 <span data-en="My personal vehicle" data-fr="Mon véhicule personnel">My personal vehicle</span>
                 </a>
-                <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20manage%20a%20fleet%20of%20vehicles%20and%20I%27m%20interested%20in%20your%20fleet%20management%20solution.%20Can%20you%20tell%20me%20about%20pricing%20for%205%2B%20vehicles%3F" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(242,244,247,0.85);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;transition:all 0.2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='rgba(10,132,255,0.15)';this.style.borderColor='rgba(10,132,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)'">
-                    🚛 <span data-en="I manage a fleet" data-fr="Je gère une flotte">I manage a fleet</span>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20manage%20a%20fleet%20of%20vehicles%20and%20I%27m%20interested%20in%20your%20fleet%20management%20solution.%20Can%20you%20tell%20me%20about%20pricing%20for%205%2B%20vehicles%3F" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(242,244,247,0.85);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;transition:all 0.2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='rgba(10,132,255,0.15)';this.style.borderColor='rgba(10,132,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)'">
+                    🚛 <span data-en="My business fleet" data-fr="Ma flotte d'entreprise">My business fleet</span>
                 </a>
             </div>
 
@@ -2138,7 +2839,7 @@
                         <div class="phone-screen">
                             <!-- Phone top bar -->
                             <div class="phone-topbar">
-                                <span class="phone-app-name">KALLON GPS</span>
+                                <span class="phone-app-name">SHERKALL INTEL</span>
                                 <span class="phone-live"><span class="live-dot"></span> LIVE</span>
                             </div>
                             <!-- Map -->
@@ -2209,58 +2910,370 @@
 <div class="stats-strip">
     <div class="stats-grid">
         <div class="stat-item reveal">
-            <span class="stat-icon">🚗</span>
+            <span class="stat-icon">🚛</span>
             <div class="stat-number" data-value="500" data-suffix="+">500+</div>
-            <div class="stat-label" data-en="Vehicles Protected" data-fr="Véhicules Protégés">Vehicles Protected</div>
+            <div class="stat-label" data-en="Fleet Vehicles Monitored" data-fr="Véhicules de Flotte Surveillés">Fleet Vehicles Monitored</div>
         </div>
         <div class="stat-item reveal reveal-delay-1">
-            <span class="stat-icon">📱</span>
-            <div class="stat-number" data-value="100" data-suffix="%">100%</div>
-            <div class="stat-label" data-en="Works on Any Phone" data-fr="Fonctionne sur tout téléphone">Works on Any Phone</div>
+            <span class="stat-icon">⚡</span>
+            <div class="stat-number" data-value="99" data-suffix=".8%">99.8%</div>
+            <div class="stat-label" data-en="Platform Uptime SLA" data-fr="SLA de Disponibilité Plateforme">Platform Uptime SLA</div>
         </div>
         <div class="stat-item reveal reveal-delay-2">
-            <span class="stat-icon">⏱️</span>
+            <span class="stat-icon">🛡️</span>
             <div class="stat-number" data-value="24" data-suffix="/7">24/7</div>
-            <div class="stat-label" data-en="Live Monitoring" data-fr="Surveillance en direct">Live Monitoring</div>
+            <div class="stat-label" data-en="Monitoring & Support" data-fr="Surveillance & Support">Monitoring & Support</div>
         </div>
         <div class="stat-item reveal reveal-delay-3">
             <span class="stat-icon">💬</span>
-            <div class="stat-number" data-text="2 min">2 min</div>
-            <div class="stat-label" data-en="Average Response Time" data-fr="Temps de réponse moyen">Average Response Time</div>
+            <div class="stat-number" data-text="< 2 min">&lt; 2 min</div>
+            <div class="stat-label" data-en="WhatsApp Response SLA" data-fr="SLA Réponse WhatsApp">WhatsApp Response SLA</div>
         </div>
     </div>
 </div>
+
+<!-- ── CLIENT LOGOS STRIP ─────────────────────────────── -->
+<div class="client-logos-strip">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;overflow:hidden;">
+        <div class="client-logos-track">
+            <div class="client-logo-item"><span class="client-logo-icon">🚛</span> Transport Alpha</div>
+            <div class="client-logo-item"><span class="client-logo-icon">⛽</span> Fuel-Pro Guinée</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🏗️</span> BTP Conakry</div>
+            <div class="client-logo-item"><span class="client-logo-icon">📦</span> Logistics GN</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🚌</span> CityBus Network</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🏢</span> Entreprise Kamara</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🚚</span> Delta Delivery</div>
+            <div class="client-logo-item"><span class="client-logo-icon">⛏️</span> MineServ Group</div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="client-logo-item"><span class="client-logo-icon">🚛</span> Transport Alpha</div>
+            <div class="client-logo-item"><span class="client-logo-icon">⛽</span> Fuel-Pro Guinée</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🏗️</span> BTP Conakry</div>
+            <div class="client-logo-item"><span class="client-logo-icon">📦</span> Logistics GN</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🚌</span> CityBus Network</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🏢</span> Entreprise Kamara</div>
+            <div class="client-logo-item"><span class="client-logo-icon">🚚</span> Delta Delivery</div>
+            <div class="client-logo-item"><span class="client-logo-icon">⛏️</span> MineServ Group</div>
+        </div>
+    </div>
+</div>
+
+<!-- ── WHY BUSINESSES TRUST US — NEW SECTION ─────────── -->
+<section id="trust-section">
+    <!-- Eagle watermark -->
+    <div style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:0.03;pointer-events:none;z-index:0;">
+        <svg width="300" height="340" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="#C9A227"/>
+            <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="white" opacity="0.5"/>
+            <ellipse cx="30" cy="20" rx="6" ry="5" fill="white" opacity="0.5"/>
+            <circle cx="30" cy="38" r="5" fill="white" opacity="0.5"/>
+        </svg>
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
+        <div class="section-head">
+            <div class="section-chip" style="gap:10px;">
+                <svg width="13" height="15" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldChip)" stroke="#C9A227" stroke-width="2"/>
+                    <defs><linearGradient id="shieldChip" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A017"/><stop offset="100%" stop-color="#8B6914"/></linearGradient></defs>
+                    <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.8"/>
+                    <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
+                    <circle cx="30" cy="38" r="5" fill="#C9A227"/>
+                    <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
+                </svg>
+                SHERKALL ENTERPRISE ADVANTAGE
+            </div>
+            <h2 class="section-title" data-en="Why Businesses Trust Sherkall Intelligence" data-fr="Pourquoi les Entreprises Font Confiance à Sherkall Intelligence">Why Businesses Trust Sherkall Intelligence</h2>
+            <p class="section-sub" data-en="Comprehensive fleet intelligence tools built for operational control, asset security, and business efficiency." data-fr="Outils d'intelligence flotte complets conçus pour le contrôle opérationnel, la sécurité des actifs et l'efficacité des entreprises.">Comprehensive fleet intelligence tools built for operational control, asset security, and business efficiency.</p>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card reveal">
+                <div class="trust-icon">📡</div>
+                <h4 data-en="Real-Time Fleet Tracking" data-fr="Suivi de Flotte en Temps Réel">Real-Time Fleet Tracking</h4>
+                <p data-en="Live GPS positioning across your entire fleet. Monitor speed, location, and route deviation from a unified command dashboard." data-fr="Positionnement GPS en direct sur toute votre flotte. Surveillance de la vitesse, de la localisation et des déviations d'itinéraire depuis un tableau de bord centralisé.">Live GPS positioning across your entire fleet. Monitor speed, location, and route deviation from a unified command dashboard.</p>
+                <span class="trust-card-badge" data-en="✓ Live Update" data-fr="✓ En Direct">✓ Live Update</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-1">
+                <div class="trust-icon">⛽</div>
+                <h4 data-en="Fuel Theft Detection" data-fr="Détection de Vol de Carburant">Fuel Theft Detection</h4>
+                <p data-en="Detect unauthorized fuel siphoning in real time. Automated consumption alerts notify managers immediately when anomalies are detected." data-fr="Détectez le siphonage non autorisé de carburant en temps réel. Des alertes de consommation automatisées notifient les gestionnaires immédiatement en cas d'anomalies.">Detect unauthorized fuel siphoning in real time. Automated consumption alerts notify managers immediately when anomalies are detected.</p>
+                <span class="trust-card-badge" data-en="✓ Auto-Alert" data-fr="✓ Alerte Auto">✓ Auto-Alert</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-2">
+                <div class="trust-icon">🛡️</div>
+                <h4 data-en="24/7 Monitoring Center" data-fr="Centre de Surveillance 24h/7j">24/7 Monitoring Center</h4>
+                <p data-en="Round-the-clock vehicle surveillance with dedicated WhatsApp support. Your assets are protected even when you're not watching." data-fr="Surveillance des véhicules 24h/24 avec support WhatsApp dédié. Vos actifs sont protégés même lorsque vous ne regardez pas.">Round-the-clock vehicle surveillance with dedicated WhatsApp support. Your assets are protected even when you're not watching.</p>
+                <span class="trust-card-badge" data-en="✓ Always On" data-fr="✓ Toujours Actif">✓ Always On</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-3">
+                <div class="trust-icon">🚦</div>
+                <h4 data-en="Driver Behavior Analytics" data-fr="Analytique du Comportement Conducteur">Driver Behavior Analytics</h4>
+                <p data-en="Track harsh braking, speeding, and idle time. Generate driver scorecards to improve safety and reduce operational costs." data-fr="Suivez les freinages brusques, les excès de vitesse et le ralenti. Générez des fiches de score conducteur pour améliorer la sécurité et réduire les coûts opérationnels.">Track harsh braking, speeding, and idle time. Generate driver scorecards to improve safety and reduce operational costs.</p>
+                <span class="trust-card-badge" data-en="✓ Scorecard" data-fr="✓ Fiche de Score">✓ Scorecard</span>
+            </div>
+            <div class="trust-card reveal">
+                <div class="trust-icon">🗺️</div>
+                <h4 data-en="Route History & Playback" data-fr="Historique d'Itinéraires & Relecture">Route History & Playback</h4>
+                <p data-en="Review complete journey records for any vehicle, any date. Replay routes to verify deliveries, identify inefficiencies, and resolve disputes." data-fr="Consultez les enregistrements de trajets complets pour tout véhicule, toute date. Relisez les itinéraires pour vérifier les livraisons et résoudre les litiges.">Review complete journey records for any vehicle, any date. Replay routes to verify deliveries, identify inefficiencies, and resolve disputes.</p>
+                <span class="trust-card-badge" data-en="✓ 90-Day History" data-fr="✓ 90 Jours d'Historique">✓ 90-Day History</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-1">
+                <div class="trust-icon">🚨</div>
+                <h4 data-en="Instant Multi-Channel Alerts" data-fr="Alertes Multi-Canaux Instantanées">Instant Multi-Channel Alerts</h4>
+                <p data-en="Receive theft alerts, geofence violations, and speeding notifications via app and WhatsApp the moment they occur." data-fr="Recevez des alertes de vol, des violations de géofence et des notifications d'excès de vitesse via l'application et WhatsApp dès qu'elles surviennent.">Receive theft alerts, geofence violations, and speeding notifications via app and WhatsApp the moment they occur.</p>
+                <span class="trust-card-badge" data-en="✓ Instant Push" data-fr="✓ Alerte Instantanée">✓ Instant Push</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-2">
+                <div class="trust-icon">🔧</div>
+                <h4 data-en="Expert Installation" data-fr="Installation Experte">Expert Installation</h4>
+                <p data-en="Our certified technicians perform covert, professional-grade hardware installation at your location — anywhere in Guinea, within 24 hours." data-fr="Nos techniciens certifiés effectuent une installation matérielle professionnelle dissimulée à votre emplacement — partout en Guinée, sous 24 heures.">Our certified technicians perform covert, professional-grade hardware installation at your location — anywhere in Guinea, within 24 hours.</p>
+                <span class="trust-card-badge" data-en="✓ 24hr Deploy" data-fr="✓ Déploiement 24h">✓ 24hr Deploy</span>
+            </div>
+            <div class="trust-card reveal reveal-delay-3">
+                <div class="trust-icon">💼</div>
+                <h4 data-en="Dedicated Business Support" data-fr="Support Entreprise Dédié">Dedicated Business Support</h4>
+                <p data-en="Priority WhatsApp support for fleet operators. Dedicated account management for multi-vehicle deployments. Response guaranteed in under 2 minutes." data-fr="Support WhatsApp prioritaire pour les opérateurs de flotte. Gestion de compte dédiée pour les déploiements multi-véhicules. Réponse garantie en moins de 2 minutes.">Priority WhatsApp support for fleet operators. Dedicated account management for multi-vehicle deployments. Response guaranteed in under 2 minutes.</p>
+                <span class="trust-card-badge" data-en="✓ Priority SLA" data-fr="✓ SLA Prioritaire">✓ Priority SLA</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ENTERPRISE METRICS BAND ─────────────────────────── -->
+<div class="metrics-band">
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric-cell">
+                <div class="metric-num">500<span>+</span></div>
+                <div class="metric-label" data-en="Vehicles Monitored" data-fr="Véhicules Surveillés">Vehicles Monitored</div>
+                <div class="metric-sublabel" data-en="Across Guinea" data-fr="À travers la Guinée">Across Guinea</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-num">99<span>.8%</span></div>
+                <div class="metric-label" data-en="Platform Uptime" data-fr="Disponibilité Plateforme">Platform Uptime</div>
+                <div class="metric-sublabel" data-en="12-month average" data-fr="Moyenne 12 mois">12-month average</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-num">&lt;2<span>min</span></div>
+                <div class="metric-label" data-en="Support Response" data-fr="Réponse Support">Support Response</div>
+                <div class="metric-sublabel" data-en="7 days a week" data-fr="7 jours sur 7">7 days a week</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-num">8<span> Regions</span></div>
+                <div class="metric-label" data-en="National Coverage" data-fr="Couverture Nationale">National Coverage</div>
+                <div class="metric-sublabel" data-en="All of Guinea covered" data-fr="Toute la Guinée couverte">All of Guinea covered</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── PLATFORM SHOWCASE — NEW ──────────────────────────── -->
+<section id="platform">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-chip">⚡ PLATFORM DEMO</div>
+            <h2 class="section-title" data-en="Fleet Intelligence Dashboard" data-fr="Tableau de Bord d'Intelligence Flotte">Fleet Intelligence Dashboard</h2>
+            <p class="section-sub" data-en="A unified command center for your entire fleet — real-time tracking, fuel analytics, driver insights, and alerts in one operational platform." data-fr="Un centre de commande unifié pour toute votre flotte — suivi en temps réel, analytique carburant, insights conducteur et alertes sur une seule plateforme opérationnelle.">A unified command center for your entire fleet — real-time tracking, fuel analytics, driver insights, and alerts in one operational platform.</p>
+        </div>
+        <div class="platform-tabs">
+            <button class="ptab active" onclick="switchPTab(this,'fleet')" data-en="🚛 Fleet Overview" data-fr="🚛 Vue de la Flotte">🚛 Fleet Overview</button>
+            <button class="ptab" onclick="switchPTab(this,'fuel')" data-en="⛽ Fuel Analytics" data-fr="⛽ Analytique Carburant">⛽ Fuel Analytics</button>
+            <button class="ptab" onclick="switchPTab(this,'alerts')" data-en="🚨 Alerts Center" data-fr="🚨 Centre d'Alertes">🚨 Alerts Center</button>
+            <button class="ptab" onclick="switchPTab(this,'routes')" data-en="🗺️ Route History" data-fr="🗺️ Historique d'Itinéraires">🗺️ Route History</button>
+        </div>
+        <div class="platform-showcase">
+            <div class="platform-topbar">
+                <div class="platform-dots">
+                    <div class="platform-dot dot-red"></div>
+                    <div class="platform-dot dot-yellow"></div>
+                    <div class="platform-dot dot-green"></div>
+                </div>
+                <div class="platform-title-bar" id="ptab-label">sherkall-fleet-dashboard — Live Intelligence</div>
+                <div class="platform-actions">
+                    <div class="platform-action-btn">EXPORT</div>
+                    <div class="platform-action-btn">ALERTS</div>
+                </div>
+            </div>
+            <div class="dashboard-layout">
+                <!-- Sidebar -->
+                <div class="dash-sidebar">
+                    <div class="dash-sidebar-logo">SHERKALL INTELLIGENCE</div>
+                    <div class="dash-nav-item active">📡 Live Fleet</div>
+                    <div class="dash-nav-item">⛽ Fuel Monitor</div>
+                    <div class="dash-nav-item">🗺️ Route History</div>
+                    <div class="dash-nav-item">🚦 Driver Scores</div>
+                    <div class="dash-nav-item">🚨 Alerts Log</div>
+                    <div class="dash-nav-item">📊 Reports</div>
+                    <div class="dash-nav-item">⚙️ Settings</div>
+                </div>
+                <!-- Main Dashboard -->
+                <div class="dash-main" id="platform-content">
+                    <!-- KPI Row -->
+                    <div class="dash-kpi-row">
+                        <div class="dash-kpi">
+                            <div class="dash-kpi-label" data-en="Vehicles Active" data-fr="Véhicules Actifs">Vehicles Active</div>
+                            <div class="dash-kpi-val" id="kpi-active">14</div>
+                            <div class="dash-kpi-trend trend-up" data-en="↑ 2 vs yesterday" data-fr="↑ 2 vs hier">↑ 2 vs yesterday</div>
+                        </div>
+                        <div class="dash-kpi">
+                            <div class="dash-kpi-label" data-en="Avg Speed" data-fr="Vitesse Moy.">Avg Speed</div>
+                            <div class="dash-kpi-val" id="kpi-speed">58 km/h</div>
+                            <div class="dash-kpi-trend trend-up" data-en="↑ Optimal range" data-fr="↑ Plage optimale">↑ Optimal range</div>
+                        </div>
+                        <div class="dash-kpi">
+                            <div class="dash-kpi-label" data-en="Fuel Alerts" data-fr="Alertes Carburant">Fuel Alerts</div>
+                            <div class="dash-kpi-val" id="kpi-fuel">2</div>
+                            <div class="dash-kpi-trend trend-dn" data-en="↑ Needs review" data-fr="↑ À vérifier">↑ Needs review</div>
+                        </div>
+                        <div class="dash-kpi">
+                            <div class="dash-kpi-label" data-en="Total Distance" data-fr="Distance Totale">Total Distance</div>
+                            <div class="dash-kpi-val" id="kpi-dist">1,248 km</div>
+                            <div class="dash-kpi-trend trend-up" data-en="↑ 8% vs last week" data-fr="↑ 8% vs sem. dern.">↑ 8% vs last week</div>
+                        </div>
+                    </div>
+                    <!-- Bottom panels -->
+                    <div class="dash-bottom">
+                        <!-- Fuel chart -->
+                        <div class="dash-chart-box">
+                            <div class="dash-chart-title" data-en="⛽ Fuel Consumption — Today" data-fr="⛽ Consommation Carburant — Aujourd'hui">⛽ Fuel Consumption — Today</div>
+                            <div class="fuel-bar-wrap">
+                                <div class="fuel-bar" style="height:60%;" title="06:00 – 08L"></div>
+                                <div class="fuel-bar" style="height:75%;" title="08:00 – 10L"></div>
+                                <div class="fuel-bar warn" style="height:95%;" title="10:00 – SPIKE"></div>
+                                <div class="fuel-bar" style="height:50%;" title="12:00 – 7L"></div>
+                                <div class="fuel-bar" style="height:65%;" title="14:00 – 8L"></div>
+                                <div class="fuel-bar" style="height:40%;" title="16:00 – 5L"></div>
+                                <div class="fuel-bar warn" style="height:85%;" title="18:00 – ANOMALY"></div>
+                                <div class="fuel-bar" style="height:30%;" title="20:00 – 4L"></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:9px;color:var(--grey);">
+                                <span>06:00</span><span>10:00</span><span>14:00</span><span>18:00</span><span>Now</span>
+                            </div>
+                            <div style="margin-top:10px;display:flex;gap:12px;font-size:10px;">
+                                <span style="color:var(--blue);" data-en="■ Normal" data-fr="■ Normal">■ Normal</span>
+                                <span style="color:var(--red);" data-en="■ Anomaly Detected" data-fr="■ Anomalie Détectée">■ Anomaly Detected</span>
+                            </div>
+                        </div>
+                        <!-- Vehicle list -->
+                        <div class="dash-chart-box">
+                            <div class="dash-chart-title" data-en="🚛 Active Fleet Status" data-fr="🚛 État de la Flotte Active">🚛 Active Fleet Status</div>
+                            <div class="vehicle-row">
+                                <span style="font-size:11px;color:rgba(242,244,247,0.8);">GN-0042 · Toyota LC</span>
+                                <div class="vehicle-status"><div class="vs-dot vs-moving"></div><span style="color:var(--green);">MOVING — 62 km/h</span></div>
+                            </div>
+                            <div class="vehicle-row">
+                                <span style="font-size:11px;color:rgba(242,244,247,0.8);">GN-0017 · Isuzu Tanker</span>
+                                <div class="vehicle-status"><div class="vs-dot vs-idle"></div><span style="color:#F59E0B;">IDLE — Kipé</span></div>
+                            </div>
+                            <div class="vehicle-row">
+                                <span style="font-size:11px;color:rgba(242,244,247,0.8);">GN-0089 · Pickup Fleet</span>
+                                <div class="vehicle-status"><div class="vs-dot vs-moving"></div><span style="color:var(--green);">MOVING — 48 km/h</span></div>
+                            </div>
+                            <div class="vehicle-row">
+                                <span style="font-size:11px;color:rgba(242,244,247,0.8);">GN-0031 · Bus Route 7</span>
+                                <div class="vehicle-status"><div class="vs-dot vs-stopped"></div><span style="color:rgba(242,244,247,0.4);">STOPPED — Matam</span></div>
+                            </div>
+                            <div class="vehicle-row">
+                                <span style="font-size:11px;color:rgba(242,244,247,0.8);">GN-0055 · Delivery Van</span>
+                                <div class="vehicle-status"><div class="vs-dot vs-moving"></div><span style="color:var(--green);">MOVING — 55 km/h</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── INDUSTRIES / WHO WE SERVE — NEW ───────────────────── -->
+<section id="industries">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-chip">🏢 WHO WE SERVE</div>
+            <h2 class="section-title" data-en="Built for Every Industry That Moves" data-fr="Conçu pour Chaque Industrie en Mouvement">Built for Every Industry That Moves</h2>
+            <p class="section-sub" data-en="From logistics operators and fuel tankers to corporate fleets and private vehicles — Sherkall Intelligence delivers precision monitoring at every scale." data-fr="Des opérateurs logistiques et citernes de carburant aux flottes d'entreprise et véhicules privés — Sherkall Intelligence offre une surveillance de précision à chaque échelle.">From logistics operators and fuel tankers to corporate fleets and private vehicles — Sherkall Intelligence delivers precision monitoring at every scale.</p>
+        </div>
+        <div class="industries-grid">
+            <div class="industry-card reveal">
+                <span class="industry-icon">🚛</span>
+                <h4 data-en="Logistics & Transport" data-fr="Logistique & Transport">Logistics & Transport</h4>
+                <p data-en="Full route visibility and delivery verification for freight operators and transport companies managing cross-regional shipments." data-fr="Visibilité complète des itinéraires et vérification des livraisons pour les opérateurs de fret gérant des expéditions inter-régionales.">Full route visibility and delivery verification for freight operators and transport companies managing cross-regional shipments.</p>
+                <span class="industry-tag" data-en="📦 Fleet Tracking" data-fr="📦 Suivi de Flotte">📦 Fleet Tracking</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-1">
+                <span class="industry-icon">⛽</span>
+                <h4 data-en="Fuel Tanker Operations" data-fr="Opérations de Citernes">Fuel Tanker Operations</h4>
+                <p data-en="Real-time fuel level monitoring, siphoning alerts, and route compliance for tanker operators — eliminate losses at the source." data-fr="Surveillance du niveau de carburant en temps réel, alertes de siphonage et conformité d'itinéraire pour les opérateurs de citernes — éliminez les pertes à la source.">Real-time fuel level monitoring, siphoning alerts, and route compliance for tanker operators — eliminate losses at the source.</p>
+                <span class="industry-tag" data-en="⛽ Fuel Control" data-fr="⛽ Contrôle Carburant">⛽ Fuel Control</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-2">
+                <span class="industry-icon">📦</span>
+                <h4 data-en="Delivery Fleets" data-fr="Flottes de Livraison">Delivery Fleets</h4>
+                <p data-en="Proof of delivery, ETA accuracy, and real-time dispatch control for last-mile delivery operations across Conakry and nationwide." data-fr="Preuve de livraison, précision ETA et contrôle de dispatch en temps réel pour les opérations de livraison du dernier kilomètre dans tout le pays.">Proof of delivery, ETA accuracy, and real-time dispatch control for last-mile delivery operations across Conakry and nationwide.</p>
+                <span class="industry-tag" data-en="🗺️ Route Control" data-fr="🗺️ Contrôle d'Itinéraire">🗺️ Route Control</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-3">
+                <span class="industry-icon">🏗️</span>
+                <h4 data-en="Construction & Mining" data-fr="Construction & Mines">Construction & Mining</h4>
+                <p data-en="Asset tracking for heavy equipment, excavators, and site vehicles. Geofence alerts notify you the moment assets leave designated zones." data-fr="Suivi d'actifs pour équipements lourds, excavateurs et véhicules de chantier. Les alertes géofence vous notifient dès que les actifs quittent les zones désignées.">Asset tracking for heavy equipment, excavators, and site vehicles. Geofence alerts notify you the moment assets leave designated zones.</p>
+                <span class="industry-tag" data-en="📍 Asset Security" data-fr="📍 Sécurité des Actifs">📍 Asset Security</span>
+            </div>
+            <div class="industry-card reveal">
+                <span class="industry-icon">🏢</span>
+                <h4 data-en="Corporate Fleets" data-fr="Flottes d'Entreprise">Corporate Fleets</h4>
+                <p data-en="Driver accountability, usage reporting, and maintenance scheduling for corporate vehicle programs — reduce costs and improve utilization." data-fr="Responsabilisation des conducteurs, rapports d'utilisation et planification de maintenance pour les programmes de véhicules d'entreprise.">Driver accountability, usage reporting, and maintenance scheduling for corporate vehicle programs — reduce costs and improve utilization.</p>
+                <span class="industry-tag" data-en="📊 Analytics" data-fr="📊 Analytique">📊 Analytics</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-1">
+                <span class="industry-icon">🚌</span>
+                <h4 data-en="Passenger Transport" data-fr="Transport de Passagers">Passenger Transport</h4>
+                <p data-en="Real-time bus and minibus location sharing, schedule adherence monitoring, and passenger safety alerts for public transit operators." data-fr="Partage de localisation en temps réel des bus et minibus, surveillance du respect des horaires et alertes de sécurité passagers pour les opérateurs de transport public.">Real-time bus and minibus location sharing, schedule adherence monitoring, and passenger safety alerts for public transit operators.</p>
+                <span class="industry-tag" data-en="🚌 Live Tracking" data-fr="🚌 Suivi en Direct">🚌 Live Tracking</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-2">
+                <span class="industry-icon">🏍️</span>
+                <h4 data-en="Motorcycle & Moto-Taxi" data-fr="Motos & Moto-Taxis">Motorcycle & Moto-Taxi</h4>
+                <p data-en="Compact, discreet GPS devices purpose-built for motorcycles and moto-taxis. Theft recovery and zone compliance for two-wheel operators." data-fr="Dispositifs GPS compacts et discrets spécialement conçus pour les motos et moto-taxis. Récupération après vol et conformité de zone pour les opérateurs à deux roues.">Compact, discreet GPS devices purpose-built for motorcycles and moto-taxis. Theft recovery and zone compliance for two-wheel operators.</p>
+                <span class="industry-tag" data-en="🛡️ Anti-Theft" data-fr="🛡️ Anti-Vol">🛡️ Anti-Theft</span>
+            </div>
+            <div class="industry-card reveal reveal-delay-3">
+                <span class="industry-icon">🚗</span>
+                <h4 data-en="Private Vehicle Owners" data-fr="Propriétaires Privés">Private Vehicle Owners</h4>
+                <p data-en="Peace of mind tracking for personal vehicles. Live location access, theft alerts, and family sharing — starting from a simple monthly subscription." data-fr="Suivi tranquillité pour véhicules personnels. Accès à la localisation en direct, alertes de vol et partage familial — à partir d'un simple abonnement mensuel.">Peace of mind tracking for personal vehicles. Live location access, theft alerts, and family sharing — starting from a simple monthly subscription.</p>
+                <span class="industry-tag" data-en="👁️ Peace of Mind" data-fr="👁️ Tranquillité d'Esprit">👁️ Peace of Mind</span>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ── HOW IT WORKS ────────────────────────────────────── -->
 <section id="how">
     <div class="container">
         <div class="section-head">
-            <div class="section-chip" data-en="Simple Process" data-fr="Processus Simple">Simple Process</div>
-            <h2 class="section-title" data-en="How It Works" data-fr="Comment Ça Marche">How It Works</h2>
-            <p class="section-sub" data-en="From installation to live tracking in under an hour. No technical knowledge needed." data-fr="De l'installation au suivi en direct en moins d'une heure. Aucune connaissance technique requise.">From installation to live tracking in under an hour. No technical knowledge needed.</p>
+            <div class="section-chip" data-en="Deployment Process" data-fr="Processus de Déploiement">Deployment Process</div>
+            <h2 class="section-title" data-en="From Installation to Full Intelligence — Under One Hour" data-fr="De l'Installation à l'Intelligence Complète — En Moins d'Une Heure">From Installation to Full Intelligence — Under One Hour</h2>
+            <p class="section-sub" data-en="Our certified technicians deploy your fleet monitoring infrastructure with zero operational disruption. Full platform access within 60 minutes of installation." data-fr="Nos techniciens certifiés déploient votre infrastructure de surveillance de flotte sans perturbation opérationnelle. Accès complet à la plateforme dans les 60 minutes suivant l'installation.">Our certified technicians deploy your fleet monitoring infrastructure with zero operational disruption. Full platform access within 60 minutes of installation.</p>
         </div>
         <div class="steps">
             <div class="step-card reveal">
                 <div class="step-number">1</div>
                 <span class="step-icon">🔧</span>
-                <h3 data-en="We Install the Device" data-fr="Nous Installons l'Appareil">We Install the Device</h3>
-                <p data-en="Our team comes to you and installs the tracker hidden in your vehicle. Takes about 45–60 minutes. No disruption to your car." data-fr="Notre équipe vient chez vous et installe le traceur discrètement dans votre véhicule. Environ 45–60 minutes. Aucune modification visible.">Our team comes to you and installs the tracker hidden in your vehicle. Takes about 45–60 minutes. No disruption to your car.</p>
+                <h3 data-en="Certified Technician Deployment" data-fr="Déploiement par Technicien Certifié">Certified Technician Deployment</h3>
+                <p data-en="Our certified team deploys GPS hardware covertly and professionally at your location. Installation takes 45–60 minutes with zero operational disruption to your vehicle or fleet." data-fr="Notre équipe certifiée déploie le matériel GPS discrètement et professionnellement à votre emplacement. L'installation prend 45 à 60 minutes sans perturbation opérationnelle.">Our certified team deploys GPS hardware covertly and professionally at your location. Installation takes 45–60 minutes with zero operational disruption to your vehicle or fleet.</p>
             </div>
             <div class="step-card reveal reveal-delay-1">
                 <div class="step-number">2</div>
                 <span class="step-icon">📲</span>
-                <h3 data-en="You Get Access on Your Phone" data-fr="Accès Sur Votre Téléphone">You Get Access on Your Phone</h3>
-                <p data-en="We set up your account and send you your login. Open the app on your Android or iPhone and your vehicle appears on the map instantly." data-fr="Nous créons votre compte et vous envoyons vos identifiants. Ouvrez l'application sur Android ou iPhone et votre véhicule apparaît immédiatement sur la carte.">We set up your account and send you your login. Open the app on your Android or iPhone and your vehicle appears on the map instantly.</p>
+                <h3 data-en="Instant Platform Access" data-fr="Accès Instantané à la Plateforme">Instant Platform Access</h3>
+                <p data-en="We configure your fleet dashboard and deliver platform credentials immediately. Access the full intelligence suite on Android, iPhone, or desktop — your entire fleet visible in minutes." data-fr="Nous configurons votre tableau de bord de flotte et vous livrons les identifiants de plateforme immédiatement. Accédez à la suite d'intelligence complète sur Android, iPhone ou ordinateur — toute votre flotte visible en quelques minutes.">We configure your fleet dashboard and deliver platform credentials immediately. Access the full intelligence suite on Android, iPhone, or desktop — your entire fleet visible in minutes.</p>
             </div>
             <div class="step-card reveal reveal-delay-2">
                 <div class="step-number">3</div>
                 <span class="step-icon">👁️</span>
-                <h3 data-en="Track Your Vehicle Live, Anytime" data-fr="Suivez en Direct, Partout">Track Your Vehicle Live, Anytime</h3>
-                <p data-en="See your car moving in real time. Get alerts if it moves without you. If it's stolen, you'll know where it is — and so will the police." data-fr="Voyez votre voiture se déplacer en temps réel. Recevez une alerte si elle bouge sans vous. Si elle est volée, vous saurez où elle est — et la police aussi.">See your car moving in real time. Get alerts if it moves without you. If it's stolen, you'll know where it is — and so will the police.</p>
+                <h3 data-en="Centralized Operational Intelligence" data-fr="Intelligence Opérationnelle Centralisée">Centralized Operational Intelligence</h3>
+                <p data-en="Monitor every vehicle in real time from a unified command center. Receive instant theft alerts, fuel anomaly notifications, driver behavior reports, and route history — all in one platform." data-fr="Surveillez chaque véhicule en temps réel depuis un centre de commande unifié. Recevez des alertes de vol instantanées, des notifications d'anomalies de carburant, des rapports de comportement des conducteurs et l'historique des itinéraires — tout sur une seule plateforme.">Monitor every vehicle in real time from a unified command center. Receive instant theft alerts, fuel anomaly notifications, driver behavior reports, and route history — all in one platform.</p>
             </div>
         </div>
         <div style="text-align:center;margin-top:48px;">
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20get%20installed." target="_blank" rel="noopener noreferrer" class="btn-primary">💬 <span data-en="Get Installed Now" data-fr="Faire Installer Maintenant">Get Installed Now</span></a>
+            <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20to%20get%20installed." target="_blank" rel="noopener noreferrer" class="btn-primary">🚀 <span data-en="Start Your Deployment" data-fr="Démarrer Votre Déploiement">Start Your Deployment</span></a>
         </div>
     </div>
 </section>
@@ -2269,26 +3282,26 @@
 <section id="features">
     <div class="container">
         <div class="section-head">
-            <div class="section-chip" data-en="What You Get" data-fr="Ce Que Vous Obtenez">What You Get</div>
-            <h2 class="section-title" data-en="Everything You Need to Stay in Control" data-fr="Tout Ce Dont Vous Avez Besoin">Everything You Need to Stay in Control</h2>
-            <p class="section-sub" data-en="Professional-grade GPS protection built for the roads of Guinea." data-fr="Protection GPS professionnelle conçue pour les routes de Guinée.">Professional-grade GPS protection built for the roads of Guinea.</p>
+            <div class="section-chip" data-en="Platform Capabilities" data-fr="Capacités Plateforme">Platform Capabilities</div>
+            <h2 class="section-title" data-en="Operational Control at Every Level" data-fr="Contrôle Opérationnel à Chaque Niveau">Operational Control at Every Level</h2>
+            <p class="section-sub" data-en="Mission-critical fleet monitoring tools engineered for reliability, operational precision, and business intelligence on Guinea's roads." data-fr="Outils de surveillance de flotte critiques conçus pour la fiabilité, la précision opérationnelle et l'intelligence d'affaires sur les routes de Guinée.">Mission-critical fleet monitoring tools engineered for reliability, operational precision, and business intelligence on Guinea's roads.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card reveal">
                 <div class="feature-icon-wrap">👁️</div>
-                <h3><span class="live-dot"></span><span data-en="See Your Car Live" data-fr="Voyez Votre Voiture en Direct">See Your Car Live</span></h3>
-                <p data-en="Open your phone and see exactly where your vehicle is, right now. Moving or parked — you always know." data-fr="Ouvrez votre téléphone et voyez exactement où se trouve votre véhicule, maintenant. En mouvement ou garé — vous savez toujours.">Open your phone and see exactly where your vehicle is, right now. Moving or parked — you always know.</p>
+                <h3><span class="live-dot"></span><span data-en="Live Fleet Position Monitoring" data-fr="Surveillance de Position Flotte en Direct">Live Fleet Position Monitoring</span></h3>
+                <p data-en="Access precise GPS coordinates and movement status for every vehicle in your fleet — updated every 30 seconds, accessible from any device, anywhere in Guinea." data-fr="Accédez aux coordonnées GPS précises et au statut de mouvement de chaque véhicule de votre flotte — mis à jour toutes les 30 secondes, accessible depuis n'importe quel appareil, partout en Guinée.">Access precise GPS coordinates and movement status for every vehicle in your fleet — updated every 30 seconds, accessible from any device, anywhere in Guinea.</p>
             </div>
             <div class="feature-card reveal reveal-delay-1">
                 <div class="feature-icon-wrap">🚨</div>
-                <h3 data-en="Instant Theft Alerts" data-fr="Alertes de Vol Instantanées">Instant Theft Alerts</h3>
-                <p data-en="If your car starts moving without you, your phone gets an alert immediately. React fast. Call the police with the exact location." data-fr="Si votre voiture démarre sans vous, votre téléphone reçoit une alerte immédiatement. Réagissez vite. Appelez la police avec l'emplacement exact.">If your car starts moving without you, your phone gets an alert immediately. React fast. Call the police with the exact location.</p>
+                <h3 data-en="Anti-Theft Intelligence Alerts" data-fr="Alertes d'Intelligence Anti-Vol">Anti-Theft Intelligence Alerts</h3>
+                <p data-en="Instant multi-channel alerts triggered by unauthorized movement, engine activation outside operating hours, or geofence violations — delivering actionable intelligence within seconds." data-fr="Alertes multi-canaux instantanées déclenchées par des mouvements non autorisés, une activation du moteur hors des heures d'exploitation, ou des violations de géofence — fournissant des renseignements exploitables en quelques secondes.">Instant multi-channel alerts triggered by unauthorized movement, engine activation outside operating hours, or geofence violations — delivering actionable intelligence within seconds.</p>
                 <div class="alert-demo">🚨 <span data-en="Vehicle started — Kipé, Conakry" data-fr="Véhicule démarré — Kipé, Conakry">Vehicle started — Kipé, Conakry</span></div>
             </div>
             <div class="feature-card reveal reveal-delay-2">
                 <div class="feature-icon-wrap">🗺️</div>
-                <h3 data-en="Trip History & Replay" data-fr="Historique & Relecture des Trajets">Trip History & Replay</h3>
-                <p data-en="See every journey your vehicle made — where it went, how long it stopped, and when it returned. Perfect for fleet owners." data-fr="Voyez chaque trajet effectué par votre véhicule — où il est allé, combien de temps il s'est arrêté, et quand il est revenu. Parfait pour les propriétaires de flotte.">See every journey your vehicle made — where it went, how long it stopped, and when it returned. Perfect for fleet owners.</p>
+                <h3 data-en="Journey Intelligence & Route Playback" data-fr="Intelligence de Trajet & Relecture d'Itinéraire">Journey Intelligence & Route Playback</h3>
+                <p data-en="Access complete operational records for every vehicle — departure times, routes taken, stop durations, and return timestamps. Replay any journey for audits, dispute resolution, or efficiency analysis." data-fr="Accédez aux enregistrements opérationnels complets de chaque véhicule — heures de départ, itinéraires empruntés, durées d'arrêt et horodatages de retour. Relisez n'importe quel trajet pour des audits ou une analyse d'efficacité.">Access complete operational records for every vehicle — departure times, routes taken, stop durations, and return timestamps. Replay any journey for audits, dispute resolution, or efficiency analysis.</p>
                 <div class="route-demo"><div class="route-progress"></div></div>
             </div>
             <div class="feature-card reveal reveal-delay-1">
@@ -2312,72 +3325,139 @@
 </section>
 
 <!-- ── PRICING ─────────────────────────────────────────── -->
-<section id="pricing">
+<section id="pricing" style="background:var(--navy-mid);">
     <div class="container">
         <div class="section-head">
             <div class="section-chip" data-en="Transparent Pricing" data-fr="Tarification Transparente">Transparent Pricing</div>
-            <h2 class="section-title" data-en="Simple, Honest Pricing" data-fr="Tarification Simple et Honnête">Simple, Honest Pricing</h2>
-            <p class="section-sub" data-en="No hidden fees. One installation, one monthly fee. Cancel anytime." data-fr="Aucun frais caché. Une installation, un abonnement mensuel. Annulez à tout moment.">No hidden fees. One installation, one monthly fee. Cancel anytime.</p>
+            <h2 class="section-title" data-en="All Plans. All Prices. One Place." data-fr="Tous les Plans. Tous les Prix. Un Seul Endroit.">All Plans. All Prices. One Place.</h2>
+            <p class="section-sub" data-en="Every plan includes professional installation, 24/7 monitoring, and WhatsApp support. No hidden fees — cancel anytime." data-fr="Chaque plan inclut l'installation professionnelle, la surveillance 24h/7j et le support WhatsApp. Aucun frais caché — annulez à tout moment.">Every plan includes professional installation, 24/7 monitoring, and WhatsApp support. No hidden fees — cancel anytime.</p>
         </div>
 
+        <!-- Currency Toggle -->
         <div class="currency-toggle-wrap">
-            <label for="currency-select" data-en="Show prices in:" data-fr="Afficher les prix en:">Show prices in:</label>
+            <label for="currency-select" data-en="Show prices in:" data-fr="Afficher les prix en :">Show prices in:</label>
             <select id="currency-select" class="currency-select" onchange="changeCurrency(this.value)">
-                <option value="USD">💵 USD — US Dollar</option>
                 <option value="GNF" selected>🇬🇳 GNF — Franc Guinéen</option>
-                <option value="SLL" style="display:none"></option>
+                <option value="USD">💵 USD — US Dollar</option>
+                <option value="EUR">💶 EUR — Euro</option>
             </select>
         </div>
 
-        <!-- Pricing cards — works on any screen size -->
-        <div class="pricing-cards reveal">
+        <!-- Hardware note -->
+        <div style="display:flex;justify-content:center;margin-bottom:36px;">
+            <div style="background:rgba(10,132,255,0.07);border:1px solid rgba(10,132,255,0.2);border-radius:14px;padding:14px 28px;display:flex;align-items:center;gap:12px;max-width:620px;text-align:left;">
+                <span style="font-size:22px;flex-shrink:0;">📦</span>
+                <div>
+                    <span style="font-size:13px;font-weight:700;color:#fff;" data-en="Device + Installation (one-time): " data-fr="Appareil + Installation (unique) : ">Device + Installation (one-time): </span>
+                    <span style="font-size:13px;font-weight:900;color:var(--blue);" id="price-install">300,000 – 400,000 GNF</span>
+                    <span style="font-size:12px;color:var(--grey);display:block;margin-top:2px;" data-en="Professional GPS hardware + covert installation at your location · 1-year warranty included" data-fr="Matériel GPS professionnel + installation discrète chez vous · Garantie 1 an incluse">Professional GPS hardware + covert installation at your location · 1-year warranty included</span>
+                </div>
+            </div>
+        </div>
 
-            <!-- Card 1: Monthly Plan (Popular) -->
-            <div class="pc popular">
-                <div class="pc-badge" data-en="MOST POPULAR" data-fr="LE PLUS POPULAIRE">LE PLUS POPULAIRE</div>
-                <div class="pc-title" data-en="Monthly Protection" data-fr="Protection Mensuelle">Protection Mensuelle</div>
-                <div class="pc-price" id="price-monthly">80,000 – 100,000 GNF</div>
-                <div class="pc-per" data-en="per vehicle / month" data-fr="par véhicule / mois">par véhicule / mois</div>
+        <!-- 4-Plan Grid -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%;box-sizing:border-box;" id="pricing-grid-main">
+
+            <!-- TIER 1: Starter -->
+            <div class="pc" style="border-radius:20px;">
+                <div class="pc-tier-label" style="font-size:9px;font-weight:800;letter-spacing:2.5px;color:var(--grey);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;">TIER 1</div>
+                <div class="pc-title" data-en="Starter Tracking" data-fr="Suivi Essentiel">Starter Tracking</div>
+                <div class="pc-price" id="price-starter">80,000 GNF</div>
+                <div class="pc-per" data-en="per vehicle / month" data-fr="par véhicule / mois">per vehicle / month</div>
                 <div class="pc-divider"></div>
                 <ul class="pc-features">
-                    <li><span class="fi check-yes">✅</span><span data-en="Live vehicle tracking on your phone" data-fr="Suivi en direct sur votre téléphone">Suivi en direct sur votre téléphone</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="Instant theft & movement alerts" data-fr="Alertes instantanées de vol et mouvement">Alertes instantanées de vol et mouvement</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="Trip history & reports" data-fr="Historique et rapports de trajets">Historique et rapports de trajets</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="WhatsApp & phone support" data-fr="Support WhatsApp & téléphone">Support WhatsApp & téléphone</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="Cancel anytime" data-fr="Annulez à tout moment">Annulez à tout moment</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Live GPS tracking (30s update)" data-fr="Suivi GPS en direct (30s)">Live GPS tracking (30s update)</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Theft & movement alerts" data-fr="Alertes vol & mouvement">Theft & movement alerts</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="7-day route history" data-fr="7 jours d'historique">7-day route history</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Mobile app access" data-fr="Accès app mobile">Mobile app access</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="WhatsApp support" data-fr="Support WhatsApp">WhatsApp support</span></li>
+                    <li><span class="fi" style="color:rgba(255,255,255,0.2)">⬜</span><span style="color:var(--grey)" data-en="Fuel monitoring" data-fr="Contrôle carburant">Fuel monitoring</span></li>
+                    <li><span class="fi" style="color:rgba(255,255,255,0.2)">⬜</span><span style="color:var(--grey)" data-en="Driver behavior scoring" data-fr="Score conducteur">Driver behavior scoring</span></li>
                 </ul>
-                <div class="pc-fleet" onclick="window.open('https://wa.me/224629255946?text=' + encodeURIComponent(currentLang==='fr' ? 'Bonjour, je gère une flotte. Quels sont vos tarifs pour 5+ véhicules ?' : 'Hi, I manage a fleet. What are your rates for 5+ vehicles?'), '_blank')">
-                    🚛 <span data-en="Fleet discount for 5+ vehicles — Ask us" data-fr="Remise flotte 5+ véhicules — Nous demander">Remise flotte 5+ véhicules — Nous demander</span>
+                <div style="flex:1"></div>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%27m%20interested%20in%20the%20Starter%20Tracking%20plan." target="_blank" rel="noopener noreferrer" class="pc-btn pc-btn-outline">
+                    <span data-en="Get Started" data-fr="Commencer">Get Started</span>
+                </a>
+            </div>
+
+            <!-- TIER 2: Fleet Management (POPULAR) -->
+            <div class="pc popular" style="border-radius:20px;">
+                <div class="pc-badge" data-en="MOST POPULAR" data-fr="LE PLUS POPULAIRE">MOST POPULAR</div>
+                <div class="pc-tier-label" style="font-size:9px;font-weight:800;letter-spacing:2.5px;color:var(--grey);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;">TIER 2</div>
+                <div class="pc-title" data-en="Fleet Management" data-fr="Gestion de Flotte">Fleet Management</div>
+                <div class="pc-price" id="price-fleet">100,000 GNF</div>
+                <div class="pc-per" data-en="per vehicle / month" data-fr="par véhicule / mois">per vehicle / month</div>
+                <div class="pc-divider"></div>
+                <ul class="pc-features">
+                    <li><span class="fi check-yes">✅</span><span data-en="Everything in Starter" data-fr="Tout le Starter">Everything in Starter</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="30-day route history" data-fr="30 jours d'historique">30-day route history</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Driver behavior scoring" data-fr="Score comportement conducteur">Driver behavior scoring</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Geofence zone alerts" data-fr="Alertes géofence">Geofence zone alerts</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Fleet dashboard & reports" data-fr="Tableau de bord & rapports">Fleet dashboard & reports</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Priority WhatsApp support" data-fr="Support WhatsApp prioritaire">Priority WhatsApp support</span></li>
+                    <li><span class="fi" style="color:rgba(255,255,255,0.2)">⬜</span><span style="color:var(--grey)" data-en="Fuel sensor monitoring" data-fr="Capteur carburant">Fuel sensor monitoring</span></li>
+                </ul>
+                <div class="pc-fleet" onclick="window.open('https://wa.me/224629255946?text=' + encodeURIComponent(currentLang==='fr' ? 'Bonjour, je gère une flotte et je veux le plan Gestion de Flotte. Quels sont vos tarifs pour 5+ véhicules ?' : 'Hi, I manage a fleet and want the Fleet Management plan. What are rates for 5+ vehicles?'), '_blank')">
+                    🚛 <span data-en="Volume discount for 5+ vehicles" data-fr="Remise volume pour 5+ véhicules">Volume discount for 5+ vehicles</span>
                 </div>
                 <button onclick="openModal()" class="pc-btn pc-btn-primary">
-                    🚗 <span data-en="Protect My Vehicle" data-fr="Protéger Mon Véhicule">Protéger Mon Véhicule</span>
+                    🚗 <span data-en="Deploy Fleet Plan" data-fr="Déployer Plan Flotte">Deploy Fleet Plan</span>
                 </button>
             </div>
 
-            <!-- Card 2: Device + Installation -->
-            <div class="pc">
-                <div class="pc-title" data-en="Device + Installation" data-fr="Appareil + Installation">Appareil + Installation</div>
-                <div class="pc-price" id="price-install">300,000 – 400,000 GNF</div>
-                <div class="pc-per" data-en="one-time payment" data-fr="paiement unique">paiement unique</div>
+            <!-- TIER 3: Fuel Monitoring Pro -->
+            <div class="pc" style="border-radius:20px;">
+                <div class="pc-tier-label" style="font-size:9px;font-weight:800;letter-spacing:2.5px;color:var(--grey);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;">TIER 3</div>
+                <div class="pc-title" data-en="Fuel Monitoring Pro" data-fr="Contrôle Carburant Pro">Fuel Monitoring Pro</div>
+                <div class="pc-price" id="price-fuel">215,000 GNF</div>
+                <div class="pc-per" data-en="per vehicle / month" data-fr="par véhicule / mois">per vehicle / month</div>
                 <div class="pc-divider"></div>
                 <ul class="pc-features">
-                    <li><span class="fi check-yes">✅</span><span data-en="Professional GPS device included" data-fr="Appareil GPS professionnel inclus">Appareil GPS professionnel inclus</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="Expert installation at your location" data-fr="Installation par expert chez vous">Installation par expert chez vous</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="1-year hardware warranty" data-fr="Garantie matérielle 1 an">Garantie matérielle 1 an</span></li>
-                    <li><span class="fi check-yes">✅</span><span data-en="Clean hidden install — no visible wires" data-fr="Installation cachée — aucun fil visible">Installation cachée — aucun fil visible</span></li>
-                    <li><span class="fi" style="color:var(--grey);">💡</span><span style="color:var(--grey);font-size:12px;" data-en="Add a monthly plan to activate tracking" data-fr="Ajoutez un abonnement mensuel pour activer le suivi">Ajoutez un abonnement mensuel pour activer le suivi</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Everything in Fleet Mgmt" data-fr="Tout la Gestion Flotte">Everything in Fleet Mgmt</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Real-time fuel level sensor" data-fr="Capteur niveau carburant temps réel">Real-time fuel level sensor</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Siphoning detection alerts" data-fr="Alertes détection siphonage">Siphoning detection alerts</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Fuel consumption analytics" data-fr="Analytique consommation carburant">Fuel consumption analytics</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="90-day archive history" data-fr="Archive 90 jours">90-day archive history</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Dedicated account manager" data-fr="Gestionnaire de compte dédié">Dedicated account manager</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Fuel sensor hardware included" data-fr="Capteur carburant inclus">Fuel sensor hardware included</span></li>
                 </ul>
                 <div style="flex:1"></div>
-                <a href="#" onclick="window.open('https://wa.me/224629255946?text=' + encodeURIComponent(currentLang==='fr' ? 'Bonjour Kallon GPS ! Je souhaite réserver une installation GPS pour mon véhicule. Quelles sont vos disponibilités ?' : 'Hello Kallon GPS! I want to book a GPS installation for my vehicle. When are you available?'), '_blank'); return false;" class="pc-btn pc-btn-outline">
-                    <span data-en="Book Installation" data-fr="Réserver l'Installation">Réserver l'Installation</span>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%27m%20interested%20in%20Fuel%20Monitoring%20Pro%20for%20my%20fleet." target="_blank" rel="noopener noreferrer" class="pc-btn pc-btn-outline">
+                    <span data-en="Get Fuel Pro" data-fr="Obtenir Fuel Pro">Get Fuel Pro</span>
+                </a>
+            </div>
+
+            <!-- TIER 4: Enterprise Command -->
+            <div class="pc" style="border-radius:20px;border-color:rgba(10,132,255,0.3);background:linear-gradient(180deg,rgba(10,132,255,0.06) 0%,var(--navy-card) 40%);">
+                <div class="pc-tier-label" style="font-size:9px;font-weight:800;letter-spacing:2.5px;color:var(--blue);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;">TIER 4 — ENTERPRISE</div>
+                <div class="pc-title" data-en="Enterprise Command" data-fr="Commandement Entreprise">Enterprise Command</div>
+                <div class="pc-price" id="price-enterprise" style="font-size:22px;padding-top:4px;" data-en="Custom Quote" data-fr="Devis Personnalisé">Custom Quote</div>
+                <div class="pc-per" data-en="20+ vehicles · tailored per deployment" data-fr="20+ véhicules · adapté par déploiement">20+ vehicles · tailored per deployment</div>
+                <div class="pc-divider"></div>
+                <ul class="pc-features">
+                    <li><span class="fi check-yes">✅</span><span data-en="Everything in Fuel Pro" data-fr="Tout le Fuel Pro">Everything in Fuel Pro</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Unlimited vehicles" data-fr="Véhicules illimités">Unlimited vehicles</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="White-label dashboard" data-fr="Tableau de bord marque blanche">White-label dashboard</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Custom API integrations" data-fr="Intégrations API personnalisées">Custom API integrations</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="SLA support (2hr response)" data-fr="Support SLA (réponse 2h)">SLA support (2hr response)</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="On-site training & onboarding" data-fr="Formation sur site">On-site training & onboarding</span></li>
+                    <li><span class="fi check-yes">✅</span><span data-en="Volume pricing discounts" data-fr="Remises volume">Volume pricing discounts</span></li>
+                </ul>
+                <div style="flex:1"></div>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%27m%20interested%20in%20Enterprise%20Command%20for%2020%2B%20vehicles.%20Can%20you%20send%20a%20custom%20quote%3F" target="_blank" rel="noopener noreferrer" class="pc-btn pc-btn-primary">
+                    <span data-en="Request Enterprise Quote" data-fr="Demander un Devis Entreprise">Request Enterprise Quote</span>
                 </a>
             </div>
 
         </div>
-        <p style="text-align:center;font-size:12px;color:var(--grey);margin-top:20px;" data-en="💡 Most clients start with Installation then add a monthly plan." data-fr="💡 La plupart des clients commencent par l'Installation puis ajoutent un abonnement mensuel.">💡 La plupart des clients commencent par l'Installation puis ajoutent un abonnement mensuel.</p>
 
-        <div style="text-align:center;margin-top:32px;">
-            <a href="https://wa.me/224629255946" target="_blank" rel="noopener noreferrer" class="btn-primary">💬 <span data-en="Contact on WhatsApp" data-fr="Contacter sur WhatsApp">Contact on WhatsApp</span></a>
+        <!-- Bottom note -->
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;align-items:center;">
+            <p style="font-size:12px;color:var(--grey);text-align:center;" data-en="💡 All monthly plans require the one-time device + installation. Volume discounts available for 5+ vehicles." data-fr="💡 Tous les plans mensuels nécessitent l'appareil + installation unique. Remises volume disponibles pour 5+ véhicules.">💡 All monthly plans require the one-time device + installation. Volume discounts available for 5+ vehicles.</p>
+        </div>
+        <div style="text-align:center;margin-top:24px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%27d%20like%20a%20quote%20for%20fleet%20GPS%20monitoring." target="_blank" rel="noopener noreferrer" class="btn-primary">💬 <span data-en="Get a Custom Quote" data-fr="Obtenir un Devis Personnalisé">Get a Custom Quote</span></a>
+            <a href="tel:+224629255946" class="btn-outline">📞 <span data-en="Call Us" data-fr="Nous Appeler">Call Us</span></a>
         </div>
     </div>
 </section>
@@ -2456,13 +3536,13 @@
 <section id="testimonials">
     <div class="container">
         <div class="section-head">
-            <div class="section-chip" data-en="Real People, Real Stories" data-fr="Vraies Personnes, Vraies Histoires">Real People, Real Stories</div>
-            <h2 class="section-title" data-en="What Our Clients Say" data-fr="Ce Que Disent Nos Clients">What Our Clients Say</h2>
+            <div class="section-chip" data-en="Client Success Stories" data-fr="Témoignages de Réussite">Client Success Stories</div>
+            <h2 class="section-title" data-en="Trusted by Fleet Operators Across Guinea" data-fr="La Confiance des Opérateurs de Flotte à Travers la Guinée">Trusted by Fleet Operators Across Guinea</h2>
         </div>
         <div class="testimonials-grid">
             <div class="testimonial-card reveal">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."' data-fr='"Je peux maintenant vérifier mon taxi de n'\''importe où. Si le chauffeur prend une mauvaise route, je le sais immédiatement. Tranquillité d'\''esprit totale — je recommande Kallon GPS à tout propriétaire de véhicule."'>"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Kallon GPS to every vehicle owner."</p>
+                <p class="testimonial-text" data-en='"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Sherkall Intelligence to every vehicle owner."' data-fr='"Je peux maintenant vérifier mon taxi de n'\''importe où. Si le chauffeur prend une mauvaise route, je le sais immédiatement. Tranquillité d'\''esprit totale — je recommande Sherkall Intelligence à tout propriétaire de véhicule."'>"I can now check my taxi from anywhere. If the driver takes a wrong route, I know immediately. Total peace of mind — I recommend Sherkall Intelligence to every vehicle owner."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">MD</div>
                     <div>
@@ -2473,7 +3553,7 @@
             </div>
             <div class="testimonial-card reveal reveal-delay-1">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text" data-en='"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."' data-fr='"Nous avons installé Kallon GPS sur toute la flotte de notre entreprise. Les routes sont plus efficaces, les coûts ont baissé, et nous savons toujours où se trouve chaque véhicule. Un service vraiment impressionnant."'>"We installed Kallon GPS on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."</p>
+                <p class="testimonial-text" data-en='"We installed Sherkall Intelligence on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."' data-fr='"Nous avons installé Sherkall Intelligence sur toute la flotte de notre entreprise. Les routes sont plus efficaces, les coûts ont baissé, et nous savons toujours où se trouve chaque véhicule. Un service vraiment impressionnant."'>"We installed Sherkall Intelligence on our entire company fleet. Routes are more efficient, costs are down, and we always know where every vehicle is. Truly impressive service."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">AS</div>
                     <div>
@@ -2496,6 +3576,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- ── FAQ ─────────────────────────────────────────────── -->
 <section id="faq">
@@ -2531,7 +3612,7 @@
             </div>
         </div>
         <div style="text-align:center;margin-top:44px;">
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="btn-primary">💬 <span data-en="Ask Us Anything" data-fr="Posez-nous n'importe quelle question">Ask Us Anything</span></a>
+            <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="btn-primary">💬 <span data-en="Ask Us Anything" data-fr="Posez-nous n'importe quelle question">Ask Us Anything</span></a>
         </div>
     </div>
 </section>
@@ -2767,7 +3848,7 @@
 
         <div style="text-align:center;margin-top:44px;">
             
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20know%20more%20about%20your%20GPS%20devices." target="_blank" rel="noopener noreferrer" class="btn-primary">🛰️ <span data-en="Ask About Our Devices" data-fr="Renseigner sur Nos Appareils">Ask About Our Devices</span></a>
+            <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20to%20know%20more%20about%20your%20GPS%20devices." target="_blank" rel="noopener noreferrer" class="btn-primary">🛰️ <span data-en="Ask About Our Devices" data-fr="Renseigner sur Nos Appareils">Ask About Our Devices</span></a>
         </div>
     </div>
 </section>
@@ -2909,10 +3990,10 @@
 <div class="cta-band-section">
     <div class="container">
         <div class="cta-band">
-            <h3 data-en="Your vehicle is unprotected right now." data-fr="Votre véhicule n'est pas protégé en ce moment.">Your vehicle is unprotected right now.</h3>
-            <p data-en="Every day without a tracker is a day your car could disappear — and you'd have no way to find it. One installation changes that." data-fr="Chaque jour sans traceur est un jour où votre voiture pourrait disparaître — et vous n'auriez aucun moyen de la retrouver. Une installation change tout ça.">Every day without a tracker is a day your car could disappear — and you'd have no way to find it. One installation changes that.</p>
+            <h3 data-en="Every day without monitoring is operational risk." data-fr="Chaque jour sans surveillance est un risque opérationnel.">Every day without monitoring is operational risk.</h3>
+            <p data-en="Fuel theft, route deviation, and unauthorized vehicle use cost Guinea's businesses millions annually. One deployment eliminates the guesswork — and protects every asset in your fleet, starting today." data-fr="Le vol de carburant, les déviations d'itinéraire et l'utilisation non autorisée de véhicules coûtent des millions aux entreprises guinéennes chaque année. Un déploiement élimine l'incertitude — et protège chaque actif de votre flotte, dès aujourd'hui.">Fuel theft, route deviation, and unauthorized vehicle use cost Guinea's businesses millions annually. One deployment eliminates the guesswork — and protects every asset in your fleet, starting today.</p>
             <div class="cta-btn-row">
-                <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="btn-primary">🚗 <span data-en="Protect My Vehicle Now" data-fr="Protéger Mon Véhicule">Protect My Vehicle Now</span></a>
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="btn-primary">🚀 <span data-en="Deploy Fleet Intelligence Now" data-fr="Déployer l'Intelligence Flotte">Deploy Fleet Intelligence Now</span></a>
                 <a href="tel:+224629255946" class="btn-outline">📞 <span data-en="Call Us" data-fr="Nous Appeler">Call Us</span></a>
             </div>
         </div>
@@ -2923,16 +4004,16 @@
 <section id="contact-form-section">
     <div class="container">
         <div class="section-head">
-            <div class="section-chip" data-en="Get In Touch" data-fr="Nous Contacter">Get In Touch</div>
-            <h2 class="section-title" data-en="Send Us a Message" data-fr="Envoyez-Nous un Message">Send Us a Message</h2>
-            <p class="section-sub" data-en="Fill out the form and our team will get back to you on WhatsApp within minutes." data-fr="Remplissez le formulaire et notre équipe vous répondra sur WhatsApp en quelques minutes.">Fill out the form and our team will get back to you on WhatsApp within minutes.</p>
+            <div class="section-chip" data-en="Deploy Your Fleet" data-fr="Déployer Votre Flotte">Deploy Your Fleet</div>
+            <h2 class="section-title" data-en="Start Your Fleet Intelligence Deployment" data-fr="Commencez Votre Déploiement d'Intelligence Flotte">Start Your Fleet Intelligence Deployment</h2>
+            <p class="section-sub" data-en="Complete the form below and our fleet specialist will respond on WhatsApp within 2 minutes with a personalized deployment plan." data-fr="Remplissez le formulaire ci-dessous et notre spécialiste flotte vous répondra sur WhatsApp en moins de 2 minutes avec un plan de déploiement personnalisé.">Complete the form below and our fleet specialist will respond on WhatsApp within 2 minutes with a personalized deployment plan.</p>
             <p style="margin-top:12px;font-size:15px;font-weight:600;color:var(--blue);letter-spacing:-0.01em;">⚡ Get your vehicle protected today — we'll reply on WhatsApp within 2 minutes.</p>
         </div>
         <div class="contact-form-grid">
             <!-- Left: info -->
             <div class="contact-form-info">
-                <h2 data-en="We're ready to protect your vehicle." data-fr="Nous sommes prêts à protéger votre véhicule.">We're ready to protect your vehicle.</h2>
-                <p data-en="Whether you want a quote, have a question, or are ready to install — just reach out. Our team operates 7 days a week and responds fast." data-fr="Que vous vouliez un devis, poser une question, ou êtes prêt à installer — contactez-nous. Notre équipe opère 7 jours sur 7 et répond vite.">Whether you want a quote, have a question, or are ready to install — just reach out. Our team operates 7 days a week and responds fast.</p>
+                <h2 data-en="Our fleet specialists are ready to deploy." data-fr="Nos spécialistes flotte sont prêts au déploiement.">Our fleet specialists are ready to deploy.</h2>
+                <p data-en="Whether you need a custom quote, a technical consultation, or you're ready to schedule installation — our team responds within 2 minutes, 7 days a week. Enterprise fleet operators receive priority service and dedicated account management." data-fr="Que vous ayez besoin d'un devis personnalisé, d'une consultation technique, ou que vous soyez prêt à planifier l'installation — notre équipe répond en moins de 2 minutes, 7 jours sur 7. Les opérateurs de flotte d'entreprise bénéficient d'un service prioritaire et d'une gestion de compte dédiée.">Whether you need a custom quote, a technical consultation, or you're ready to schedule installation — our team responds within 2 minutes, 7 days a week. Enterprise fleet operators receive priority service and dedicated account management.</p>
                 <div>
                     <div class="contact-info-item">
                         <div class="contact-info-icon">📞</div>
@@ -2987,11 +4068,13 @@
                 <div class="form-group">
                     <label data-en="I'm interested in..." data-fr="Je suis intéressé par...">I'm interested in...</label>
                     <select class="form-select form-input" id="cf-interest" onchange="updateDefaultMessage(this.value)">
-                        <option value="tracking" data-en="Vehicle Tracking" data-fr="Suivi de véhicule">Vehicle Tracking</option>
-                        <option value="fleet" data-en="Fleet Management" data-fr="Gestion de flotte">Fleet Management</option>
-                        <option value="quote" data-en="Get a Price Quote" data-fr="Obtenir un devis">Get a Price Quote</option>
-                        <option value="install" data-en="Book an Installation" data-fr="Réserver une installation">Book an Installation</option>
-                        <option value="other" data-en="Other / General Inquiry" data-fr="Autre / Question générale">Other / General Inquiry</option>
+                        <option value="tracking" data-en="Vehicle Tracking — Personal" data-fr="Suivi de véhicule — Personnel">Vehicle Tracking — Personal</option>
+                        <option value="fleet" data-en="Fleet Management (2–20 vehicles)" data-fr="Gestion de flotte (2–20 véhicules)">Fleet Management (2–20 vehicles)</option>
+                        <option value="fuel" data-en="Fuel Monitoring Pro" data-fr="Contrôle Carburant Pro">Fuel Monitoring Pro</option>
+                        <option value="enterprise" data-en="Enterprise Command (20+ vehicles)" data-fr="Commandement Entreprise (20+ véhicules)">Enterprise Command (20+ vehicles)</option>
+                        <option value="quote" data-en="Request a Custom Quote" data-fr="Demander un Devis Personnalisé">Request a Custom Quote</option>
+                        <option value="install" data-en="Schedule Installation" data-fr="Planifier une Installation">Schedule Installation</option>
+                        <option value="other" data-en="General Inquiry" data-fr="Renseignement Général">General Inquiry</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -3063,7 +4146,7 @@
 
                 <!-- Scale label -->
                 <div style="position:absolute;bottom:14px;left:14px;background:rgba(6,15,26,0.85);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:6px 12px;font-size:11px;color:rgba(242,244,247,0.5);font-family:'Montserrat',sans-serif;">
-                    Guinea — Nationwide Coverage
+                    <span data-en="Guinea — Nationwide Coverage" data-fr="Guinée — Couverture Nationale">Guinea — Nationwide Coverage</span>
                 </div>
             </div>
         </div>
@@ -3088,12 +4171,12 @@
 
 <!-- ── CONTACT ─────────────────────────────────────────── -->
 <section id="contact" class="contact-section">
-    <h2 class="contact-title" data-en="Ready to Protect Your Vehicle?" data-fr="Prêt à Protéger Votre Véhicule ?">Ready to Protect Your Vehicle?</h2>
-    <p class="contact-sub" data-en="Send us a message on WhatsApp right now — we respond fast." data-fr="Envoyez-nous un message sur WhatsApp maintenant — nous répondons vite.">Send us a message on WhatsApp right now — we respond fast.</p>
+    <h2 class="contact-title" data-en="Ready to Deploy Fleet Intelligence?" data-fr="Prêt à Déployer l'Intelligence Flotte ?">Ready to Deploy Fleet Intelligence?</h2>
+    <p class="contact-sub" data-en="Connect with our team on WhatsApp — we respond within 2 minutes, 7 days a week. Get a custom quote for your fleet today." data-fr="Connectez-vous avec notre équipe sur WhatsApp — nous répondons en moins de 2 minutes, 7 jours sur 7. Obtenez un devis personnalisé pour votre flotte aujourd'hui.">Connect with our team on WhatsApp — we respond within 2 minutes, 7 days a week. Get a custom quote for your fleet today.</p>
     <div class="contact-phone">📞 +224 629 255 946</div>
     <div class="contact-btns">
         <a href="tel:+224629255946" class="contact-btn-dark" data-en="📞 Call Now" data-fr="📞 Appeler Maintenant">📞 Call Now</a>
-        <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="contact-btn-white">💬 WhatsApp</a>
+        <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!%20I%20want%20to%20protect%20my%20vehicle." target="_blank" rel="noopener noreferrer" class="contact-btn-white">💬 WhatsApp</a>
     </div>
     <div style="margin-top:20px;position:relative;">
         <p class="contact-sub" data-en="Prefer email?" data-fr="Vous préférez un e-mail ?">Prefer email?</p>
@@ -3105,37 +4188,96 @@
 <!-- ── FOOTER ─────────────────────────────────────────── -->
 </main>
 <footer role="contentinfo">
+    <!-- Top band -->
+    <div class="footer-top-band">
+        <div class="footer-badge"><span class="footer-badge-icon">🛡️</span> <span data-en="Professional-Grade Technology" data-fr="Technologie Professionnelle">Professional-Grade Technology</span></div>
+        <div style="width:1px;height:20px;background:rgba(255,255,255,0.08);"></div>
+        <div class="footer-badge"><span class="footer-badge-icon">📡</span> <span data-en="99.8% Platform Uptime" data-fr="99.8% de Disponibilité Plateforme">99.8% Platform Uptime</span></div>
+        <div style="width:1px;height:20px;background:rgba(255,255,255,0.08);"></div>
+        <div class="footer-badge"><span class="footer-badge-icon">🌍</span> <span data-en="Nationwide Coverage — Guinea" data-fr="Couverture Nationale — Guinée">Nationwide Coverage — Guinea</span></div>
+        <div style="width:1px;height:20px;background:rgba(255,255,255,0.08);"></div>
+        <div class="footer-badge"><span class="footer-badge-icon">💬</span> <span data-en="&lt;2min WhatsApp Response" data-fr="Réponse WhatsApp &lt;2min">&lt;2min WhatsApp Response</span></div>
+    </div>
     <div class="footer-grid">
         <div>
-            <div class="footer-logo-main">KALLON <span>GPS</span></div>
-            <div class="footer-tagline">Voyez · Suivez · Protégez</div>
-            <p class="footer-desc" data-en="Real-time vehicle tracking solutions for Guinea. Professional installation, live monitoring, instant alerts." data-fr="Solutions de suivi de véhicules en temps réel pour la Guinée. Installation professionnelle, surveillance en direct, alertes instantanées.">Real-time vehicle tracking solutions for Guinea. Professional installation, live monitoring, instant alerts.</p>
-            <div class="footer-serving" data-en="📍 Serving All of Guinea" data-fr="📍 Au service de toute la Guinée">📍 Serving All of Guinea</div>
+            <!-- Footer logo: SK + Eagle -->
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+                <svg width="36" height="36" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="44" cy="44" r="42" fill="#060F1A" stroke="rgba(10,132,255,0.25)" stroke-width="1.5"/>
+                    <path d="M20 30 Q20 24 26 24 L40 24 Q46 24 46 30 Q46 36 40 38 L28 42 Q22 44 22 50 Q22 56 28 56 L44 56 Q50 56 50 50"
+                          stroke="#0A84FF" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+                    <line x1="56" y1="24" x2="56" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                    <line x1="56" y1="40" x2="70" y2="24" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                    <line x1="56" y1="40" x2="70" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+                    <polygon points="63,52 70,56 70,64" fill="#0A84FF"/>
+                </svg>
+                <div>
+                    <div class="footer-logo-main">SHERKALL <span>INTELLIGENCE</span></div>
+                    <div class="footer-tagline" style="margin-bottom:0;">GPS Intelligence Service</div>
+                </div>
+                <!-- Eagle shield badge -->
+                <svg width="28" height="32" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7;flex-shrink:0;">
+                    <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldGoldF)" stroke="#C9A227" stroke-width="1.5"/>
+                    <defs>
+                        <linearGradient id="shieldGoldF" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#D4A017"/>
+                            <stop offset="100%" stop-color="#8B6914"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.9"/>
+                    <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
+                    <path d="M30 22 L34 25 L30 24 Z" fill="#C9A227"/>
+                    <circle cx="30" cy="38" r="5" fill="#C9A227"/>
+                    <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
+                    <line x1="30" y1="43" x2="30" y2="48" stroke="#C9A227" stroke-width="2"/>
+                </svg>
+            </div>
+            <p class="footer-desc" data-en="Enterprise fleet management and fuel monitoring technology for Guinea's leading businesses. Professional installation, real-time intelligence, and 24/7 operational support — nationwide." data-fr="Technologie de gestion de flotte et contrôle carburant pour les entreprises leaders en Guinée. Installation professionnelle, intelligence en temps réel et support opérationnel 24h/7j — national.">Enterprise fleet management and fuel monitoring technology for Guinea's leading businesses. Professional installation, real-time intelligence, and 24/7 operational support — nationwide.</p>
+            <div class="footer-serving" data-en="📍 Headquarters: Conakry, Guinea — Operating Nationwide" data-fr="📍 Siège: Conakry, Guinée — Opérant dans toute la Guinée">📍 Headquarters: Conakry, Guinea — Operating Nationwide</div>
+            <div class="footer-social">
+                <a href="https://wa.me/224629255946" target="_blank" rel="noopener noreferrer" class="social-btn" title="WhatsApp">💬</a>
+                <a href="mailto:sekoukallon2001@gmail.com" class="social-btn" title="Email">✉️</a>
+                <a href="tel:+224629255946" class="social-btn" title="Call">📞</a>
+            </div>
         </div>
         <div>
-            <div class="footer-heading" data-en="Quick Links" data-fr="Liens Rapides">Quick Links</div>
+            <div class="footer-heading" data-en="Platform" data-fr="Plateforme">Platform</div>
             <a href="#home" class="footer-link" data-en="Home" data-fr="Accueil">Home</a>
-            <a href="#how" class="footer-link" data-en="How It Works" data-fr="Comment ça marche">How It Works</a>
+            <a href="#platform" class="footer-link" data-en="Platform Demo" data-fr="Démo Plateforme">Platform Demo</a>
             <a href="#features" class="footer-link" data-en="Features" data-fr="Fonctionnalités">Features</a>
-            <a href="#pricing" class="footer-link" data-en="Pricing" data-fr="Tarifs">Pricing</a>
+            <a href="#industries" class="footer-link" data-en="Industries" data-fr="Industries">Industries</a>
+            <a href="#how" class="footer-link" data-en="How It Works" data-fr="Comment ça marche">How It Works</a>
+        </div>
+        <div>
+            <div class="footer-heading" data-en="Solutions" data-fr="Solutions">Solutions</div>
+            <a href="#pricing" class="footer-link" data-en="Starter Tracking" data-fr="Suivi Essentiel">Starter Tracking</a>
+            <a href="#pricing" class="footer-link" data-en="Fleet Management" data-fr="Gestion de Flotte">Fleet Management</a>
+            <a href="#pricing" class="footer-link" data-en="Fuel Monitoring Pro" data-fr="Contrôle Carburant Pro">Fuel Monitoring Pro</a>
+            <a href="#pricing" class="footer-link" data-en="Enterprise Command" data-fr="Commandement Entreprise">Enterprise Command</a>
             <a href="#faq" class="footer-link">FAQ</a>
         </div>
         <div>
-            <div class="footer-heading" data-en="Contact" data-fr="Contact">Contact</div>
-            <a href="https://wa.me/224629255946" class="footer-phone" target="_blank" rel="noopener noreferrer">📞 +224 629 255 946</a>
+            <div class="footer-heading" data-en="Contact & Support" data-fr="Contact & Support">Contact & Support</div>
+            <a href="https://wa.me/224629255946" class="footer-phone" target="_blank" rel="noopener noreferrer">💬 +224 629 255 946</a>
+            <a href="tel:+224629255946" class="footer-link">📞 +224 629 255 946</a>
             <a href="mailto:sekoukallon2001@gmail.com" class="footer-link">sekoukallon2001@gmail.com</a>
             <div style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px;" data-en="Conakry, Guinea — Nationwide" data-fr="Conakry, Guinée — Partout en Guinée">Conakry, Guinea — Nationwide</div>
-        </div>
-        <div>
-            <div class="footer-heading" data-en="Get in Touch" data-fr="Nous Contacter">Get in Touch</div>
-            <p style="color:var(--grey);font-size:13px;margin-bottom:16px;line-height:1.7;" data-en="Message us directly on WhatsApp for the fastest response." data-fr="Envoyez-nous un message directement sur WhatsApp pour une réponse rapide.">Message us directly on WhatsApp for the fastest response.</p>
-            <a href="https://wa.me/224629255946?text=Hello%20Kallon%20GPS!" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:13px;padding:12px 20px;justify-content:center;">💬 <span data-en="Open WhatsApp" data-fr="Ouvrir WhatsApp">Open WhatsApp</span></a>
+            <div style="margin-top:14px;">
+                <a href="https://wa.me/224629255946?text=Hello%20Sherkall%20Intelligence!" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:12px;padding:11px 18px;justify-content:center;border-radius:10px;">💬 <span data-en="Open WhatsApp Now" data-fr="Ouvrir WhatsApp">Open WhatsApp Now</span></a>
+            </div>
         </div>
     </div>
     <div class="footer-bottom">
-        &copy; <span id="year"></span> Kallon GPS Solutions &amp; Services.
+        <div style="margin-bottom:10px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
+            <a href="#home" class="footer-link" style="font-size:11px;" data-en="Home" data-fr="Accueil">Home</a>
+            <a href="#platform" class="footer-link" style="font-size:11px;" data-en="Platform" data-fr="Plateforme">Platform</a>
+            <a href="#pricing" class="footer-link" style="font-size:11px;" data-en="Plans" data-fr="Plans">Plans</a>
+            <a href="#contact-form-section" class="footer-link" style="font-size:11px;" data-en="Contact" data-fr="Contact">Contact</a>
+            <a href="#faq" class="footer-link" style="font-size:11px;">FAQ</a>
+        </div>
+        &copy; <span id="year"></span> Sherkall Intelligence.
         <span data-en="All rights reserved." data-fr="Tous droits réservés.">All rights reserved.</span>
-        &nbsp;·&nbsp; TRACKING | SECURITY | PEACE OF MIND
+        &nbsp;·&nbsp; GPS INTELLIGENCE SERVICE · TRACK · PROTECT · COMMAND
     </div>
 </footer>
 
@@ -3187,8 +4329,16 @@
     let currentCurrency = 'GNF';
 
     const PRICES = {
-        monthly: { USD:'$9 – $11', GNF:'80,000 – 100,000 GNF', SLL:'230,000 – 290,000 SLL' },
-        install: { USD:'$34 – $46', GNF:'300,000 – 400,000 GNF', SLL:'870,000 – 1,150,000 SLL' }
+        // Device + Installation (one-time)
+        install:    { GNF:'300,000 – 400,000 GNF', USD:'$34 – $46',  EUR:'€32 – €43'  },
+        // Tier 1: Starter Tracking / month
+        starter:    { GNF:'80,000 GNF',             USD:'$9',         EUR:'€8'          },
+        // Tier 2: Fleet Management / vehicle / month
+        fleet:      { GNF:'100,000 GNF',            USD:'$11',        EUR:'€10'         },
+        // Tier 3: Fuel Monitoring Pro / vehicle / month
+        fuel:       { GNF:'215,000 GNF',            USD:'$25',        EUR:'€23'         },
+        // Tier 4: Enterprise — always "Custom Quote"
+        enterprise: { GNF:'Devis Personnalisé',     USD:'Custom Quote', EUR:'Devis Sur Mesure' }
     };
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -3241,9 +4391,11 @@
 
     function applyLanguage() {
         document.querySelectorAll('[data-en]').forEach(el => {
-            if (el.children.length > 0) return;
+            // Skip elements whose children also have data-en (nested translatable)
+            const childrenHaveDataEn = Array.from(el.children).some(ch => ch.hasAttribute('data-en'));
+            if (childrenHaveDataEn) return;
             const val = currentLang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-            if (val) el.textContent = val;
+            if (val !== null) el.textContent = val;
         });
         document.documentElement.lang = currentLang;
         // Modal placeholders
@@ -3267,10 +4419,20 @@
     // ── CURRENCY ──────────────────────────────────────────────────────────────
     function changeCurrency(cur) { currentCurrency = cur; updatePriceDisplay(); }
     function updatePriceDisplay() {
-        const m = document.getElementById('price-monthly');
-        const i = document.getElementById('price-install');
-        if (m) m.textContent = PRICES.monthly[currentCurrency];
-        if (i) i.textContent = PRICES.install[currentCurrency];
+        const cur = currentCurrency;
+        const els = {
+            'price-install':    PRICES.install[cur],
+            'price-starter':    PRICES.starter[cur],
+            'price-fleet':      PRICES.fleet[cur],
+            'price-fuel':       PRICES.fuel[cur],
+            'price-enterprise': PRICES.enterprise[cur],
+            // legacy id kept for safety
+            'price-monthly':    PRICES.starter[cur],
+        };
+        Object.entries(els).forEach(([id, val]) => {
+            const el = document.getElementById(id);
+            if (el && val) el.textContent = val;
+        });
     }
 
     // ── MODAL ─────────────────────────────────────────────────────────────────
@@ -3282,9 +4444,9 @@
         const phone = document.getElementById('phone-input').value.trim();
         let msg;
         if (currentLang === 'fr') {
-            msg = 'Bonjour Kallon GPS ! Mon nom est ' + name + ', numéro : ' + phone + '. Je souhaite protéger mon véhicule. Pouvez-vous me contacter ?';
+            msg = 'Bonjour Sherkall Intelligence ! Mon nom est ' + name + ', numéro : ' + phone + '. Je souhaite protéger mon véhicule. Pouvez-vous me contacter ?';
         } else {
-            msg = 'Hello Kallon GPS! My name is ' + name + ', number: ' + phone + '. I want to protect my vehicle. Please contact me.';
+            msg = 'Hello Sherkall Intelligence! My name is ' + name + ', number: ' + phone + '. I want to protect my vehicle. Please contact me.';
         }
         window.open('https://wa.me/224629255946?text=' + encodeURIComponent(msg), '_blank');
         closeModal();
@@ -3467,18 +4629,22 @@
     // ── INTEREST → DEFAULT MESSAGE (bilingual) ────────────────────────────
     const DEFAULT_MESSAGES = {
         en: {
-            tracking: "Hi, I want to install GPS tracking on my vehicle. Can you guide me?",
-            fleet:    "Hi, I manage a fleet of vehicles and I'm interested in your Fleet Management solution. Can you tell me more about pricing and features?",
-            quote:    "Hi, I'd like to get a price quote for GPS tracking. Can you send me the details?",
-            install:  "Hi, I'm ready to book a GPS installation. When are you available and where do you cover?",
-            other:    "Hi, I have a question about your GPS services. Can you help me?"
+            tracking:    "Hi, I want to install GPS tracking on my personal vehicle. Can you guide me?",
+            fleet:       "Hi, I manage a fleet of vehicles and I'm interested in your Fleet Management solution. Can you tell me more about pricing and features for 2–20 vehicles?",
+            fuel:        "Hi, I'm interested in the Fuel Monitoring Pro plan. I operate fuel tankers and need consumption analytics and theft detection. Can you send details?",
+            enterprise:  "Hi, I'm interested in Enterprise Command monitoring for 20+ vehicles. Can you send me a custom quote and schedule a consultation?",
+            quote:       "Hi, I'd like to get a custom price quote for fleet GPS monitoring. Can you send me the details?",
+            install:     "Hi, I'm ready to schedule a GPS installation. When are you available and what are your coverage areas?",
+            other:       "Hi, I have a question about your fleet monitoring services. Can you help me?"
         },
         fr: {
-            tracking: "Bonjour, je souhaite installer un suivi GPS sur mon véhicule. Pouvez-vous me guider ?",
-            fleet:    "Bonjour, je gère une flotte de véhicules et je suis intéressé par votre solution de gestion de flotte. Pouvez-vous me parler des tarifs pour 5+ véhicules ?",
-            quote:    "Bonjour, j'aimerais obtenir un devis pour le suivi GPS. Pouvez-vous m'envoyer les détails ?",
-            install:  "Bonjour, je suis prêt à réserver une installation GPS. Quelles sont vos disponibilités ?",
-            other:    "Bonjour, j'ai une question concernant vos services GPS. Pouvez-vous m'aider ?"
+            tracking:    "Bonjour, je souhaite installer un suivi GPS sur mon véhicule personnel. Pouvez-vous me guider ?",
+            fleet:       "Bonjour, je gère une flotte de véhicules et je suis intéressé par votre solution de gestion de flotte. Pouvez-vous me parler des tarifs pour 2 à 20 véhicules ?",
+            fuel:        "Bonjour, je suis intéressé par le plan Contrôle Carburant Pro. J'opère des citernes et j'ai besoin d'analytique de consommation et de détection de vol. Pouvez-vous m'envoyer les détails ?",
+            enterprise:  "Bonjour, je suis intéressé par le Commandement Entreprise pour 20+ véhicules. Pouvez-vous m'envoyer un devis personnalisé et planifier une consultation ?",
+            quote:       "Bonjour, j'aimerais obtenir un devis personnalisé pour la surveillance GPS de flotte. Pouvez-vous m'envoyer les détails ?",
+            install:     "Bonjour, je suis prêt à planifier une installation GPS. Quelles sont vos disponibilités et zones de couverture ?",
+            other:       "Bonjour, j'ai une question concernant vos services de surveillance de flotte. Pouvez-vous m'aider ?"
         }
     };
 
@@ -3545,13 +4711,13 @@
         // 2. Open WhatsApp — always runs as backup delivery (bilingual)
         let msg;
         if (currentLang === 'fr') {
-            msg = 'Bonjour Kallon GPS ! Mon nom est ' + first + ' ' + last + '.';
+            msg = 'Bonjour Sherkall Intelligence ! Mon nom est ' + first + ' ' + last + '.';
             msg += '\nTel: ' + phone;
             if (email) msg += '\nEmail: ' + email;
             msg += '\nInteret: ' + interestText;
             if (message) msg += '\nMessage: ' + message;
         } else {
-            msg = 'Hello Kallon GPS! My name is ' + first + ' ' + last + '.';
+            msg = 'Hello Sherkall Intelligence! My name is ' + first + ' ' + last + '.';
             msg += '\nPhone: ' + phone;
             if (email) msg += '\nEmail: ' + email;
             msg += '\nInterest: ' + interestText;
@@ -4321,6 +5487,52 @@
         setInterval(() => { if (!isDragging) rotY += 0.003; zoom += (targetZoom - zoom) * 0.08; }, 16);
 
         // Initial draw will be triggered by IntersectionObserver above
+    }
+
+    // ── SCROLL PROGRESS BAR ───────────────────────────────────────────────────
+    const scrollProgress = document.getElementById('scroll-progress');
+    if (scrollProgress) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = progress + '%';
+        }, {passive: true});
+    }
+
+    // ── PLATFORM TAB SWITCHING ────────────────────────────────────────────────
+    const ptabContents = {
+        fleet:  { label: 'sherkall-intelligence — Live Fleet Command', sidebar: '📡 Live Fleet' },
+        fuel:   { label: 'sherkall-fuel-analytics — Consumption Intelligence', sidebar: '⛽ Fuel Monitor' },
+        alerts: { label: 'sherkall-alerts-center — Active Threat Notifications', sidebar: '🚨 Alerts Log' },
+        routes: { label: 'sherkall-route-playback — Journey Intelligence Archive', sidebar: '🗺️ Route History' }
+    };
+
+    function switchPTab(btn, tab) {
+        document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const content = ptabContents[tab];
+        if (content) {
+            const lbl = document.getElementById('ptab-label');
+            if (lbl) lbl.textContent = content.label;
+        }
+    }
+
+    // ── DASHBOARD LIVE KPI ANIMATION ──────────────────────────────────────────
+    const kpiActive = document.getElementById('kpi-active');
+    const kpiSpeed  = document.getElementById('kpi-speed');
+    const kpiFuel   = document.getElementById('kpi-fuel');
+    const kpiDist   = document.getElementById('kpi-dist');
+    if (kpiActive && kpiSpeed) {
+        setInterval(() => {
+            kpiActive.textContent = Math.floor(Math.random() * 3 + 13);
+            kpiSpeed.textContent  = Math.floor(Math.random() * 20 + 50) + ' km/h';
+            if (kpiFuel)  kpiFuel.textContent  = Math.floor(Math.random() * 2 + 1);
+            if (kpiDist) {
+                const d = 1248 + Math.floor(Math.random() * 10);
+                kpiDist.textContent = d.toLocaleString() + ' km';
+            }
+        }, 4000);
     }
 
 </script>
