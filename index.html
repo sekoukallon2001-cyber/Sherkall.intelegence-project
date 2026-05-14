@@ -123,47 +123,66 @@
         }
         .nav-content {
             display:flex; align-items:center; justify-content:space-between;
-            padding:13px 24px; max-width:1200px; margin:0 auto;
+            padding:10px 16px; max-width:1200px; margin:0 auto;
+            gap:8px; min-width:0;
         }
-        .logo { display:flex; align-items:center; gap:11px; text-decoration:none; }
-        .logo-text { display:flex; flex-direction:column; line-height:1; }
+        .logo {
+            display:flex; align-items:center; gap:8px;
+            text-decoration:none; flex-shrink:0; min-width:0;
+        }
+        .logo-text { display:flex; flex-direction:column; line-height:1; min-width:0; }
         .logo-main {
             font-family:'Montserrat', sans-serif;
-            font-weight:900; font-size:22px;
+            font-weight:900; font-size:16px;
             color:#fff; letter-spacing:-0.02em;
+            white-space:nowrap;
         }
         .logo-main span { color:var(--blue); }
-        .logo-tagline { font-size:9px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; margin-top:2px; }
-        .nav-links { display:flex; gap:28px; list-style:none; }
+        /* Shared tagline styles */
+        .logo-tagline-short,
+        .logo-tagline-full {
+            color:var(--grey); text-transform:uppercase;
+            margin-top:2px; white-space:nowrap;
+            overflow:hidden; text-overflow:ellipsis;
+            font-family:'Montserrat',sans-serif; font-weight:700;
+        }
+        /* Hidden by default — breakpoints enable them */
+        .logo-tagline-short { display:none; }
+        .logo-tagline-full  { display:none; }
+        /* Hide the eagle badge on mobile — shown only on desktop */
+        .logo .logo-eagle-badge { display:none; }
+
+        .nav-links { display:flex; gap:22px; list-style:none; }
         .nav-links a {
             color:rgba(242,244,247,0.7); text-decoration:none;
-            font-weight:500; font-size:13.5px;
+            font-weight:500; font-size:13px;
             transition:color 0.2s;
         }
         .nav-links a:hover { color:#fff; }
-        .nav-actions { display:flex; align-items:center; gap:10px; }
+        .nav-actions { display:flex; align-items:center; gap:8px; flex-shrink:0; }
         .lang-toggle {
             background:transparent;
             border:1.5px solid rgba(10,132,255,0.45);
-            color:var(--blue); padding:6px 14px;
+            color:var(--blue); padding:6px 12px;
             border-radius:50px; cursor:pointer;
-            font-weight:700; font-size:12px;
+            font-weight:700; font-size:11px;
             font-family:'Montserrat', sans-serif;
-            transition:all 0.2s;
+            transition:all 0.2s; white-space:nowrap;
+            flex-shrink:0;
         }
         .lang-toggle:hover { background:var(--blue-glow); border-color:var(--blue); }
         .cta-nav {
             background:var(--blue); color:#fff;
-            padding:9px 20px; border-radius:50px;
+            padding:8px 16px; border-radius:50px;
             font-weight:700; text-decoration:none;
-            font-size:13px; transition:all 0.25s;
+            font-size:12px; transition:all 0.25s;
             font-family:'Montserrat', sans-serif;
             white-space:nowrap;
             box-shadow:0 0 20px var(--blue-glow);
         }
         .cta-nav:hover { background:var(--blue-dark); transform:translateY(-1px); }
-        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-        .hamburger span { width:24px; height:2.5px; background:var(--white); border-radius:3px; transition:0.3s; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; flex-shrink:0; }
+        .hamburger span { width:22px; height:2.5px; background:var(--white); border-radius:3px; transition:0.3s; }
         .mobile-menu {
             display:none; flex-direction:column;
             background:var(--navy); border-top:1px solid rgba(10,132,255,0.12);
@@ -1156,6 +1175,18 @@
             .nav-links { display:none; }
             .cta-nav { display:none; }
             .hamburger { display:flex; }
+            /* Lang toggle always visible on mobile */
+            .lang-toggle { padding:5px 10px; font-size:10px; }
+            /* Logo: shrink SVG and font on mobile */
+            .logo svg:first-child { width:28px; height:28px; }
+            .logo-main { font-size:11px; letter-spacing:0; }
+            /* Show SHORT tagline only on mobile */
+            .logo-tagline-short { display:block; font-size:7px; letter-spacing:1.5px; }
+            .logo-tagline-full  { display:none; }
+            /* Eagle badge hidden on mobile */
+            .logo .logo-eagle-badge { display:none !important; }
+            /* Nav padding tighter */
+            .nav-content { padding:8px 12px; gap:6px; }
             .hero-content { grid-template-columns:1fr; text-align:center; gap:40px; }
             .hero-visual { display:none; }
             .hero-badges { justify-content:center; }
@@ -1977,7 +2008,6 @@
 
         /* ── NAV ENTERPRISE UPGRADE ── */
         .nav-content { padding:16px 32px; }
-        .logo-tagline { font-size:8px; letter-spacing:3px; }
         nav { border-bottom:1px solid rgba(10,132,255,0.2); }
 
         /* Add "Enterprise" badge to nav */
@@ -2565,16 +2595,26 @@
         body.light-mode .dash-chart-box, body.light-mode .dash-kpi { background:rgba(0,0,0,0.03); }
         body.light-mode .metric-cell { background:rgba(255,255,255,0.8); }
         /* ── SHERKALL BRANDING SYSTEM ── */
-        .logo-main { font-size:15px; letter-spacing:0.5px; }
-        .logo-main span { color:var(--blue); }
-
-        /* Eagle shield badge glow on hover */
-        .logo:hover svg[title="Sherkall Enterprise Badge"] {
-            filter: drop-shadow(0 0 6px rgba(201,162,39,0.6));
-            opacity: 1 !important;
+        /* Desktop logo sizing */
+        @media (min-width:769px) {
+            .logo-main { font-size:18px; }
+            .logo .logo-eagle-badge { display:inline-flex; align-items:center; }
+            .logo svg:first-child { width:42px; height:42px; }
+            .nav-content { padding:12px 28px; }
+            .logo-tagline-short { display:none; }
+            .logo-tagline-full  { display:block; font-size:8px; letter-spacing:2px; }
+        }
+        @media (min-width:1024px) {
+            .logo-main { font-size:20px; }
+            .nav-content { padding:13px 32px; }
         }
 
-        /* Hero eagle badge — standalone premium badge */
+        /* Eagle shield badge glow on hover */
+        .logo:hover .logo-eagle-badge svg {
+            filter: drop-shadow(0 0 6px rgba(201,162,39,0.6));
+        }
+
+        /* Hero eagle badge */
         .hero-eagle-badge {
             display:inline-flex; align-items:center; gap:10px;
             background:linear-gradient(135deg, rgba(201,162,39,0.1), rgba(139,105,20,0.05));
@@ -2585,26 +2625,39 @@
             color:#C9A227; letter-spacing:2px;
             text-transform:uppercase;
             font-family:'Montserrat',sans-serif;
+            flex-wrap:wrap;
         }
         .hero-eagle-badge svg { flex-shrink:0; }
 
-        /* Trust section eagle badge watermark */
+        /* Trust section eagle watermark */
         #trust-section .eagle-watermark {
             position:absolute; right:-40px; top:50%;
             transform:translateY(-50%);
             opacity:0.04; pointer-events:none;
         }
 
-        /* Footer eagle badge glow */
-        footer svg[xmlns] { transition: filter 0.3s, opacity 0.3s; }
-        footer svg[xmlns]:hover { filter: drop-shadow(0 0 8px rgba(201,162,39,0.5)); opacity:1 !important; }
+        /* Footer eagle badge hover */
+        footer svg[xmlns]:hover {
+            filter: drop-shadow(0 0 8px rgba(201,162,39,0.5));
+            opacity:1 !important;
+        }
 
-        /* Nav logo sizing */
-        .logo svg:first-child { flex-shrink:0; }
-        .logo-text { display:flex; flex-direction:column; gap:1px; }
-
-        /* Make tagline accommodate the new longer text */
-        .logo-tagline { font-size:7.5px !important; letter-spacing:1.5px; white-space:nowrap; }
+        /* Hero chips mobile fix */
+        .hero-chip, .hero-enterprise-label {
+            white-space:normal;
+            text-align:center;
+            max-width:100%;
+            box-sizing:border-box;
+        }
+        @media (max-width:768px) {
+            .hero-eagle-badge { font-size:9px; padding:6px 12px; letter-spacing:1px; }
+            .hero-chip { font-size:9px; letter-spacing:1px; }
+            .hero-enterprise-label { font-size:9px; }
+            .hero-sub { font-size:14px !important; }
+            /* Prevent any horizontal scroll */
+            .hero { overflow-x:hidden; }
+            section { overflow-x:hidden; }
+        }
     </style>
 </head>
 <body>
@@ -2624,45 +2677,40 @@
     <div class="nav-content">
         <a href="#home" class="logo" aria-label="Sherkall Intelligence - Home">
             <!-- PRIMARY: SK Monogram logo mark -->
-            <svg width="44" height="44" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sherkall Intelligence SK logo">
+            <svg width="38" height="38" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sherkall Intelligence SK logo">
                 <title>Sherkall Intelligence</title>
-                <!-- Background circle -->
                 <circle cx="44" cy="44" r="42" fill="#060F1A" stroke="rgba(10,132,255,0.3)" stroke-width="1.5"/>
-                <!-- S letterform -->
                 <path d="M20 30 Q20 24 26 24 L40 24 Q46 24 46 30 Q46 36 40 38 L28 42 Q22 44 22 50 Q22 56 28 56 L44 56 Q50 56 50 50"
                       stroke="#0A84FF" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-                <!-- K letterform -->
                 <line x1="56" y1="24" x2="56" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
                 <line x1="56" y1="40" x2="70" y2="24" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
                 <line x1="56" y1="40" x2="70" y2="56" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
-                <!-- Blue triangle accent (bottom of K) -->
                 <polygon points="63,52 70,56 70,64" fill="#0A84FF"/>
             </svg>
             <div class="logo-text">
-                <div style="display:flex;align-items:center;gap:8px;">
+                <div style="display:flex;align-items:center;gap:6px;">
                     <span class="logo-main">SHERKALL <span>INTELLIGENCE</span></span>
-                    <!-- SECONDARY: Eagle Shield badge -->
-                    <svg width="20" height="22" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" title="Sherkall Enterprise Badge" style="flex-shrink:0;opacity:0.85;">
-                        <!-- Shield body -->
-                        <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldGold)" stroke="#C9A227" stroke-width="1.5"/>
-                        <defs>
-                            <linearGradient id="shieldGold" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#D4A017"/>
-                                <stop offset="100%" stop-color="#8B6914"/>
-                            </linearGradient>
-                        </defs>
-                        <!-- Eagle wings -->
-                        <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.9"/>
-                        <!-- Eagle head -->
-                        <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
-                        <path d="M30 22 L34 25 L30 24 Z" fill="#C9A227"/>
-                        <!-- Location pin on eagle chest -->
-                        <circle cx="30" cy="38" r="5" fill="#C9A227"/>
-                        <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
-                        <line x1="30" y1="43" x2="30" y2="48" stroke="#C9A227" stroke-width="2"/>
-                    </svg>
+                    <!-- SECONDARY: Eagle Shield badge — desktop only -->
+                    <span class="logo-eagle-badge">
+                        <svg width="18" height="20" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" title="Sherkall Enterprise Badge" style="opacity:0.85;">
+                            <path d="M30 2 L56 14 L56 38 Q56 54 30 64 Q4 54 4 38 L4 14 Z" fill="url(#shieldGold)" stroke="#C9A227" stroke-width="1.5"/>
+                            <defs>
+                                <linearGradient id="shieldGold" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#D4A017"/>
+                                    <stop offset="100%" stop-color="#8B6914"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M8 26 Q16 18 24 22 L30 28 L36 22 Q44 18 52 26 L44 30 Q38 26 30 32 Q22 26 16 30 Z" fill="#1a0f00" opacity="0.9"/>
+                            <ellipse cx="30" cy="20" rx="6" ry="5" fill="#1a0f00"/>
+                            <path d="M30 22 L34 25 L30 24 Z" fill="#C9A227"/>
+                            <circle cx="30" cy="38" r="5" fill="#C9A227"/>
+                            <circle cx="30" cy="38" r="2.5" fill="#1a0f00"/>
+                            <line x1="30" y1="43" x2="30" y2="48" stroke="#C9A227" stroke-width="2"/>
+                        </svg>
+                    </span>
                 </div>
-                <span class="logo-tagline">GPS Intelligence Service · Track · Protect · Command</span>
+                <span class="logo-tagline logo-tagline-short">TRACK · PROTECT · COMMAND</span>
+                <span class="logo-tagline logo-tagline-full">GPS INTELLIGENCE · TRACK · PROTECT · COMMAND</span>
             </div>
         </a>
 
