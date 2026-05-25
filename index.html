@@ -67,18 +67,25 @@
     </script>
     <style>
         :root {
-            --blue:      #0A84FF;
-            --blue-dark: #0063CC;
-            --blue-glow: rgba(10,132,255,0.25);
-            --navy:      #0D1B2A;
-            --navy-deep: #060F1A;
-            --navy-mid:  #0B1929;
-            --navy-card: #0F2033;
-            --navy-2:    #1B263B;
-            --white:     #F2F4F7;
-            --grey:      #8A94A6;
-            --green:     #22C55E;
-            --red:       #EF4444;
+            --blue:       #0A84FF;
+            --blue-dark:  #0063CC;
+            --blue-glow:  rgba(10,132,255,0.25);
+            --navy:       #0D1B2A;
+            --navy-deep:  #060F1A;
+            --navy-mid:   #0B1929;
+            --navy-card:  #0F2033;
+            --navy-2:     #1B263B;
+            --white:      #F2F4F7;
+            --grey:       #8A94A6;
+            --green:      #22C55E;
+            --red:        #EF4444;
+            /* ── GOLD PALETTE ── */
+            --gold:       #C9A227;
+            --gold-light: #D4A017;
+            --gold-dark:  #8B6914;
+            --gold-glow:  rgba(201,162,39,0.25);
+            --gold-bg:    rgba(201,162,39,0.08);
+            --gold-border:rgba(201,162,39,0.3);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -100,7 +107,7 @@
         /* ── SCROLLBAR ── */
         ::-webkit-scrollbar { width:6px; }
         ::-webkit-scrollbar-track { background:var(--navy-deep); }
-        ::-webkit-scrollbar-thumb { background:var(--blue); border-radius:3px; }
+        ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
         /* ──────────────────────────────────────────
            NAV
@@ -112,7 +119,7 @@
             -webkit-backdrop-filter:blur(20px);
             z-index:1000;
             transition:transform 0.35s ease;
-            border-bottom:1px solid rgba(10,132,255,0.15);
+            border-bottom:1px solid rgba(201,162,39,0.2);
         }
         .nav-content {
             display:flex; align-items:center; justify-content:space-between;
@@ -130,7 +137,7 @@
             color:#fff; letter-spacing:-0.02em;
             white-space:nowrap;
         }
-        .logo-main span { color:var(--blue); }
+        .logo-main span { color:var(--gold); }
         /* Shared tagline styles */
         .logo-tagline-short,
         .logo-tagline-full {
@@ -155,8 +162,8 @@
         .nav-actions { display:flex; align-items:center; gap:8px; flex-shrink:0; }
         .lang-toggle {
             background:transparent;
-            border:1.5px solid rgba(10,132,255,0.45);
-            color:var(--blue); padding:6px 12px;
+            border:1.5px solid var(--gold-border);
+            color:var(--gold); padding:6px 12px;
             border-radius:50px; cursor:pointer;
             font-weight:700; font-size:11px;
             font-family:'Montserrat', sans-serif;
@@ -165,13 +172,13 @@
         }
         .lang-toggle:hover { background:var(--blue-glow); border-color:var(--blue); }
         .cta-nav {
-            background:var(--blue); color:#fff;
+            background:linear-gradient(135deg,var(--gold-light),var(--gold-dark)); color:#000;
             padding:8px 16px; border-radius:50px;
             font-weight:700; text-decoration:none;
             font-size:12px; transition:all 0.25s;
             font-family:'Montserrat', sans-serif;
             white-space:nowrap;
-            box-shadow:0 0 20px var(--blue-glow);
+            box-shadow:0 0 20px var(--gold-glow);
         }
         .cta-nav:hover { background:var(--blue-dark); transform:translateY(-1px); }
         .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; flex-shrink:0; }
@@ -952,13 +959,13 @@
             font-weight:900; font-size:26px; color:#fff;
             letter-spacing:-0.02em; margin-bottom:4px;
         }
-        .footer-logo-main span { color:var(--blue); }
+        .footer-logo-main span { color:var(--gold); }
         .footer-tagline { font-size:11px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
         .footer-desc { color:var(--grey); font-size:13px; line-height:1.7; margin-bottom:16px; }
         .footer-serving { font-size:12px; color:rgba(10,132,255,0.8); font-weight:600; }
         .footer-heading { font-weight:700; margin-bottom:16px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:var(--grey); }
         .footer-link { display:block; color:rgba(242,244,247,0.5); text-decoration:none; margin:9px 0; font-size:14px; transition:color 0.2s; }
-        .footer-link:hover { color:var(--blue); }
+        .footer-link:hover { color:var(--gold); }
         .footer-phone { color:var(--blue); font-size:16px; font-weight:700; text-decoration:none; display:block; margin-bottom:8px; font-family:'Montserrat',sans-serif; }
         .footer-bottom {
             text-align:center; padding-top:28px;
@@ -1991,8 +1998,8 @@
             border:1.5px solid rgba(255,255,255,0.2);
             color:var(--white);
         }
-        .pc-btn-outline:hover { border-color:var(--blue); color:var(--blue); }
-        .check-yes { color:var(--green); }
+        .pc-btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+        .check-yes { color:var(--gold); }
         .check-no  { color:rgba(255,255,255,0.2); }
         body.light-mode .pc { background:#fff; }
         body.light-mode .pc-btn-outline { color:#1a2332; }
@@ -2441,9 +2448,9 @@
         }
         .section-chip {
             display:inline-flex; align-items:center; gap:8px;
-            background:rgba(10,132,255,0.08);
-            border:1px solid rgba(10,132,255,0.25);
-            color:var(--blue); padding:6px 16px;
+            background:var(--gold-bg);
+            border:1px solid var(--gold-border);
+            color:var(--gold); padding:6px 16px;
             border-radius:50px; font-size:10px; font-weight:800;
             letter-spacing:2.5px; text-transform:uppercase;
             font-family:'Montserrat',sans-serif;
@@ -2604,7 +2611,7 @@
             </svg>
             <div class="logo-text">
                 <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="logo-main">SHERKALL <span>INTELLIGENCE</span></span>
+                    <span class="logo-main" style="color:#fff;">SHERKALL <span style="color:var(--gold);letter-spacing:0.05em;">INTELLIGENCE</span></span>
                     <!-- SECONDARY: Eagle Shield badge — desktop only -->
                     <span class="logo-eagle-badge">
                         <svg width="18" height="20" viewBox="0 0 60 66" fill="none" xmlns="http://www.w3.org/2000/svg" title="Sherkall Enterprise Badge" style="opacity:0.85;">
@@ -2657,177 +2664,131 @@
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────────────── -->
-<main id="main-content">
-<section id="home" class="hero">
+<section class="hero" id="home">
+    <!-- Truck sunset background -->
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+        <!-- Fallback gradient while image loads -->
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#060F1A 0%,#1a0f00 50%,#060F1A 100%);"></div>
+        <!-- The truck image as background via CSS filter overlay -->
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80&auto=format&fit=crop"
+             alt="Fleet truck on highway at sunset"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.35;mix-blend-mode:luminosity;"
+             loading="eager">
+        <!-- Gold-to-navy gradient overlay -->
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,15,26,0.7) 0%,rgba(26,15,0,0.4) 40%,rgba(6,15,26,0.85) 75%,var(--navy-deep) 100%);"></div>
+        <!-- Network arc overlay (SVG) -->
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15;" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+            <path d="M100,400 Q300,100 600,80 Q900,60 1100,350" stroke="#C9A227" stroke-width="1.5" fill="none"/>
+            <path d="M50,450 Q250,150 600,120 Q950,90 1150,400" stroke="#C9A227" stroke-width="0.8" fill="none" opacity="0.5"/>
+            <circle cx="100" cy="400" r="4" fill="#C9A227"/>
+            <circle cx="300" cy="160" r="3" fill="#C9A227"/>
+            <circle cx="600" cy="90" r="5" fill="#C9A227"/>
+            <circle cx="900" cy="130" r="3" fill="#C9A227"/>
+            <circle cx="1100" cy="350" r="4" fill="#C9A227"/>
+            <line x1="100" y1="400" x2="300" y2="160" stroke="#C9A227" stroke-width="0.6" opacity="0.5"/>
+            <line x1="300" y1="160" x2="600" y2="90" stroke="#C9A227" stroke-width="0.6" opacity="0.5"/>
+            <line x1="600" y1="90" x2="900" y2="130" stroke="#C9A227" stroke-width="0.6" opacity="0.5"/>
+            <line x1="900" y1="130" x2="1100" y2="350" stroke="#C9A227" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+
     <div class="hero-grid"></div>
-    <div class="hero-orb"></div>
-    <div class="hero-radar"></div>
+    <div class="hero-radar" style="border-color:rgba(201,162,39,0.15);"></div>
 
-    <!-- Enterprise data stream lines -->
-    <div class="hero-data-line" style="top:22%;width:60%;animation-delay:0s;animation-duration:6s;"></div>
-    <div class="hero-data-line" style="top:45%;width:40%;animation-delay:2s;animation-duration:8s;"></div>
-    <div class="hero-data-line" style="top:68%;width:55%;animation-delay:4s;animation-duration:7s;"></div>
-    <div class="hero-data-line" style="top:83%;width:35%;animation-delay:1s;animation-duration:5s;"></div>
+    <!-- Hero data lines in gold -->
+    <div class="hero-data-line" style="top:22%;width:60%;animation-delay:0s;animation-duration:6s;background:linear-gradient(90deg,transparent,rgba(201,162,39,0.3),transparent);"></div>
+    <div class="hero-data-line" style="top:68%;width:45%;animation-delay:3s;animation-duration:8s;background:linear-gradient(90deg,transparent,rgba(201,162,39,0.2),transparent);"></div>
 
-    <!-- Data Nodes -->
-    <div class="data-node" style="top:15%;left:8%;animation-delay:0s;"></div>
-    <div class="data-node" style="top:30%;left:22%;animation-delay:0.5s;"></div>
-    <div class="data-node" style="top:65%;left:14%;animation-delay:1s;"></div>
-    <div class="data-node" style="top:20%;right:25%;animation-delay:1.5s;"></div>
-    <div class="data-node" style="top:75%;right:35%;animation-delay:2s;"></div>
-    <div class="data-node" style="top:50%;left:45%;animation-delay:2.5s;"></div>
-
-    <!-- Floating Satellites -->
-    <div class="satellite" style="top:12%;left:5%;animation-delay:0s;">
-        <div class="sat-body"></div>
-        <div class="sat-beam"></div>
-    </div>
-    <div class="satellite" style="top:60%;right:10%;animation-delay:-5s;animation-duration:25s;">
-        <div class="sat-body"></div>
-        <div class="sat-beam"></div>
-    </div>
-
-    <div class="hero-rings">
-        <div class="ring" style="animation-delay:0s;"></div>
-        <div class="ring" style="animation-delay:1.5s;"></div>
-        <div class="ring" style="animation-delay:3s;"></div>
-        <div class="ring" style="animation-delay:4.5s;"></div>
-    </div>
-    <div class="scan-line"></div>
-
-    <div class="hero-content">
+    <div class="hero-content" style="position:relative;z-index:2;">
         <div class="hero-text">
-            <div class="hero-chip">
-                <span class="dot"></span>
-                <span data-en="CONAKRY, GUINEA · GPS TRACKING SERVICE" data-fr="CONAKRY, GUINÉE · SERVICE DE SUIVI GPS">CONAKRY, GUINEA · GPS TRACKING SERVICE</span>
+            <!-- Gold chip -->
+            <div class="hero-chip" style="background:rgba(201,162,39,0.1);border-color:rgba(201,162,39,0.35);color:var(--gold);">
+                <span class="dot" style="background:var(--gold);"></span>
+                <span data-en="CONAKRY, GUINEA · GPS INTELLIGENCE SERVICE" data-fr="CONAKRY, GUINÉE · SERVICE D'INTELLIGENCE GPS">CONAKRY, GUINEA · GPS INTELLIGENCE SERVICE</span>
             </div>
-            <h1>
-                <span data-en="GPS Tracking for" data-fr="Suivi GPS pour">GPS Tracking for</span>
-                <span class="blue" data-en=" Every Vehicle" data-fr=" Chaque Véhicule"> Every Vehicle</span><br>
-                <span data-en="in Guinea." data-fr="en Guinée.">in Guinea.</span>
+
+            <!-- Main title — styled like the image typography -->
+            <h1 style="font-size:clamp(42px,6vw,82px);font-weight:900;line-height:1;letter-spacing:-0.02em;margin:20px 0 24px;">
+                <span style="display:block;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.5);" data-en="SHERKALL" data-fr="SHERKALL">SHERKALL</span>
+                <span style="display:block;color:var(--gold);letter-spacing:0.08em;font-size:clamp(18px,2.5vw,36px);font-weight:700;text-shadow:0 2px 20px rgba(201,162,39,0.3);" data-en="INTELLIGENCE" data-fr="INTELLIGENCE">INTELLIGENCE</span>
+                <span style="display:block;font-size:clamp(11px,1.2vw,14px);letter-spacing:0.25em;color:rgba(255,255,255,0.6);font-weight:600;margin-top:10px;border-top:1px solid rgba(201,162,39,0.3);padding-top:10px;" data-en="— GPS INTELLIGENCE SERVICE —" data-fr="— SERVICE D'INTELLIGENCE GPS —">— GPS INTELLIGENCE SERVICE —</span>
             </h1>
-            <p class="hero-sub" data-en="Professional GPS installation on your car, truck or motorcycle. Know where your vehicle is at all times. Get instant alerts if it moves without you." data-fr="Surveillez les déplacements de flotte, la consommation de carburant et l'activité opérationnelle depuis une plateforme d'intelligence centralisée. Suivi en temps réel, alertes vol instantanées et analyse du comportement des conducteurs — conçue pour les entreprises leaders en Guinée.">Professional GPS installation on your car, truck or motorcycle. Know where your vehicle is at all times. Get instant alerts if it moves without you.</p>
-            <div class="location-pill">
+
+            <p class="hero-sub" data-en="Professional GPS installation on your car, truck or motorcycle. Know where your vehicle is at all times. Get instant alerts if it moves without you." data-fr="Installation GPS professionnelle sur votre voiture, camion ou moto. Sachez où se trouve votre véhicule à tout moment. Recevez des alertes instantanées s'il bouge sans vous.">
+                Professional GPS installation on your car, truck or motorcycle. Know where your vehicle is at all times. Get instant alerts if it moves without you.
+            </p>
+
+            <div class="location-pill" style="border-color:rgba(201,162,39,0.25);color:rgba(255,255,255,0.7);">
                 📍 <span data-en="Conakry, Guinea — We come to you for installation" data-fr="Conakry, Guinée — Nous venons chez vous pour l'installation">Conakry, Guinea — We come to you for installation</span>
             </div>
 
-            <div class="hero-badges">
-                <div class="badge-pill">📍 <span data-en="Live Tracking" data-fr="Suivi en Direct">Live Tracking</span></div>
-                <div class="badge-pill">🚨 <span data-en="Theft Alerts" data-fr="Alertes Vol">Theft Alerts</span></div>
-                <div class="badge-pill">📱 <span data-en="Mobile App" data-fr="Application Mobile">Mobile App</span></div>
-                <div class="badge-pill">🔧 <span data-en="We Install It" data-fr="On l'Installe">We Install It</span></div>
+            <!-- Four icon badges — matching image style -->
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:24px 0;justify-content:flex-start;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                    <div style="width:48px;height:48px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(201,162,39,0.08);">📍</div>
+                    <span style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-family:'Montserrat',sans-serif;" data-en="TRACK" data-fr="SUIVRE">TRACK</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                    <div style="width:48px;height:48px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(201,162,39,0.08);">🛡️</div>
+                    <span style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-family:'Montserrat',sans-serif;" data-en="PROTECT" data-fr="PROTÉGER">PROTECT</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                    <div style="width:48px;height:48px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(201,162,39,0.08);">📊</div>
+                    <span style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-family:'Montserrat',sans-serif;" data-en="ANALYZE" data-fr="ANALYSER">ANALYZE</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                    <div style="width:48px;height:48px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(201,162,39,0.08);">📡</div>
+                    <span style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-family:'Montserrat',sans-serif;" data-en="CONNECT" data-fr="CONNECTER">CONNECT</span>
+                </div>
             </div>
 
             <div class="btn-row">
-                <a href="#" onclick="waOpen('protect');return false;" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Protect my vehicle - contact Sherkall Intelligence on WhatsApp">💬 <span data-en="Get a Free Quote" data-fr="Obtenir un Devis Gratuit">Get a Free Quote</span></a>
-                <a href="#pricing" class="btn-outline" aria-label="See the platform">📋 <span data-en="See Pricing" data-fr="Voir les Tarifs">See Pricing</span></a>
-            </div>
-
-
-
-            <!-- Trust badges -->
-            <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-                <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(242,244,247,0.45);font-weight:600;letter-spacing:0.5px;">
-                    🔒 <span data-en="Secure & Private" data-fr="Sécurisé & Privé">Secure & Private</span>
-                </div>
-                <div style="width:1px;height:14px;background:rgba(255,255,255,0.1);"></div>
-                <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(242,244,247,0.45);font-weight:600;letter-spacing:0.5px;">
-                    🛡️ <span data-en="1-Year Warranty" data-fr="Garantie 1 An">1-Year Warranty</span>
-                </div>
-                <div style="width:1px;height:14px;background:rgba(255,255,255,0.1);"></div>
-                <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(242,244,247,0.45);font-weight:600;letter-spacing:0.5px;">
-                    💬 <span data-en="24/7 WhatsApp Support" data-fr="Support WhatsApp 24h/7j">24/7 WhatsApp Support</span>
-                </div>
+                <a href="#" onclick="waOpen('quote');return false;" class="btn-primary" style="background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));box-shadow:0 4px 24px rgba(201,162,39,0.35);color:#000;font-weight:800;">
+                    💬 <span data-en="Get a Free Quote" data-fr="Obtenir un Devis Gratuit">Get a Free Quote</span>
+                </a>
+                <a href="#pricing" class="btn-outline" style="border-color:rgba(201,162,39,0.4);color:var(--gold);">
+                    📋 <span data-en="See Pricing" data-fr="Voir les Tarifs">See Pricing</span>
+                </a>
             </div>
         </div>
 
-        <!-- PHONE MOCKUP -->
+        <!-- Hero visual side — stat cards in gold theme -->
         <div class="hero-visual">
-            <div style="position:relative;">
-                <!-- Float card top-left -->
-                <div class="float-card" style="top:-20px;left:-110px;min-width:130px;">
-                    <div class="float-card-title" data-en="Live Speed" data-fr="Vitesse en direct">Live Speed</div>
-                    <div class="float-card-val" id="gps-speed">60 km/h</div>
-                    <div class="float-card-sub">Toyota Land Cruiser</div>
-                </div>
-                <!-- Float alert bottom-left -->
-                <div class="float-card-alert" style="bottom:60px;left:-120px;min-width:140px;">
-                    <div class="float-alert-title">🚨 <span data-en="ALERT" data-fr="ALERTE">ALERT</span></div>
-                    <div class="float-alert-body" data-en="Engine started — Kipé" data-fr="Moteur démarré — Kipé">Engine started — Kipé</div>
-                </div>
-                <!-- Float card right -->
-                <div class="float-card" style="top:80px;right:-110px;min-width:110px;">
-                    <div class="float-card-title" data-en="Distance" data-fr="Distance">Distance</div>
-                    <div class="float-card-val">12.5 km</div>
-                    <div class="float-card-sub" data-en="Today" data-fr="Aujourd'hui">Today</div>
-                </div>
-
-                <div class="phone-wrap">
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <!-- Phone top bar -->
-                            <div class="phone-topbar">
-                                <span class="phone-app-name">SHERKALL INTEL</span>
-                                <span class="phone-live"><span class="live-dot"></span> LIVE</span>
-                            </div>
-                            <!-- Map -->
-                            <div class="phone-map">
-                                <div class="map-grid-lines"></div>
-                                <div class="map-road-h" style="top:28%;"></div>
-                                <div class="map-road-h" style="top:58%;"></div>
-                                <div class="map-road-v" style="left:33%;"></div>
-                                <div class="map-road-v" style="left:66%;"></div>
-                                <div class="phone-route-container">
-                                    <div class="phone-route-line"></div>
-                                    <div class="route-dot-tip"></div>
-                                </div>
-                                <div class="map-pin">
-                                    <div class="pin-dot"></div>
-                                </div>
-                            </div>
-                            <!-- Vehicle info panel -->
-                            <div class="phone-info">
-                                <div class="phone-info-row">
-                                    <span class="phone-vehicle-name">Toyota Land Cruiser</span>
-                                    <span class="status-badge" data-en="MOVING" data-fr="EN MOUVEMENT">MOVING</span>
-                                </div>
-                                <div class="phone-stats">
-                                    <div class="phone-stat">
-                                        <div class="phone-stat-val">60</div>
-                                        <div class="phone-stat-label">km/h</div>
-                                    </div>
-                                    <div class="phone-stat">
-                                        <div class="phone-stat-val">12.5</div>
-                                        <div class="phone-stat-label">km</div>
-                                    </div>
-                                    <div class="phone-stat">
-                                        <div class="phone-stat-val">00:18</div>
-                                        <div class="phone-stat-label" data-en="Duration" data-fr="Durée">Duration</div>
-                                    </div>
-                                </div>
-                                <div class="phone-coord" id="gps-coords">9.6418° N, 13.5789° W</div>
-                            </div>
-                            <!-- Bottom nav -->
-                            <div class="phone-nav">
-                                <div class="phone-nav-item active">
-                                    <span class="phone-nav-icon">🗺️</span>
-                                    <span data-en="Track" data-fr="Suivi">Track</span>
-                                </div>
-                                <div class="phone-nav-item">
-                                    <span class="phone-nav-icon">📋</span>
-                                    <span data-en="History" data-fr="Historique">History</span>
-                                </div>
-                                <div class="phone-nav-item">
-                                    <span class="phone-nav-icon">🔔</span>
-                                    <span data-en="Alerts" data-fr="Alertes">Alerts</span>
-                                </div>
-                                <div class="phone-nav-item">
-                                    <span class="phone-nav-icon">⚙️</span>
-                                    <span data-en="Settings" data-fr="Réglages">Settings</span>
-                                </div>
-                            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div style="background:rgba(6,15,26,0.85);border:1.5px solid rgba(201,162,39,0.25);border-radius:20px;padding:24px;backdrop-filter:blur(12px);">
+                    <div style="font-size:11px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">📡 LIVE FLEET STATUS</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+                            <span style="color:rgba(242,244,247,0.7);">GN-0042 · Toyota Hilux</span>
+                            <span style="color:var(--green);font-weight:700;font-size:11px;">● MOVING</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+                            <span style="color:rgba(242,244,247,0.7);">GN-0017 · Isuzu Truck</span>
+                            <span style="color:#F59E0B;font-weight:700;font-size:11px;">● IDLE</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+                            <span style="color:rgba(242,244,247,0.7);">GN-0089 · Moto Fleet</span>
+                            <span style="color:var(--green);font-weight:700;font-size:11px;">● MOVING</span>
                         </div>
                     </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div style="background:rgba(6,15,26,0.85);border:1.5px solid rgba(201,162,39,0.2);border-radius:16px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+                        <div style="font-size:28px;font-weight:900;font-family:'Montserrat',sans-serif;color:var(--gold);">400K</div>
+                        <div style="font-size:10px;color:var(--grey);margin-top:3px;" data-en="Installation" data-fr="Installation">Installation</div>
+                    </div>
+                    <div style="background:rgba(6,15,26,0.85);border:1.5px solid rgba(201,162,39,0.2);border-radius:16px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+                        <div style="font-size:28px;font-weight:900;font-family:'Montserrat',sans-serif;color:var(--gold);">100K</div>
+                        <div style="font-size:10px;color:var(--grey);margin-top:3px;" data-en="/mo per vehicle" data-fr="/mois par véhicule">/mo per vehicle</div>
+                    </div>
+                </div>
+                <div style="background:rgba(201,162,39,0.08);border:1.5px solid rgba(201,162,39,0.25);border-radius:16px;padding:16px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px);">
+                    <span style="font-size:24px;">🚨</span>
+                    <div>
+                        <div style="font-size:12px;font-weight:700;color:var(--gold);" data-en="Theft Alert Active" data-fr="Alerte Vol Active">Theft Alert Active</div>
+                        <div style="font-size:11px;color:rgba(242,244,247,0.5);" data-en="Instant WhatsApp notification sent" data-fr="Notification WhatsApp instantanée envoyée">Instant WhatsApp notification sent</div>
+                    </div>
+                    <div style="margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--red);animation:livePulse 1s ease-in-out infinite;flex-shrink:0;"></div>
                 </div>
             </div>
         </div>
