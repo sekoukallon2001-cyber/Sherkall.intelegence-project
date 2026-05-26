@@ -1,4 +1,6 @@
-    // ── STATE ────────────────────────────────────────────────────────────────
+ // Sherkall Backend API
+const BACKEND_URL = 'https://sherkall-backend-production.up.railway.app';
+ // ── STATE ────────────────────────────────────────────────────────────────
     let currentLang = 'fr';
     let currentCurrency = 'GNF';
 
