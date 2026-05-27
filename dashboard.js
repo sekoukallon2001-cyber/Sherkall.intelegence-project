@@ -61,10 +61,12 @@ async function refreshVehicles() {
       }
     });
 
-    if (response.status === 401) {
-      logout();
-      return;
-    }
+   if (response.status === 401) {
+  console.log('401 received — token invalid');
+  // Don't logout immediately — just show error
+  showAlert('⚠️ Session expirée — reconnectez-vous', 'danger');
+  return;
+}
 
     const data = await response.json();
 
