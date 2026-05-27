@@ -14,8 +14,9 @@ let authToken = null;
 // AUTH — Check login on page load
 // ============================================
 function checkAuth() {
-  authToken = localStorage.getItem('sherkall_token');
-  const userStr = localStorage.getItem('sherkall_user');
+  function checkAuth() {
+  return true; // handled in DOMContentLoaded
+}
 
   console.log('Token found:', authToken ? 'YES' : 'NO');
   console.log('User found:', userStr ? 'YES' : 'NO');
@@ -391,16 +392,33 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 // INIT
 // ============================================
-document.addEventListener('DOMContentLoaded', async () => {
   // TEMP: skip auth check for testing
-  authToken = localStorage.getItem('sherkall_token') || 'test';
-  userInfo = JSON.parse(localStorage.getItem('sherkall_user') || '{"name":"Test User"}');
-  document.getElementById('client-name').textContent = userInfo.name || 'Client';
+document.addEventListener('DOMContentLoaded', async () => {
+  // Get token directly
+  const token = localStorage.getItem('sherkall_token');
+  const userStr = localStorage.getItem('sherkall_user');
 
+  console.log('=== AUTH CHECK ===');
+  console.log('Token:', token ? token.substring(0,20) + '...' : 'MISSING');
+  console.log('User:', userStr || 'MISSING');
+
+  if (!token || !userStr) {
+    console.log('No auth — redirecting to login');
+    window.location.href = '/login.html';
+    return;
+  }
+
+  // Set globals
+  authToken = token;
+  userInfo = JSON.parse(userStr);
+
+  // Update UI
+  const nameEl = document.getElementById('client-name');
+  if (nameEl) nameEl.textContent = userInfo.name || 'Client';
+
+  // Init everything
   initMap();
   await refreshVehicles();
   connectTraccar();
-
-  // Fallback polling every 30 seconds
   setInterval(refreshPositions, 30000);
 });
