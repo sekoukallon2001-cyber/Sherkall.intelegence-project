@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sherkall Intelligence | Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">SHERKALL <span>INTEL</span></div>
+    <div class="top-controls">
+      <div id="account-info">Bienvenue, <span id="client-name">—</span></div>
+      <button class="top-btn" onclick="toggleSidebar()">☰ Flotte</button>
+      <button class="top-btn logout-btn" onclick="logout()">⏻ Déconnexion</button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+      <!-- Subscription -->
+      <div class="sidebar-section">
+        <h3>Abonnement</h3>
+        <span id="plan-badge" class="plan-badge plan-basic">Basic</span>
+      </div>
+
+      <!-- Vehicle List -->
+      <div class="sidebar-section" style="flex:1">
+        <h3>Mes Véhicules (<span id="vehicle-count">0</span>)</h3>
+        <input
+          type="text"
+          class="vehicle-filter"
+          id="vehicle-filter"
+          placeholder="🔍 Rechercher un véhicule..."
+        >
+        <ul id="vehicle-list"></ul>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="sidebar-section">
+        <h3>Actions Rapides</h3>
+        <div class="action-grid">
+          <button class="action-btn" onclick="centerAll()">🗺 Centrer</button>
+          <button class="action-btn" onclick="refreshVehicles()">🔄 Actualiser</button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAP -->
+    <section class="map-container">
+      <div id="map"></div>
+      <div id="alerts" class="alerts"></div>
+    </section>
+
+    <!-- DETAIL PANEL -->
+    <aside id="detail-panel" class="detail-panel">
+      <h3>📍 Détails Véhicule</h3>
+      <div id="detail-body">
+        <p style="color:var(--grey);font-size:13px;text-align:center;padding:40px 0">
+          Sélectionnez un véhicule pour voir les détails
+        </p>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
