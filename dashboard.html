@@ -2,77 +2,195 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sherkall Intelligence | Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Sherkall Intelligence | Dashboard GPS</title>
+  <meta name="theme-color" content="#060F1A">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="dashboard.css"/>
 </head>
 <body>
-
+ 
   <!-- TOPBAR -->
   <header class="topbar">
-    <div class="brand">SHERKALL <span>INTEL</span></div>
-    <div class="top-controls">
-      <div id="account-info">Bienvenue, <span id="client-name">—</span></div>
-      <button class="top-btn" onclick="toggleSidebar()">☰ Flotte</button>
-      <button class="top-btn logout-btn" onclick="logout()">⏻ Déconnexion</button>
-    </div>
-  </header>
-
-  <!-- MAIN LAYOUT -->
-  <main class="layout">
-
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="sidebar">
-
-      <!-- Subscription -->
-      <div class="sidebar-section">
-        <h3>Abonnement</h3>
-        <span id="plan-badge" class="plan-badge plan-basic">Basic</span>
+    <div class="topbar-left">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" fill="#C9A227"/>
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9" stroke="#C9A227" stroke-width="1" opacity="0.3"/>
+          </svg>
+        </div>
+        SHERKALL <span>INTEL</span>
       </div>
-
-      <!-- Vehicle List -->
-      <div class="sidebar-section" style="flex:1">
-        <h3>Mes Véhicules (<span id="vehicle-count">0</span>)</h3>
-        <input
-          type="text"
-          class="vehicle-filter"
-          id="vehicle-filter"
-          placeholder="🔍 Rechercher un véhicule..."
-        >
-        <ul id="vehicle-list"></ul>
-      </div>
-
-      <!-- Quick Actions -->
-      <div class="sidebar-section">
-        <h3>Actions Rapides</h3>
-        <div class="action-grid">
-          <button class="action-btn" onclick="centerAll()">🗺 Centrer</button>
-          <button class="action-btn" onclick="refreshVehicles()">🔄 Actualiser</button>
+ 
+      <!-- LIVE STATS BAR -->
+      <div class="top-stats">
+        <div class="top-stat">
+          <div class="top-stat-dot green-dot"></div>
+          <span id="stat-moving">0</span>
+          <span class="top-stat-label">En mouvement</span>
+        </div>
+        <div class="top-stat-divider"></div>
+        <div class="top-stat">
+          <div class="top-stat-dot amber-dot"></div>
+          <span id="stat-idle">0</span>
+          <span class="top-stat-label">En veille</span>
+        </div>
+        <div class="top-stat-divider"></div>
+        <div class="top-stat">
+          <div class="top-stat-dot red-dot"></div>
+          <span id="stat-offline">0</span>
+          <span class="top-stat-label">Hors ligne</span>
         </div>
       </div>
-
+    </div>
+ 
+    <div class="top-controls">
+      <div class="connection-indicator" id="conn-indicator">
+        <div class="conn-dot"></div>
+        <span id="conn-label">Connexion...</span>
+      </div>
+      <div class="account-pill">
+        <div class="account-avatar" id="account-avatar">H</div>
+        <span id="client-name">—</span>
+      </div>
+      <button class="top-btn sidebar-toggle" onclick="toggleSidebar()" title="Flotte">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <button class="top-btn logout-btn" onclick="logout()" title="Déconnexion">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+ 
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
+ 
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+ 
+      <!-- Subscription -->
+      <div class="sidebar-section sub-section">
+        <div class="sub-header">
+          <span class="section-label">Abonnement</span>
+          <span id="plan-badge" class="plan-badge plan-basic">BASIC</span>
+        </div>
+        <div class="sub-progress">
+          <div class="sub-progress-bar" id="sub-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="sub-info">
+          <span id="sub-vehicles-used">0</span> / <span id="sub-vehicles-max">20</span> véhicules
+        </div>
+      </div>
+ 
+      <!-- Fleet -->
+      <div class="sidebar-section fleet-summary">
+        <span class="section-label">Ma Flotte</span>
+        <div class="fleet-count-display">
+          <span id="vehicle-count" class="fleet-number">0</span>
+          <span class="fleet-label">véhicules</span>
+        </div>
+        <div class="search-wrapper">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" class="vehicle-filter" id="vehicle-filter" placeholder="Rechercher...">
+        </div>
+        <ul id="vehicle-list"></ul>
+      </div>
+ 
+      <!-- Map Layers -->
+      <div class="sidebar-section">
+        <span class="section-label">Carte</span>
+        <div class="map-layer-btns">
+          <button class="layer-btn active" onclick="setMapLayer('street', this)">🗺 Rue</button>
+          <button class="layer-btn" onclick="setMapLayer('satellite', this)">🛰 Satellite</button>
+          <button class="layer-btn" onclick="setMapLayer('dark', this)">🌙 Nuit</button>
+        </div>
+      </div>
+ 
+      <!-- Quick Actions -->
+      <div class="sidebar-section">
+        <span class="section-label">Actions</span>
+        <div class="quick-actions">
+          <button class="qa-btn" onclick="centerAll()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            Centrer tous
+          </button>
+          <button class="qa-btn" onclick="refreshAll()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            Actualiser
+          </button>
+          <button class="qa-btn" onclick="contactSupport()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Support WhatsApp
+          </button>
+        </div>
+      </div>
+ 
+      <!-- Footer -->
+      <div class="sidebar-footer">
+        <div class="last-refresh">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Dernière MAJ : <span id="last-refresh-time">—</span>
+        </div>
+      </div>
     </aside>
-
+ 
     <!-- MAP -->
     <section class="map-container">
       <div id="map"></div>
+ 
+      <div class="map-overlays">
+        <!-- Speed HUD -->
+        <div class="speed-hud" id="speed-hud" style="display:none">
+          <div class="speed-value" id="speed-value">0</div>
+          <div class="speed-unit">km/h</div>
+        </div>
+ 
+        <!-- Custom zoom controls -->
+        <div class="map-controls-custom">
+          <button onclick="map.zoomIn()" class="map-ctrl-btn" title="Zoom +">+</button>
+          <button onclick="map.zoomOut()" class="map-ctrl-btn" title="Zoom −">−</button>
+          <button onclick="centerAll()" class="map-ctrl-btn" title="Centrer">⊙</button>
+        </div>
+      </div>
+ 
+      <!-- Alerts -->
       <div id="alerts" class="alerts"></div>
     </section>
-
+ 
     <!-- DETAIL PANEL -->
     <aside id="detail-panel" class="detail-panel">
-      <h3>📍 Détails Véhicule</h3>
+      <div class="detail-header">
+        <div class="detail-header-left">
+          <div class="detail-pin">📍</div>
+          <div>
+            <div class="detail-panel-title">Détails Véhicule</div>
+            <div class="detail-panel-sub" id="detail-subtitle">Sélectionnez un véhicule</div>
+          </div>
+        </div>
+        <div id="detail-status-dot" class="detail-status-dot"></div>
+      </div>
+ 
       <div id="detail-body">
-        <p style="color:var(--grey);font-size:13px;text-align:center;padding:40px 0">
-          Sélectionnez un véhicule pour voir les détails
-        </p>
+        <div class="detail-empty">
+          <div class="detail-empty-icon">🚗</div>
+          <p>Cliquez sur un véhicule<br>sur la carte ou dans la liste</p>
+        </div>
       </div>
     </aside>
-
+ 
   </main>
-
+ 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="dashboard.js"></script>
 </body>
