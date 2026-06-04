@@ -181,23 +181,20 @@ async function refreshPositions() {
       v.ts      = pos.fixTime;
 
       // ══════════════════════════════════════════════════
-      // ROOT FIX: Don't trust the backend's status field.
-      // The backend's status column is stale/out-of-sync.
+      // BUG FIX: NEVER override 'offline' from speed.
       //
-      // Instead: derive status purely from fixTime age.
-      //   - Position < 15 min old  → device is online
-      //     (moving if speed > 2, idle if speed ≤ 2)
-      //   - Position ≥ 15 min old  → device is offline
+      // Old code:
+      //   if (v.speed > 2) v.status = 'online';
+      //   else if (v.status !== 'offline') v.status = 'idle';
       //
-      // This correctly handles the case where backend says
-      // a dead device is "online" or an active device is
-      // "offline" — we simply ignore that field.
+      // The old code promoted an offline device to 'online'
+      // if it had stale speed > 2 still sitting in the DB.
+      //
+      // Fix: only update moving/idle if backend says online.
       // ══════════════════════════════════════════════════
-      const ageMs     = Date.now() - new Date(v.ts || 0);
-      const isRecent  = ageMs < 15 * 60 * 1000; // 15 minutes
-      v.status = isRecent
-        ? (v.speed > 2 ? 'online' : 'idle')
-        : 'offline';
+      if (v.status !== 'offline') {
+        v.status = v.speed > 2 ? 'online' : 'idle';
+      }
 
       updateMarker(v);
     });
@@ -218,9 +215,9 @@ async function refreshPositions() {
 // ── MARKERS ───────────────────────────────────────────
 function vehicleColor(v) {
   if (!v) return '#8892A4';
-  if (v.speed > 2)                                  return '#10B981'; // moving  — green
-  if (v.status === 'online' || v.status === 'idle') return '#F59E0B'; // parked  — amber
-  return '#EF4444';                                                    // offline — red
+  if (v.speed > 2)           return '#10B981'; // moving — green
+  if (v.status === 'online') return '#F59E0B'; // idle   — amber
+  return '#EF4444';                             // offline — red
 }
 
 function buildMarkerIcon(v) {
@@ -287,7 +284,7 @@ function renderVehicleList() {
 
   vehicles.forEach(v => {
     const isMoving  = v.speed > 2;
-    const isOnline  = v.status === 'online' || v.status === 'idle';
+    const isOnline  = v.status === 'online' || isMoving;
     const statusCls = isMoving ? 'status-moving' : isOnline ? 'status-idle' : 'status-offline';
     const statusTxt = isMoving ? `Moving · ${v.speed} km/h` : isOnline ? 'Parked' : 'Offline';
 
@@ -562,9 +559,9 @@ function viewAlertOnMap(id) {
 function updateTopStats() {
   let moving = 0, idle = 0, offline = 0;
   Object.values(vehicleStore).forEach(v => {
-    if (v.speed > 2)                                  moving++;
-    else if (v.status === 'online' || v.status === 'idle') idle++;
-    else                                                    offline++;
+    if (v.speed > 2)           moving++;
+    else if (v.status === 'online') idle++;
+    else                            offline++;
   });
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   set('stat-moving',  moving);
