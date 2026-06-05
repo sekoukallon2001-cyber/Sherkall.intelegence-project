@@ -6,9 +6,9 @@
 // ── CONFIG ───────────────────────────────────────────
 const CONFIG = {
   SPEED_THRESHOLD: 5,              // km/h — separates moving from idle
-  ONLINE_WINDOW_MS: 15 * 60 * 1000, // 15 minutes — GPS freshness threshold
+  ONLINE_WINDOW_MS: 90 * 1000, // 15 minutes — GPS freshness threshold
   SPEEDING_THRESHOLD: 90,          // km/h — alert trigger
-  POLLING_INTERVAL: 5000,          // ms — fallback polling rate
+  POLLING_INTERVAL: 3000,          // ms — fallback polling rate
   RETRY_DELAY: 3000,               // ms — SSE reconnection delay
   RENDER_DEBOUNCE: 100,            // ms — batch UI updates
   MAX_VEHICLES_VIRTUAL_SCROLL: 50  // Virtual scroll threshold
