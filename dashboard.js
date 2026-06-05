@@ -81,17 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   try {
-    userInfo = JSON.parse(userStr);
-    // NEW: Validate user structure to prevent injection attacks
-    if (!userInfo || typeof userInfo !== 'object' || !userInfo.name || !userInfo.email) {
-      throw new Error('Invalid user structure');
-    }
-  } catch (err) {
-    console.error('Failed to parse/validate user info:', err);
-    logout();
-    return;
+  userInfo = JSON.parse(userStr);
+
+  if (!userInfo || typeof userInfo !== 'object') {
+    throw new Error('Invalid user structure');
   }
 
+} catch (err) {
+  console.error('Failed to parse user info:', err);
+  logout();
+  return;
+}
+  
   // NEW: Retrieve CSRF token from meta tag or request it from backend
   const csrfMeta = document.querySelector('meta[name="csrf-token"]');
   if (csrfMeta) {
