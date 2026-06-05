@@ -5,7 +5,7 @@
 
 // ── CONFIG ───────────────────────────────────────────
 const CONFIG = {
-  SPEED_THRESHOLD: 5,              // km/h — separates moving from idle
+  SPEED_THRESHOLD: 3,              // km/h — separates moving from idle
   ONLINE_WINDOW_MS: 90 * 1000, // 15 minutes — GPS freshness threshold
   SPEEDING_THRESHOLD: 90,          // km/h — alert trigger
   POLLING_INTERVAL: 3000,          // ms — fallback polling rate
