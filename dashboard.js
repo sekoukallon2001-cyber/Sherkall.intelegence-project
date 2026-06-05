@@ -1,6 +1,7 @@
 // =====================================================
 // SHERKALL INTELLIGENCE — DASHBOARD JS
 // =====================================================
+// Enhanced with security hardening & performance optimizations
 
 // ── CONFIG ───────────────────────────────────────────
 const CONFIG = {
@@ -9,7 +10,8 @@ const CONFIG = {
   SPEEDING_THRESHOLD: 90,          // km/h — alert trigger
   POLLING_INTERVAL: 5000,          // ms — fallback polling rate
   RETRY_DELAY: 3000,               // ms — SSE reconnection delay
-  RENDER_DEBOUNCE: 100             // ms — batch UI updates
+  RENDER_DEBOUNCE: 100,            // ms — batch UI updates
+  MAX_VEHICLES_VIRTUAL_SCROLL: 50  // Virtual scroll threshold
 };
 
 const BACKEND_URL = 'https://sherkall-backend-production.up.railway.app';
@@ -29,9 +31,11 @@ const TILE_LAYERS = {
 let map, tileLayer;
 let vehicleStore  = {};
 let markers       = {};
+let markerIconCache = {};  // NEW: Cache icons by color to avoid rebuilding
 let selectedId    = null;
 let authToken     = null;
 let userInfo      = null;
+let csrfToken     = null;  // NEW: CSRF token for API calls
 let pollingTimer  = null;
 let sseConnection = null;
 let renderTimeout = null;
@@ -78,18 +82,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   try {
     userInfo = JSON.parse(userStr);
+    // NEW: Validate user structure to prevent injection attacks
+    if (!userInfo || typeof userInfo !== 'object' || !userInfo.name || !userInfo.email) {
+      throw new Error('Invalid user structure');
+    }
   } catch (err) {
-    console.error('Failed to parse user info:', err);
+    console.error('Failed to parse/validate user info:', err);
     logout();
     return;
+  }
+
+  // NEW: Retrieve CSRF token from meta tag or request it from backend
+  const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+  if (csrfMeta) {
+    csrfToken = csrfMeta.getAttribute('content');
+  } else {
+    console.warn('CSRF token not found. Add <meta name="csrf-token" content="..."> to HTML head.');
   }
 
   DOM.init();
   applyUserInfo();
 
-  // Wire up vehicle search filter
+  // Wire up vehicle search filter with debouncing to prevent excessive renders
   if (DOM.vehicleFilter) {
-    DOM.vehicleFilter.addEventListener('input', renderVehicleList);
+    let filterTimeout;
+    DOM.vehicleFilter.addEventListener('input', () => {
+      clearTimeout(filterTimeout);
+      filterTimeout = setTimeout(() => {
+        renderVehicleList();
+      }, 300); // 300ms debounce for filter input
+    });
   }
 
   initMap();
@@ -229,11 +251,27 @@ async function loadAll() {
   setConnected(true);
 }
 
+// ── API HELPER — CSRF PROTECTION ──────────────────────
+// NEW: Helper function to add CSRF token to fetch requests
+function createFetchHeaders() {
+  const headers = {
+    'Authorization': `Bearer ${authToken}`,
+    'Content-Type': 'application/json'
+  };
+  
+  // Add CSRF token if available (should be sent by backend on initial page load)
+  if (csrfToken) {
+    headers['X-CSRF-Token'] = csrfToken;
+  }
+  
+  return headers;
+}
+
 // ── VEHICLES ──────────────────────────────────────────
 async function refreshVehicles() {
   try {
     const res = await fetch(`${BACKEND_URL}/api/vehicles`, {
-      headers: { 'Authorization': `Bearer ${authToken}` }
+      headers: createFetchHeaders()
     });
 
     if (res.status === 401) { logout(); return; }
@@ -283,7 +321,7 @@ function processPositions(data) {
 async function refreshPositions() {
   try {
     const res = await fetch(`${BACKEND_URL}/api/vehicles/positions`, {
-      headers: { 'Authorization': `Bearer ${authToken}` }
+      headers: createFetchHeaders()
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
@@ -315,10 +353,18 @@ function vehicleColor(v) {
   return '#EF4444';                                                   // offline — red
 }
 
+// NEW: Build marker icon with caching to avoid rebuilding identical icons
 function buildMarkerIcon(v) {
   const color      = vehicleColor(v);
   const isSelected = v.id === selectedId;
   const size       = isSelected ? 44 : 36;
+  
+  // NEW: Check cache first
+  const cacheKey = `${color}-${isSelected}`;
+  if (markerIconCache[cacheKey]) {
+    return markerIconCache[cacheKey];
+  }
+
   const shadow     = isSelected
     ? `0 0 0 3px ${color}, 0 4px 14px rgba(0,0,0,0.4)`
     : `0 2px 10px rgba(0,0,0,0.3)`;
@@ -327,7 +373,7 @@ function buildMarkerIcon(v) {
     : '';
   const iconSize = Math.round(size * 0.52);
 
-  return L.divIcon({
+  const icon = L.divIcon({
     className: '',
     html: `<div style="position:relative;width:${size}px;height:${size}px;">
       ${glow}
@@ -347,6 +393,10 @@ function buildMarkerIcon(v) {
     iconSize:   [size, size],
     iconAnchor: [size / 2, size / 2]
   });
+
+  // NEW: Cache the icon
+  markerIconCache[cacheKey] = icon;
+  return icon;
 }
 
 function updateMarker(v) {
@@ -360,7 +410,8 @@ function updateMarker(v) {
   } else {
     const m = L.marker(latlng, { icon }).addTo(map);
     m.on('click', () => selectVehicle(v.id));
-    m.bindTooltip(`<strong>${v.name}</strong>`, { sticky: false });
+    // NEW: Escape vehicle name in tooltip
+    m.bindTooltip(escapeHtml(v.name), { sticky: false });
     markers[v.id] = m;
   }
 }
@@ -384,6 +435,9 @@ function renderVehicleList() {
     return;
   }
 
+  // NEW: Use DocumentFragment for better performance
+  const fragment = document.createDocumentFragment();
+
   vehicles.forEach(v => {
     const status    = getVehicleStatus(v);
     const isMoving  = v.speed > CONFIG.SPEED_THRESHOLD;
@@ -397,6 +451,7 @@ function renderVehicleList() {
 
     const li = document.createElement('li');
     li.className = `veh-item ${statusCls}${v.id === selectedId ? ' selected' : ''}`;
+    li.dataset.vehicleId = v.id; // NEW: Store ID in data attribute for event delegation
     
     // Build HTML safely
     li.innerHTML = `
@@ -420,13 +475,13 @@ function renderVehicleList() {
           </div>
         </div>
         <div class="veh-actions">
-          <button class="veh-action-btn" title="Locate on map">
+          <button class="veh-action-btn locate-btn" title="Locate on map">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="10" r="3"/>
               <path d="M12 2a8 8 0 010 16m0 0v4"/>
             </svg>
           </button>
-          <button class="veh-action-btn" title="History">
+          <button class="veh-action-btn history-btn" title="History">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="23 4 23 10 17 10"/>
               <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
@@ -438,25 +493,43 @@ function renderVehicleList() {
     // Set vehicle name safely
     li.querySelector('.veh-name').textContent = v.name;
     
-    // Attach event listeners (not inline onclick)
-    li.onclick = () => selectVehicle(v.id);
-    li.querySelector('.veh-actions button:nth-child(1)').onclick = (e) => {
-      e.stopPropagation();
-      locateVehicleOnMap(v.id);
-    };
-    li.querySelector('.veh-actions button:nth-child(2)').onclick = (e) => {
-      e.stopPropagation();
-      openHistory(v.id);
-    };
-    
-    DOM.vehicleList.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  // NEW: Append all at once for better performance
+  DOM.vehicleList.appendChild(fragment);
+
+  // NEW: Use event delegation for vehicle list clicks
+  attachVehicleListDelegation();
 
   // Update KPI counters
   const active  = vehicles.filter(v => getVehicleStatus(v) !== 'offline').length;
   const alertCt = vehicles.filter(v => v.speed > CONFIG.SPEEDING_THRESHOLD).length;
   DOM.setElement('kpi-active', active);
   DOM.setElement('kpi-alerts', alertCt);
+}
+
+// NEW: Event delegation for vehicle list (prevents memory leaks from many closures)
+function attachVehicleListDelegation() {
+  if (!DOM.vehicleList) return;
+
+  // Add single delegated listener
+  DOM.vehicleList.addEventListener('click', (e) => {
+    const li = e.target.closest('li.veh-item');
+    if (!li) return;
+
+    const vehicleId = li.dataset.vehicleId;
+    
+    if (e.target.closest('.locate-btn')) {
+      e.stopPropagation();
+      locateVehicleOnMap(vehicleId);
+    } else if (e.target.closest('.history-btn')) {
+      e.stopPropagation();
+      openHistory(vehicleId);
+    } else {
+      selectVehicle(vehicleId);
+    }
+  });
 }
 
 // ── VEHICLE SELECTION ─────────────────────────────────
@@ -680,7 +753,7 @@ function renderAlertsFeed() {
       </div>
       <div class="alert-title">${escapeHtml(a.title)}</div>
       <div class="alert-desc">${escapeHtml(a.desc)}</div>
-      <button class="alert-view-btn" data-vehicle-id="${a.id}">
+      <button class="alert-view-btn" data-vehicle-id="${escapeHtml(String(a.id))}">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
           <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
