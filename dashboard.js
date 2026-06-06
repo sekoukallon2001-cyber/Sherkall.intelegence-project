@@ -6,7 +6,7 @@
 // ── CONFIG ───────────────────────────────────────────
 const CONFIG = {
   SPEED_THRESHOLD: 3,              // km/h — separates moving from idle
-  ONLINE_WINDOW_MS: 90 * 1000, // 15 minutes — GPS freshness threshold
+  ONLINE_WINDOW_MS: 90 * 1000, // 90 seconds — GPS freshness threshold
   SPEEDING_THRESHOLD: 90,          // km/h — alert trigger
   POLLING_INTERVAL: 3000,          // ms — fallback polling rate
   RETRY_DELAY: 3000,               // ms — SSE reconnection delay
@@ -62,6 +62,25 @@ const DOM = {
     this.connIndicator = document.getElementById('conn-indicator');
     this.connLabel = document.getElementById('conn-label');
     this.alertsContainer = document.getElementById('alerts');
+
+    // Set up vehicle list event delegation ONCE here, not inside renderVehicleList()
+    // Prevents hundreds of duplicate listeners building up over time
+    if (this.vehicleList) {
+      this.vehicleList.addEventListener('click', (e) => {
+        const li = e.target.closest('li.veh-item');
+        if (!li) return;
+        const vehicleId = li.dataset.vehicleId;
+        if (e.target.closest('.locate-btn')) {
+          e.stopPropagation();
+          locateVehicleOnMap(vehicleId);
+        } else if (e.target.closest('.history-btn')) {
+          e.stopPropagation();
+          openHistory(vehicleId);
+        } else {
+          selectVehicle(vehicleId);
+        }
+      });
+    }
   },
 
   setElement(id, value) {
@@ -497,40 +516,14 @@ function renderVehicleList() {
     fragment.appendChild(li);
   });
 
-  // NEW: Append all at once for better performance
+  // Append all at once for better performance
   DOM.vehicleList.appendChild(fragment);
-
-  // NEW: Use event delegation for vehicle list clicks
-  attachVehicleListDelegation();
 
   // Update KPI counters
   const active  = vehicles.filter(v => getVehicleStatus(v) !== 'offline').length;
   const alertCt = vehicles.filter(v => v.speed > CONFIG.SPEEDING_THRESHOLD).length;
   DOM.setElement('kpi-active', active);
   DOM.setElement('kpi-alerts', alertCt);
-}
-
-// NEW: Event delegation for vehicle list (prevents memory leaks from many closures)
-function attachVehicleListDelegation() {
-  if (!DOM.vehicleList) return;
-
-  // Add single delegated listener
-  DOM.vehicleList.addEventListener('click', (e) => {
-    const li = e.target.closest('li.veh-item');
-    if (!li) return;
-
-    const vehicleId = li.dataset.vehicleId;
-    
-    if (e.target.closest('.locate-btn')) {
-      e.stopPropagation();
-      locateVehicleOnMap(vehicleId);
-    } else if (e.target.closest('.history-btn')) {
-      e.stopPropagation();
-      openHistory(vehicleId);
-    } else {
-      selectVehicle(vehicleId);
-    }
-  });
 }
 
 // ── VEHICLE SELECTION ─────────────────────────────────
@@ -571,7 +564,9 @@ function refreshSheetContent(id) {
 
   const status    = getVehicleStatus(v);
   const isMoving  = v.speed > CONFIG.SPEED_THRESHOLD;
-  const statusKey = isMoving ? 'moving' : (status === 'online' ? 'idle' : 'offline');
+  // Fix: getVehicleStatus returns 'online'=moving, 'idle'=parked, 'offline'=stale
+  // Map cleanly: online→moving, idle→idle, offline→offline
+  const statusKey = status === 'online' ? 'moving' : status;
   const statusLbl = statusKey === 'moving' ? 'En mouvement' : statusKey === 'idle' ? 'En veille' : 'Hors ligne';
   const ts = v.ts
     ? new Date(v.ts).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' })
