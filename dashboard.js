@@ -241,14 +241,21 @@ function startRealtime() {
     };
 
     sseConnection.onerror = () => {
-      console.warn('SSE dropped — falling back to 5s polling');
-      sseConnection?.close();
-      sseConnection = null;
-      setConnected(false);
-      clearInterval(pollingTimer);
-      pollingTimer = null;
-      setTimeout(startPolling, CONFIG.RETRY_DELAY);
-    };
+  console.warn('SSE connection lost');
+
+  setConnected(false);
+
+  if (sseConnection) {
+    sseConnection.close();
+    sseConnection = null;
+  }
+
+  setTimeout(() => {
+    if (!sseConnection) {
+      startRealtime();
+    }
+  }, CONFIG.RETRY_DELAY);
+};
 
   } catch (err) {
     console.error('EventSource not supported:', err);
@@ -258,7 +265,8 @@ function startRealtime() {
 
 // Polling fallback (used only if SSE fails)
 function startPolling() {
-  if (sseConnection) return; // SSE already running
+  if (sseConnection) return;
+
   pollingTimer = setInterval(async () => {
     await refreshPositions();
   }, CONFIG.POLLING_INTERVAL);
