@@ -506,7 +506,7 @@ function renderAlertsFeed() {
     }
 
     if (v.speed > 2 && v.speed <= 90) {
-      items.push({ type:'info', icon:'📱', badge:'Movement', ts,
+      items.push({ type:'info', icon:'🚗', badge:'Movement', ts,
         title: `Moving: ${v.name}`,
         desc:  `Currently at ${v.speed} km/h.`, id: v.id });
     }
