@@ -5,9 +5,14 @@
 const BACKEND_URL = 'https://sherkall-backend-production.up.railway.app';
 
 const TILE_LAYERS = {
-  street:    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  dark:      'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+  street: {
+    url:     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    options: { maxZoom: 19, attribution: '© OpenStreetMap', subdomains: 'abc' }
+  },
+  satellite: {
+    url:     'https://mt{s}.google.com/vt/lyrs=y&hl=fr&x={x}&y={y}&z={z}',
+    options: { maxZoom: 20, attribution: '© Google', subdomains: ['0','1','2','3'] }
+  }
 };
 
 // ── STATE ────────────────────────────────────────────
@@ -38,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initMap();
   loadAll();
-  startPolling();
+  startRealtime();
+  loadGeofencesOnMap();
 });
 
 // ── USER INFO ─────────────────────────────────────────
@@ -57,9 +63,31 @@ function applyUserInfo() {
 // ── AUTH ──────────────────────────────────────────────
 function logout() {
   clearInterval(pollingTimer);
+  if (sseConnection) { sseConnection.close(); sseConnection = null; }
   localStorage.removeItem('sherkall_token');
   localStorage.removeItem('sherkall_user');
   window.location.href = '/login.html';
+}
+
+// ── PROCESS POSITIONS (shared by SSE + polling) ───────
+function processPositions(data) {
+  (data.positions || []).forEach(pos => {
+    const v = vehicleStore[pos.deviceId];
+    if (!v) return;
+    v.lat     = pos.latitude;
+    v.lon     = pos.longitude;
+    v.speed   = Math.round(pos.speed  || 0);
+    v.heading = Math.round(pos.course || 0);
+    v.ts      = pos.fixTime;
+    const ageMs    = Date.now() - new Date(v.ts || 0);
+    const isRecent = ageMs < 90 * 1000;
+    v.status = isRecent ? (v.speed > 3 ? 'online' : 'idle') : 'offline';
+    updateMarker(v);
+  });
+  renderVehicleList();
+  updateTopStats();
+  setConnected(true);
+  if (selectedId) refreshSheetContent(selectedId);
 }
 
 // ── VIEW SWITCHING ────────────────────────────────────
@@ -89,19 +117,15 @@ function initMap() {
     attributionControl: true
   }).setView([9.538, -13.677], 12);
 
-  tileLayer = L.tileLayer(TILE_LAYERS.street, {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-  }).addTo(map);
+  const layer = TILE_LAYERS.street;
+  tileLayer = L.tileLayer(layer.url, layer.options).addTo(map);
 }
 
 function setMapLayer(type, btn) {
   if (tileLayer) map.removeLayer(tileLayer);
-  tileLayer = L.tileLayer(TILE_LAYERS[type], {
-    maxZoom: 19,
-    attribution: type === 'street' ? '© OpenStreetMap' : '© Esri / Stadia'
-  }).addTo(map);
-
+  const layer = TILE_LAYERS[type];
+  if (!layer) return;
+  tileLayer = L.tileLayer(layer.url, layer.options).addTo(map);
   document.querySelectorAll('.layer-fab').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
 }
@@ -118,10 +142,39 @@ async function refreshAll() {
   showAlert('✅ Données actualisées', 'success');
 }
 
+// ── REALTIME — SSE PUSH ───────────────────────────────
+let sseConnection = null;
+
+function startRealtime() {
+  const url = `${BACKEND_URL}/api/vehicles/stream?token=${encodeURIComponent(authToken)}`;
+  try {
+    sseConnection = new EventSource(url);
+    sseConnection.onopen = () => setConnected(true);
+    sseConnection.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.positions) processPositions(data);
+      } catch {}
+    };
+    sseConnection.addEventListener('geofence', (event) => {
+      try { handleGeofenceAlert(JSON.parse(event.data)); } catch {}
+    });
+    sseConnection.onerror = () => {
+      sseConnection?.close();
+      sseConnection = null;
+      setConnected(false);
+      setTimeout(() => { if (!sseConnection) startRealtime(); }, 3000);
+    };
+  } catch {
+    startPolling();
+  }
+}
+
 function startPolling() {
+  if (sseConnection || pollingTimer) return;
   pollingTimer = setInterval(async () => {
     await refreshPositions();
-  }, 30000); // poll every 30s
+  }, 5000);
 }
 
 // ── VEHICLES ──────────────────────────────────────────
@@ -158,54 +211,16 @@ async function refreshVehicles() {
   }
 }
 
-// ── POSITIONS ─────────────────────────────────────────
+// ── POSITIONS (polling fallback) ──────────────────────
 async function refreshPositions() {
   try {
     const res = await fetch(`${BACKEND_URL}/api/vehicles/positions`, {
       headers: { 'Authorization': `Bearer ${authToken}` }
     });
-
     if (!res.ok) return;
-
     const data = await res.json();
     if (!data.success) return;
-
-    (data.positions || []).forEach(pos => {
-      const v = vehicleStore[pos.deviceId];
-      if (!v) return;
-
-      v.lat     = pos.latitude;
-      v.lon     = pos.longitude;
-      v.speed   = Math.round(pos.speed  || 0);
-      v.heading = Math.round(pos.course || 0);
-      v.ts      = pos.fixTime;
-
-      // ══════════════════════════════════════════════════
-      // BUG FIX: NEVER override 'offline' from speed.
-      //
-      // Old code:
-      //   if (v.speed > 2) v.status = 'online';
-      //   else if (v.status !== 'offline') v.status = 'idle';
-      //
-      // The old code promoted an offline device to 'online'
-      // if it had stale speed > 2 still sitting in the DB.
-      //
-      // Fix: only update moving/idle if backend says online.
-      // ══════════════════════════════════════════════════
-      if (v.status !== 'offline') {
-        v.status = v.speed > 2 ? 'online' : 'idle';
-      }
-
-      updateMarker(v);
-    });
-
-    renderVehicleList();
-    updateTopStats();
-    setConnected(true);
-
-    // Refresh open bottom sheet if vehicle is selected
-    if (selectedId) refreshSheetContent(selectedId);
-
+    processPositions(data);
   } catch (err) {
     console.error('refreshPositions:', err);
     setConnected(false);
@@ -215,32 +230,40 @@ async function refreshPositions() {
 // ── MARKERS ───────────────────────────────────────────
 function vehicleColor(v) {
   if (!v) return '#8892A4';
-  if (v.speed > 2)           return '#10B981'; // moving — green
-  if (v.status === 'online') return '#F59E0B'; // idle   — amber
-  return '#EF4444';                             // offline — red
+  if (v.speed > 3)                                   return '#10B981'; // moving — green
+  if (v.status === 'online' || v.status === 'idle')  return '#F59E0B'; // idle   — amber
+  return '#EF4444';                                                      // offline — red
 }
 
 function buildMarkerIcon(v) {
   const color      = vehicleColor(v);
   const isSelected = v.id === selectedId;
-  const size       = isSelected ? 38 : 32;
-  const ring       = isSelected
-    ? `border:3px solid ${color};`
-    : `border:2px solid rgba(255,255,255,0.9);`;
-  const pulse = v.speed > 2
+  const size       = isSelected ? 44 : 36;
+  const shadow     = isSelected
+    ? `0 0 0 3px ${color}, 0 4px 14px rgba(0,0,0,0.4)`
+    : `0 2px 10px rgba(0,0,0,0.3)`;
+  const glow = v.speed > 3
     ? `<div style="position:absolute;inset:-6px;border-radius:50%;background:${color};opacity:0.15;animation:markerPulse 2s ease-in-out infinite;"></div>`
     : '';
+  const iconSize = Math.round(size * 0.52);
 
   return L.divIcon({
     className: '',
     html: `<div style="position:relative;width:${size}px;height:${size}px;">
-             ${pulse}
-             <div style="position:relative;width:${size}px;height:${size}px;
-                         background:${color};${ring}border-radius:50%;
-                         display:flex;align-items:center;justify-content:center;
-                         font-size:${isSelected ? 17 : 14}px;
-                         box-shadow:0 3px 10px rgba(0,0,0,0.45);">🚗</div>
-           </div>`,
+      ${glow}
+      <div style="
+        position:absolute;inset:0;
+        background:#ffffff;
+        border:2.5px solid ${color};
+        border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:${shadow};
+      ">
+        <svg viewBox="0 0 24 24" width="${iconSize}" height="${iconSize}" fill="${color}">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+    </div>`,
     iconSize:   [size, size],
     iconAnchor: [size / 2, size / 2]
   });
@@ -283,8 +306,8 @@ function renderVehicleList() {
   }
 
   vehicles.forEach(v => {
-    const isMoving  = v.speed > 2;
-    const isOnline  = v.status === 'online' || isMoving;
+    const isMoving  = v.speed > 3;
+    const isOnline  = v.status === 'online' || v.status === 'idle';
     const statusCls = isMoving ? 'status-moving' : isOnline ? 'status-idle' : 'status-offline';
     const statusTxt = isMoving ? `Moving · ${v.speed} km/h` : isOnline ? 'Parked' : 'Offline';
 
@@ -381,8 +404,8 @@ function refreshSheetContent(id) {
   const v  = vehicleStore[id];
   if (!el || !v) return;
 
-  const isMoving  = v.speed > 2;
-  const statusKey = isMoving ? 'moving' : (v.status === 'online' ? 'idle' : 'offline');
+  const isMoving  = v.speed > 3;
+  const statusKey = isMoving ? 'moving' : (v.status === 'offline' ? 'offline' : 'idle');
   const statusLbl = statusKey === 'moving' ? 'En mouvement' : statusKey === 'idle' ? 'En veille' : 'Hors ligne';
   const ts = v.ts
     ? new Date(v.ts).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' })
@@ -559,9 +582,9 @@ function viewAlertOnMap(id) {
 function updateTopStats() {
   let moving = 0, idle = 0, offline = 0;
   Object.values(vehicleStore).forEach(v => {
-    if (v.speed > 2)           moving++;
-    else if (v.status === 'online') idle++;
-    else                            offline++;
+    if (v.speed > 3)                                  moving++;
+    else if (v.status === 'online' || v.status === 'idle') idle++;
+    else                                                    offline++;
   });
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   set('stat-moving',  moving);
@@ -630,4 +653,58 @@ function showAlert(msg, type) {
     toast.style.transition = 'all 0.3s ease';
     setTimeout(() => toast.remove(), 300);
   }, 4000);
+}
+
+// ── GEOFENCE ALERTS ───────────────────────────────────
+let geofenceLayers = {};
+
+function handleGeofenceAlert(alert) {
+  const isEntry = alert.eventType === 'entered';
+  const emoji   = isEntry ? '🔵' : '🔴';
+  showAlert(`${emoji} ${alert.deviceName} ${isEntry ? 'entered' : 'exited'} ${alert.geofenceName}`, isEntry ? '' : 'danger');
+  const layer = geofenceLayers[alert.geofenceId];
+  if (layer) {
+    layer.setStyle({ color: isEntry ? '#10B981' : '#EF4444', weight: 4 });
+    setTimeout(() => layer.setStyle({ color: layer._originalColor || '#C9A227', weight: 2 }), 2000);
+  }
+}
+
+async function loadGeofencesOnMap() {
+  if (!map) return;
+  try {
+    const res  = await fetch(`${BACKEND_URL}/api/geofences`, {
+      headers: { 'Authorization': `Bearer ${authToken}` }
+    });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.success) return;
+
+    Object.values(geofenceLayers).forEach(l => map.removeLayer(l));
+    geofenceLayers = {};
+
+    (data.geofences || []).forEach(fence => {
+      if (!fence.active) return;
+      const color = fence.color || '#C9A227';
+      let layer;
+
+      if (fence.type === 'circle' && fence.center_lat && fence.center_lng) {
+        layer = L.circle([fence.center_lat, fence.center_lng], {
+          radius: fence.radius_m, color,
+          fillColor: color, fillOpacity: 0.08, weight: 2, dashArray: '6 4'
+        });
+      } else if (fence.type === 'polygon' && fence.coordinates?.length) {
+        const latlngs = fence.coordinates.map(([lng, lat]) => [lat, lng]);
+        layer = L.polygon(latlngs, {
+          color, fillColor: color, fillOpacity: 0.08, weight: 2, dashArray: '6 4'
+        });
+      }
+
+      if (layer) {
+        layer._originalColor = color;
+        layer.bindTooltip(`<strong>${fence.name}</strong>`);
+        layer.addTo(map);
+        geofenceLayers[fence.id] = layer;
+      }
+    });
+  } catch {}
 }
