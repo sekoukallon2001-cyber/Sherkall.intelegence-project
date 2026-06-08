@@ -887,9 +887,11 @@ function filterClients() {
 // ══════════════════════════════════════════════════════
 // CLIENT DETAIL SLIDE-OVER
 // ══════════════════════════════════════════════════════
-function openDetail(clientId) {
+async function openDetail(clientId) {
   selectedClient = allClients.find(c => c.id === clientId);
   if (!selectedClient) return;
+  // Ensure Traccar devices are loaded before rendering assign dropdown
+  if (!traccarDevices.length) await loadTraccarDevices();
   renderDetail();
   document.getElementById('so-name').textContent = selectedClient.name;
   document.getElementById('overlay').classList.add('show');
@@ -1628,6 +1630,11 @@ async function createZone() {
   } catch (err) { showToast(err.message, 'error'); }
   finally { btn.disabled = false; btn.textContent = 'Create Zone'; }
 }
+
+// ══════════════════════════════════════════════════════
+// INIT — load everything on page open
+// ══════════════════════════════════════════════════════
+loadAll();
 </script>
 </body>
 </html>
