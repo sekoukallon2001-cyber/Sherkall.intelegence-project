@@ -26,8 +26,10 @@ let pollingTimer  = null;
 
 // ── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  authToken = localStorage.getItem('sherkall_token');
-  const userStr = localStorage.getItem('sherkall_user');
+  // Prefer sessionStorage (tab-specific) over localStorage (shared across tabs)
+  // This prevents admin logging in on another tab from hijacking this tab's session
+  authToken = sessionStorage.getItem('sherkall_token') || localStorage.getItem('sherkall_token');
+  const userStr = sessionStorage.getItem('sherkall_user') || localStorage.getItem('sherkall_user');
 
   if (!authToken || !userStr) {
     window.location.href = '/login.html';
@@ -36,12 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   userInfo = JSON.parse(userStr);
 
-  // Role guard: admin token contaminating client tab (shared localStorage across tabs)
-  // If admin logs in on another tab, their token overwrites client token in localStorage.
-  // Redirect admin to their correct page instead of showing client dashboard.
+  // Safety: if somehow a non-client lands here, send to login
   if (userInfo.role === 'admin') {
-    window.location.href = '/admin.html';
-    return;
+    // Admin should not be on client dashboard — but only redirect if
+    // sessionStorage is also admin (meaning they logged in as admin in THIS tab)
+    const sessionUser = JSON.parse(sessionStorage.getItem('sherkall_user') || '{}');
+    if (sessionUser.role === 'admin') {
+      window.location.href = '/admin.html';
+      return;
+    }
+    // sessionStorage has client but localStorage has admin = cross-tab contamination
+    // Use the sessionStorage data which is tab-specific and correct
+    authToken = sessionStorage.getItem('sherkall_token');
+    userInfo  = JSON.parse(sessionStorage.getItem('sherkall_user'));
   }
   applyUserInfo();
 
@@ -74,6 +83,8 @@ function logout() {
   if (sseConnection) { sseConnection.close(); sseConnection = null; }
   localStorage.removeItem('sherkall_token');
   localStorage.removeItem('sherkall_user');
+  sessionStorage.removeItem('sherkall_token');
+  sessionStorage.removeItem('sherkall_user');
   window.location.href = '/login.html';
 }
 
