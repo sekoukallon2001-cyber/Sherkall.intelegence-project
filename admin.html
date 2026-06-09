@@ -1271,6 +1271,9 @@ async function saveDeviceEdit(clientId, deviceId) {
     if (btn) { btn.disabled = false; btn.textContent = 'Save Changes'; }
   }
 }
+
+// ── REMOVE DEVICE ─────────────────────────────────────
+async function removeDevice(clientId, deviceId) {
   if (!confirm('Remove this device from the client?')) return;
   try {
     const res  = await fetch(`${BACKEND}/api/admin/clients/${clientId}/devices/${deviceId}`, {
