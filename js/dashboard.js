@@ -127,6 +127,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const vf = document.getElementById('vehicle-filter');
   if (vf) vf.addEventListener('input', renderVehicleList);
 
+  // Vehicle list click delegation — set up ONCE here, not inside renderVehicleList
+  document.getElementById('vehicle-list')?.addEventListener('click', (e) => {
+    const li = e.target.closest('[data-vehicle-id]');
+    if (!li) return;
+    const id = li.dataset.vehicleId;
+    if (e.target.closest('.locate-btn')) {
+      e.stopPropagation();
+      locateVehicleOnMap(id);
+    } else {
+      selectVehicle(id);
+    }
+  });
+
   document.getElementById('sheet-backdrop')
     ?.addEventListener('click', closeSheet);
 
