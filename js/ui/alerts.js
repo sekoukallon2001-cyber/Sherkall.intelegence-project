@@ -3,7 +3,8 @@
 // js/ui/alerts.js
 // =====================================================
 
-import { vehicleStore, CONFIG } from '../state.js';
+import { vehicleStore } from '../state.js';
+import { CONFIG }       from '../config.js';
 
 // ── ALERTS FEED ───────────────────────────────────────
 export function renderAlertsFeed() {
