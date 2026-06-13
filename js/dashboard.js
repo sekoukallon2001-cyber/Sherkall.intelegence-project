@@ -9,7 +9,7 @@ import { requireRole, clearSession } from './auth.js';
 import { fetchVehicles, fetchPositions, fetchGeofences } from './api.js';
 import { vehicleStore, selectedId, setSelectedId, loadVehicles, processPositions, onUpdate } from './state.js';
 import { initRealtime, stopRealtime } from './realtime.js';
-import { initMap, setMapLayer, updateMarker, updateAllMarkers, centerVehicle, centerAll, renderGeofences, flashGeofence, flushPendingGeofences } from './map.js';
+import { initMap, setMapLayer, updateMarker, updateAllMarkers, centerVehicle, centerAll, renderGeofences, flashGeofence, flushPendingGeofences, zoomIn, zoomOut } from './map.js';
 import { renderVehicleList } from './ui/vehicleList.js';
 import { openSheet, closeSheet, refreshSheet } from './ui/sheet.js';
 import { renderAlertsFeed, handleGeofenceAlert, showToast } from './ui/alerts.js';
@@ -130,7 +130,8 @@ Object.assign(window, {
   switchView, logout, closeSheet, setMapLayer,
   centerAll, centerVehicle: locateVehicleOnMap,
   selectVehicle, locateVehicleOnMap,
-  openHistory, contactSupport, reportAlert, refreshAll
+  openHistory, contactSupport, reportAlert, refreshAll,
+  zoomIn, zoomOut  // needed by HTML onclick="zoomIn()" / "zoomOut()"
 });
 
 // ── INIT ──────────────────────────────────────────────
