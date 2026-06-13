@@ -2,75 +2,110 @@
 // SHERKALL INTELLIGENCE — ALERTS UI MODULE
 // js/ui/alerts.js
 // =====================================================
+// Rebuilt from original dashboard-1.js renderAlertsFeed
+// Preserves exact HTML structure, CSS classes, behaviour
 
-import { vehicleStore } from '../state.js';
-import { CONFIG }       from '../config.js';
+import { vehicleStore }       from '../state.js';
+import { getVehicleStatus }   from '../state.js';
+import { CONFIG }             from '../config.js';
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 
 // ── ALERTS FEED ───────────────────────────────────────
 export function renderAlertsFeed() {
   const feed = document.getElementById('alerts-feed');
   if (!feed) return;
 
-  const vehicles  = Object.values(vehicleStore);
-  const speeding  = vehicles.filter(v => v.speed > CONFIG.SPEEDING_THRESHOLD);
-  const offline   = vehicles.filter(v => v.status === 'offline' && v.ts);
-  const moving    = vehicles.filter(v => v.status === 'online');
-  const idle      = vehicles.filter(v => v.status === 'idle');
+  const items = [];
 
-  const entries = [];
+  Object.values(vehicleStore).forEach(v => {
+    const status = getVehicleStatus(v);
+    const ts = v.ts
+      ? new Date(v.ts).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' })
+      : '--:--:--';
 
-  speeding.forEach(v => entries.push({
-    cls: 'alert-danger',
-    icon: '⚡',
-    text: `${v.name} — vitesse excessive ${v.speed} km/h`,
-    time: 'En direct'
-  }));
+    if (v.speed > CONFIG.SPEEDING_THRESHOLD) {
+      items.push({
+        type:'critical', icon:'⚡', badge:'Critical', ts,
+        title: `Speeding: ${v.name}`,
+        desc:  `Detected at ${v.speed} km/h.`,
+        id: v.id
+      });
+    }
 
-  offline.forEach(v => {
-    const min = Math.round((Date.now() - new Date(v.ts)) / 60000);
-    entries.push({
-      cls: 'alert-warn',
-      icon: '📴',
-      text: `${v.name} — hors ligne`,
-      time: `il y a ${min < 1 ? '<1' : min} min`
-    });
+    if (status === 'offline') {
+      items.push({
+        type:'system', icon:'📡', badge:'System', ts,
+        title: `Signal Lost: ${v.name}`,
+        desc:  'Telemetry signal lost. Last known position on map.',
+        id: v.id
+      });
+    }
+
+    if (v.speed > CONFIG.SPEED_THRESHOLD && v.speed <= CONFIG.SPEEDING_THRESHOLD) {
+      items.push({
+        type:'info', icon:'🚗', badge:'Movement', ts,
+        title: `Moving: ${v.name}`,
+        desc:  `Currently at ${v.speed} km/h.`,
+        id: v.id
+      });
+    }
   });
 
-  moving.forEach(v => entries.push({
-    cls: 'alert-info',
-    icon: '🚗',
-    text: `${v.name} — en mouvement ${v.speed} km/h`,
-    time: 'En direct'
-  }));
+  // Update nav badge — critical alerts only
+  const critCount = items.filter(a => a.type === 'critical').length;
+  const badge = document.getElementById('nav-badge-alerts');
+  if (badge) {
+    badge.textContent   = critCount;
+    badge.style.display = critCount > 0 ? 'flex' : 'none';
+  }
 
-  idle.forEach(v => entries.push({
-    cls: 'alert-idle',
-    icon: '🅿',
-    text: `${v.name} — garé`,
-    time: 'En direct'
-  }));
-
-  if (!entries.length) {
-    feed.innerHTML = '<div class="alert-empty">Aucune activité récente</div>';
+  if (!items.length) {
+    feed.innerHTML = `
+      <div class="alerts-empty">
+        <div class="alerts-empty-icon">🔔</div>
+        <p>No recent alerts.<br>All systems normal.</p>
+      </div>`;
     return;
   }
 
-  feed.innerHTML = entries.map(e => `
-    <div class="alert-item ${e.cls}">
-      <span class="alert-icon">${e.icon}</span>
-      <div class="alert-content">
-        <p class="alert-text">${e.text}</p>
-        <p class="alert-time">${e.time}</p>
+  feed.innerHTML = items.map(a => `
+    <div class="alert-card alert-${a.type}">
+      <div class="alert-card-top">
+        <div class="alert-icon-wrap">${a.icon}</div>
+        <div class="alert-meta">
+          <span class="alert-badge">${escapeHtml(a.badge)}</span>
+          <div class="alert-ts">${escapeHtml(a.ts)}</div>
+        </div>
       </div>
+      <div class="alert-title">${escapeHtml(a.title)}</div>
+      <div class="alert-desc">${escapeHtml(a.desc)}</div>
+      <button class="alert-view-btn" data-vehicle-id="${escapeHtml(String(a.id))}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+          <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+        </svg>
+        View on Map
+      </button>
     </div>`).join('');
+
+  // Attach view-on-map handlers
+  feed.querySelectorAll('.alert-view-btn').forEach(btn => {
+    btn.onclick = () => {
+      if (window.selectVehicle) window.selectVehicle(btn.dataset.vehicleId);
+      if (window.switchView)    window.switchView('map');
+    };
+  });
 }
 
 // ── GEOFENCE ALERT HANDLER ────────────────────────────
 export function handleGeofenceAlert(alert) {
   const isEntry = alert.eventType === 'entered';
-  const emoji   = isEntry ? '🔵' : '🔴';
-  const action  = isEntry ? 'entered' : 'exited';
-  showToast(`${emoji} ${alert.deviceName} ${action} ${alert.geofenceName}`, isEntry ? 'info' : 'danger');
+  showToast(`${isEntry ? '🔵' : '🔴'} ${alert.deviceName} ${isEntry ? 'entered' : 'exited'} ${alert.geofenceName}`, isEntry ? 'info' : 'danger');
 }
 
 // ── TOAST ─────────────────────────────────────────────
