@@ -25,58 +25,74 @@ export function refreshSheet(id) {
 
   const isMoving  = v.speed > CONFIG.SPEED_THRESHOLD;
   const statusKey = isMoving ? 'moving' : (v.status === 'offline' ? 'offline' : 'idle');
-  const statusLbl = statusKey === 'moving' ? 'En mouvement' : statusKey === 'idle' ? 'En veille' : 'Hors ligne';
-  const statusClr = statusKey === 'moving' ? '#10B981' : statusKey === 'idle' ? '#F59E0B' : '#EF4444';
+  const statusLbl = statusKey === 'moving' ? 'EN MOUVEMENT' : statusKey === 'idle' ? 'EN VEILLE' : 'HORS LIGNE';
   const ts  = v.ts ? new Date(v.ts).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' }) : '—';
   const lat = v.lat ? Number(v.lat).toFixed(6) : '—';
   const lon = v.lon ? Number(v.lon).toFixed(6) : '—';
+  const diffMin = v.ts ? Math.round((Date.now() - new Date(v.ts)) / 60000) : null;
+  const timeStr = diffMin === null ? '—' : diffMin < 1 ? 'il y a <1 min' : `il y a ${diffMin} min`;
 
   body.innerHTML = `
-    <div class="sheet-kpi-row">
-      <div class="sheet-kpi">
-        <span class="sheet-kpi-icon">⚡</span>
-        <span class="sheet-kpi-val">${v.speed}</span>
-        <span class="sheet-kpi-unit">km/h</span>
-        <span class="sheet-kpi-lbl">VITESSE</span>
+    <div class="vehicle-card-header">
+      <span class="vehicle-card-name">${v.name}</span>
+      <span class="status-badge status-${statusKey}">${statusLbl}</span>
+    </div>
+
+    <div class="telem-grid">
+      <div class="telem-card">
+        <span class="telem-icon">⚡</span>
+        <span class="telem-value">${v.speed}</span>
+        <span class="telem-unit">km/h</span>
+        <span class="telem-label">VITESSE</span>
       </div>
-      <div class="sheet-kpi">
-        <span class="sheet-kpi-icon">🧭</span>
-        <span class="sheet-kpi-val">${v.heading}</span>
-        <span class="sheet-kpi-unit">°</span>
-        <span class="sheet-kpi-lbl">DIRECTION</span>
+      <div class="telem-card">
+        <span class="telem-icon">🧭</span>
+        <span class="telem-value">${v.heading}</span>
+        <span class="telem-unit">°</span>
+        <span class="telem-label">DIRECTION</span>
       </div>
     </div>
-    <div class="sheet-coords">
-      <div class="sheet-coord-row"><span class="coord-lbl">LAT</span><span class="coord-val">${lat}</span></div>
-      <div class="sheet-coord-row"><span class="coord-lbl">LNG</span><span class="coord-val">${lon}</span></div>
+
+    <div class="coords-block">
+      <div class="coords-row">
+        <span class="coords-label">LAT</span>
+        <span class="coords-value">${lat}</span>
+      </div>
+      <div class="coords-row">
+        <span class="coords-label">LNG</span>
+        <span class="coords-value">${lon}</span>
+      </div>
     </div>
-    <div class="sheet-meta-row">
-      <span class="sheet-meta-lbl">Dernière mise à jour</span>
-      <span class="sheet-meta-val">${ts}</span>
+
+    <div class="last-update-row">
+      <span>Dernière mise à jour</span>
+      <span>${ts}</span>
     </div>
-    <div class="sheet-actions">
-      <button class="sheet-btn" onclick="window.centerVehicle && window.centerVehicle('${v.id}')">📍 Centrer</button>
-      <button class="sheet-btn" onclick="window.openHistory && window.openHistory('${v.id}')">📋 Historique</button>
-      <button class="sheet-btn" onclick="window.contactSupport && window.contactSupport()">💬 Support</button>
-      <button class="sheet-btn sheet-btn-warn" onclick="window.reportAlert && window.reportAlert('${v.id}')">🚨 Signaler</button>
+
+    <div class="detail-actions">
+      <button class="detail-action-btn" onclick="window.centerVehicle && window.centerVehicle('${v.id}')">
+        <span class="btn-icon">📍</span>Centrer
+      </button>
+      <button class="detail-action-btn" onclick="window.openHistory && window.openHistory('${v.id}')">
+        <span class="btn-icon">📋</span>Historique
+      </button>
+      <button class="detail-action-btn support" onclick="window.contactSupport && window.contactSupport()">
+        <span class="btn-icon">💬</span>Support
+      </button>
+      <button class="detail-action-btn danger" onclick="window.reportAlert && window.reportAlert('${v.id}')">
+        <span class="btn-icon">🚨</span>Signaler
+      </button>
     </div>
-    <div class="sheet-recent">
-      <p class="sheet-recent-title">ACTIVITÉ RÉCENTE</p>
-      <div id="sheet-history"></div>
+
+    <div class="history-section">
+      <p class="history-title">ACTIVITÉ RÉCENTE</p>
+      <div class="history-item">
+        <span class="history-dot ${isMoving ? 'event-move' : 'event-stop'}"></span>
+        <div>
+          <p class="history-text">${isMoving ? 'En mouvement · ' + v.speed + ' km/h' : 'Arrêt détecté'}</p>
+          <p class="history-time">${timeStr}</p>
+        </div>
+      </div>
     </div>`;
 
-  loadHistory(v, document.getElementById('sheet-history'));
-}
-
-function loadHistory(v, container) {
-  if (!container || !v.ts) return;
-  const diffMin = Math.round((Date.now() - new Date(v.ts)) / 60000);
-  const label   = v.speed > CONFIG.SPEED_THRESHOLD ? 'En mouvement' : 'Arrêt détecté';
-  const timeStr = diffMin < 1 ? 'il y a <1 min' : `il y a ${diffMin} min`;
-  container.innerHTML = `
-    <div class="history-item">
-      <span class="history-dot ${v.speed > CONFIG.SPEED_THRESHOLD ? 'dot-green' : 'dot-amber'}"></span>
-      <span class="history-label">${label}</span>
-      <span class="history-time">${timeStr}</span>
-    </div>`;
 }
