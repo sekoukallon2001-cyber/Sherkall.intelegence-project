@@ -1156,4 +1156,8 @@ async function createZone() {
 // ══════════════════════════════════════════════════════
 // INIT — load everything on page open
 // ══════════════════════════════════════════════════════
-loadAll().catch(err => console.error('Admin init error:', err));
+loadAll().catch(err => {
+  document.body.innerHTML = `<div style="color:red;padding:20px;font-size:14px;background:#000;min-height:100vh">
+    <h2>Admin Error</h2><pre>${err.message}\n${err.stack}</pre>
+  </div>`;
+});
