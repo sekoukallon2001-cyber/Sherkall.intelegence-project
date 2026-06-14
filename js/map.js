@@ -14,15 +14,17 @@ export let geofenceLayers = {};
 // ── INIT ──────────────────────────────────────────────
 export function initMap() {
   map = L.map('map', {
-    zoomControl:       false,
+    zoomControl:        false,
     attributionControl: true,
-    tap:               false,  // prevent Leaflet eating mobile touch events
-    touchZoom:         true,
-    scrollWheelZoom:   false,
-    rotate:            true,   // enable bearing/rotation
-    touchRotate:       true,   // two-finger rotate gesture on mobile
-    bearing:           0
+    tap:                false,   // prevent Leaflet eating mobile touch events
+    touchZoom:          true,    // native pinch-to-zoom — stable, no plugin needed
+    scrollWheelZoom:    false,
+    worldCopyJump:      true,    // prevents world repeating when panning sideways
+    maxBoundsViscosity: 0.8      // resist dragging beyond world edges
   }).setView([9.538, -13.677], 12);
+
+  // Prevent infinite world repeat when zooming out
+  map.setMaxBounds([[-90, -180], [90, 180]]);
 
   const layer = TILE_LAYERS.street;
   tileLayer = L.tileLayer(layer.url, layer.options).addTo(map);
