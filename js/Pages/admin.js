@@ -3,7 +3,13 @@
 // ══════════════════════════════════════════════════════
 const BACKEND = 'https://sherkall-backend-production.up.railway.app';
 const token   = sessionStorage.getItem('sherkall_token') || localStorage.getItem('sherkall_token');
-const user    = JSON.parse(sessionStorage.getItem('sherkall_user') || localStorage.getItem('sherkall_user') || '{}');
+
+// Safe parse — malformed JSON in storage crashes the entire script
+function safeParseUser() {
+  const raw = sessionStorage.getItem('sherkall_user') || localStorage.getItem('sherkall_user') || '{}';
+  try { return JSON.parse(raw); } catch { return {}; }
+}
+const user = safeParseUser();
 
 // ── Auth guard ─────────────────────────────────────────
 if (!token || user.role !== 'admin') {
