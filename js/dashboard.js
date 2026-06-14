@@ -93,6 +93,11 @@ function switchView(name) {
   document.getElementById(`view-${name}`)?.classList.add('active');
   document.getElementById(`nav-${name}`)?.classList.add('active');
   if (name === 'alerts') renderAlertsFeed();
+  // Recalculate map size when map view becomes visible
+  // Leaflet needs this because the container may have had zero height on init
+  if (name === 'map' && map) {
+    setTimeout(() => map.invalidateSize({ animate: false }), 50);
+  }
 }
 
 // ── VEHICLE SELECTION ─────────────────────────────────
